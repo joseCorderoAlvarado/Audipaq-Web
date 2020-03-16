@@ -20,11 +20,11 @@ class CreatePersonaTable extends Migration
             $table-> string('apellido_materno',200);
             $table-> string('correo_electronico',100);
             $table-> string('contrasena',200);
-
+            $table-> integer ('fk_id_empresa')->unsigned();
+            $table-> foreign('fk_id_empresa')->references('id_empresa')->on('empresa');
             $table-> integer('fk_id_tipo')->unsigned();
             $table-> foreign('fk_id_tipo')->references('id_tipousuario')->on('tipousuario');
-            $table-> integer ('fk_id_empresa')->unsiged();
-            $table-> foreign('fk_id_empresa')->references('id_empresa')->on('empresa');
+           
         });
     }
 
