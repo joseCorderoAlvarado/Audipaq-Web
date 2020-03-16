@@ -10,8 +10,8 @@ class tipousuario extends Seeder
     public function run()
     {
         DB::table('tipousuario')-> insert(array('nombre_tipo'=>'auditor'));
-        DB::table('tipousuario')-> insert(array('nombre_tipo'=>'auditable'));
-        DB::table('tipousuario')-> insert(array('nombre_tipo'=>'coauditado'));
+        DB::table('tipousuario')-> insert(array('nombre_tipo'=>'auditado'));
+        DB::table('tipousuario')-> insert(array('nombre_tipo'=>'coauditador'));
     
     }
 }

@@ -23,9 +23,8 @@ class CreatePersonaTable extends Migration
 
             $table-> integer('fk_id_tipo')->unsigned();
             $table-> foreign('fk_id_tipo')->references('id_tipousuario')->on('tipousuario');
-
-
-           
+            $table-> integer ('fk_id_empresa')->unsiged();
+            $table-> foreign('fk_id_empresa')->references('id_empresa')->on('empresa');
         });
     }
 
