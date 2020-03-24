@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::Get('login','iniciarSesion@mostrar');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -16,7 +16,7 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<li class="nav-item dropdown">
 			<a lass="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			<a	class="navbar-brand" href="#" style="color: #fff"><b>Iniciar sesión</b></a>
+			<a	class="navbar-brand" href="{{ url('login')}}" style="color: #fff"><b>Iniciar sesión</b></a>
             </a>
             </li>
 		</ul>
