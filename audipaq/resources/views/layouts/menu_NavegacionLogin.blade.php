@@ -19,6 +19,21 @@
 			<a	class="navbar-brand" href="#" style="color: #fff"><b>Iniciar sesión</b></a>
             </a>
             </li>
+            <li class="nav-item dropdown">
+			<a lass="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<a	class="navbar-brand" href="#" style="color: #fff"><b>Conócenos</b></a>
+            </a>
+            </li>
+            <li class="nav-item dropdown">
+			<a lass="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<a	class="navbar-brand" href="#" style="color: #fff"><b>Términos</b></a>
+            </a>
+            </li>
+            <li class="nav-item dropdown">
+			<a lass="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<a	class="navbar-brand" href="#" style="color: #fff"><b>Condiciones</b></a>
+            </a>
+            </li>
 		</ul>
 	</div>
 </nav>

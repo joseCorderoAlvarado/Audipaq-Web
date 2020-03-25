@@ -6,4 +6,4 @@
 	  <link rel="stylesheet" type="text/css" href="css/estilos.css">
 		<link rel="stylesheet" type="text/css" href="css/estiloValidaciones.css">
 	</head>
-    <body>
+    <body style="background-color: #ECEFF1">
