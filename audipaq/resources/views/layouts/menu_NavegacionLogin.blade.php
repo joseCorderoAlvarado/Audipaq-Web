@@ -1,9 +1,9 @@
 {{-------------------------Menú de navegación---------------------------}}
-<div class="container-fluid" style="background-color: #546E7A"> 
-<div class="row"> 
+<div class="container-fluid" style="background-color: #546E7A">
+<div class="row">
 <div class="col-md-12">
 <nav class="navbar navbar-expand-lg	navbar-light bg-light" style="background-color: #546E7A !important">
-    <img src="images/audipaq.jpg" width="200" height="60"	class="d-inline-block align-top" alt="">
+    <img src="images/audipaq.png" width="200" height="60"	class="d-inline-block align-top" alt="">
 
 	<button	class="navbar-toggler"	type="button"	data-toggle="collapse"data-target="#navbarSupportedContent"	aria-controls="navbarSupportedContent" aria-expanded="false"	aria-label="Toggle	navigation">
 	<span class="navbar-toggler-icon"></span>
@@ -42,7 +42,7 @@
 
 
 
-	      
+
         </div>
     </div>
 </div>
