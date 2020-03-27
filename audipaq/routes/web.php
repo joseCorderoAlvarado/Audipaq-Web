@@ -11,10 +11,16 @@
 |
 */
 
-Route::get('/login', function(){return view('login');});
-
 Route::get('/', function(){return view('index');});
 #Route::get('/', function(){return view('welcome');});
+
+
+//Controlador de Login para mostrar el formulario
+Route::Get('login','Login@mostrar');
+
+//Controladores de botones de inicio de sesión dentro de un formulario o de cierre de sesión
+Route::post('btnLogin','Login@verificar');
+Route::Get('btnLogout','Login@cerrarSesion');
 
 #Auth::routes();
 
