@@ -8,5 +8,6 @@
 	</head>
 
 	@include('layouts.styles')
+	@include('layouts.scripts')
 
     <body style="background-color: #ECEFF1">

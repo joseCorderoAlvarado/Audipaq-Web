@@ -9,8 +9,16 @@ use DB;
 	{
 		public function mostrar()
 		{
-			return view ('login');
+			if (session()->has('s_tipoUsuario') ) 
+			{
+				return redirect ('/');
+			}
+			else
+			{
+				return view ('login');
+			}
 		}
+
 
 		public function verificar (Request $datos)
 		{
@@ -32,10 +40,29 @@ use DB;
 
 		    if ($consultaDatosUsuario!="[]")
 			{
+				//buscar esos datos en la base de datos
+				$consultaTipoUsuario = DB::table('persona')
+			    ->select('fk_id_tipo')
+			    ->where('correo_electronico', '=', $correo_Electronico)
+				->where('contrasena', '=', $contrasena)
+			    ->get();
 
-			    //session(['s_tipoUsuario' => '3']);
-	            session(['s_identificador'=>$correo_Electronico]);
-				return redirect('/');
+			    if(strpos($consultaTipoUsuario, '1') == true)
+			    {
+				    session(['s_tipoUsuario' => '1']);
+            		session(['s_identificador'=>$correo_Electronico]);
+			       	return redirect('homePage_Auditor');
+			   	}
+			   	elseif  (strpos($consultaTipoUsuario, '2') == true){
+				    session(['s_tipoUsuario' => '2']);
+            		session(['s_identificador'=>$correo_Electronico]);
+			       	return redirect('homePage_Auditado');
+			   	}
+			   	elseif  (strpos($consultaTipoUsuario, '3') == true){
+				    session(['s_tipoUsuario' => '3']);
+            		session(['s_identificador'=>$correo_Electronico]);
+			       	return redirect('homePage_Coauditor');
+			   	}
 			}
 			else
 			{
@@ -47,7 +74,7 @@ use DB;
 		{
 			//Matamos todos los datos de la sesion
 			Session()->flush();
-			  return redirect('/');
+			return redirect('/');
 		}
 	}
 ?>
