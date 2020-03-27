@@ -1,6 +1,7 @@
 @extends('layouts.head')
 @include('layouts.menu_Navegacion')
-
+<br>
+<br>
 @include('layouts.Carrusel')
 
 
