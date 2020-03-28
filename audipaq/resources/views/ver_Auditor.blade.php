@@ -7,7 +7,7 @@
      <div class="col-md-2">
             <form class="formulario" action="" method="post" enctype="multipart/form-data">
 			{{csrf_field()}}
-				<button type="submit" class="btn btn-primary" style="background: #00ACC1; border: none;">Crear Auditor</button>
+				<button type="submit" class="btn btn-primary" href="#crear_Auditor" style="background: #00ACC1; border: none;">Crear Auditor</button>
 		    </form>
       </div>
 </div>
