@@ -5,4 +5,7 @@
 <script src="js/form.js"></script>
 <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
-       
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script src="js/jquery-latest.js"></script>
+<script src="js/bootstrap.js"></script>
+<link rel="stylesheet" href="app/css/bootstrap.min.css">

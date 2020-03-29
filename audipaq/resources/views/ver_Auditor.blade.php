@@ -7,7 +7,7 @@
      <div class="col-md-5"></div>
      <div class="col-md-2">
      	<br>
-		<a type="submit" class="btn btn-primary" href="#crearAuditor" style="background: #00ACC1; border: none;">Crear Auditor</a>
+		<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none;" data-toggle="modal" data-target="#crearAuditor">Crear Auditor</button>
       </div>
 </div>
 
@@ -74,3 +74,29 @@
 
 
 @extends('layouts.footer')
+
+
+<div id="editarApellidoP" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<h4 class="modal-title">Editar Apellido Paterno</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+
+           	<form  action="" method="post" enctype="multipart/form-data">
+			{{ csrf_field() }}
+
+           		<div class="modal-body">
+	            	<input type="hidden" name="txtidPersona" value="dsfsf">
+	            	<input id="apellidopaterno"type="text" name="txtApellidoPEditar" style="width: 400px; border: none; background-color: transparent; color: black; border-style: solid; border-color: blue;" value="ddsgfsdf" autofocus="value" pattern="^[ a-zA-ZÁÉÍÓÚñáéíóú]{1,}[\s]*" required="" maxlength="50" onkeypress="return soloLetras(event)">
+	            	<p class="text-warning"><small>No dejar este campo vacio.</small></p>
+	       		</div>
+
+	        	<div class="modal-footer">
+					<button id="button" class="btn btn-primary" style="background-color: #003669; color: white;">Guardar Cambios</button>
+				</div>
+	        </form>
+        </div>
+    </div>
+</div>
