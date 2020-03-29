@@ -1,14 +1,13 @@
 @extends('layouts.head')
 @include('layouts.menu_Navegacion_Administrador_VerAuditor')
+@include('crear_Auditor')
 
  <div class="row">
      <div class="col-md-5"></div>
      <div class="col-md-5"></div>
      <div class="col-md-2">
-            <form class="formulario" action="" method="post" enctype="multipart/form-data">
-			{{csrf_field()}}
-				<button type="submit" class="btn btn-primary" href="#crear_Auditor" style="background: #00ACC1; border: none;">Crear Auditor</button>
-		    </form>
+     	<br>
+		<a type="submit" class="btn btn-primary" href="#crearAuditor" style="background: #00ACC1; border: none;">Crear Auditor</a>
       </div>
 </div>
 
