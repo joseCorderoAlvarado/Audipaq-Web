@@ -12,7 +12,7 @@
 						<a	class="navbar-brand" href="{{ url('/')}}" style="color: #fff"><b>Inicio</b></a>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<li class="nav-item dropdown">
-							<a	class="navbar-brand" href="{{ url('login')}}" style="color: #fff"><b>Iniciar sesión</b></a>
+							<a	type="button" class="btn btn-primary" style="background: #00ACC1; border: none;" href="{{ url('login')}}" style="color: #fff"><b>Iniciar sesión</b></a>
 			            </li>
 					</ul>
 				</div>

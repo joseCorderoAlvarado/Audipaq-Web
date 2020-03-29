@@ -25,7 +25,7 @@
 
 
 						<div class="nav-item dropdown">
-							<a	class="navbar-brand" href="{{ url('btnLogout')}}" style="color: #fff"><b>Cerrar sesión</b></a>
+							<a	type="button" class="btn btn-primary" style="background: #00ACC1; border: none;" href="{{ url('btnLogout')}}" style="color: #fff"><b>Cerrar sesión</b></a>
 			            </div>
 					</div>
 				</div>
