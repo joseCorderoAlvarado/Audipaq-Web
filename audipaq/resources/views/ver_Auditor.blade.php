@@ -1,5 +1,5 @@
 @extends('layouts.head')
-@include('layouts.menu_NavegacionAuditor')
+@include('layouts.menu_Navegacion_Administrador_VerAuditor')
 
  <div class="row">
      <div class="col-md-5"></div>

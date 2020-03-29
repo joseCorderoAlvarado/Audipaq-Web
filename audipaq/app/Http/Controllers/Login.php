@@ -63,6 +63,11 @@ use DB;
             		session(['s_identificador'=>$correo_Electronico]);
 			       	return redirect('homePage_Coauditor');
 			   	}
+			   	elseif  (strpos($consultaTipoUsuario, '4') == true){
+				    session(['s_tipoUsuario' => '4']);
+            		session(['s_identificador'=>$correo_Electronico]);
+			       	return redirect('homePage_Administrador');
+			   	}
 			}
 			else
 			{

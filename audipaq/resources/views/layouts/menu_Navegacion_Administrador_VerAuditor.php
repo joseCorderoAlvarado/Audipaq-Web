@@ -1,4 +1,4 @@
-{{-------------------------Menú de navegación---------------------------}}
+
 <div class="container-fluid" style="background-color: #546E7A">
 	<div class="row">
 		<div class="col-md-12">
@@ -33,4 +33,3 @@
 		</div>
 	</div>
 </div>
-{{-----------------------FinMenú de navegación---------------------------}}

@@ -5,11 +5,11 @@ use App\persona;
 use Illuminate\Http\Request;
 use DB;
 
-	class Ver_Auditor extends Controller
+	class Administrador extends Controller
 	{
 		public function index()
 		{
-			return view ('homePage_Auditor');
+			return view ('homePage_Administrador');
 		}
 		public function mostrar()
 		{
