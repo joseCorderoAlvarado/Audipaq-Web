@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class departamento extends Model
 {
     //
-        protected $table ='departamento';
+    public $timestamps = false;
+    protected $table ='departamento';
     protected $primaryKey='id_departamento';
 }

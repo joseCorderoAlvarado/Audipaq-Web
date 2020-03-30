@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class observaciones extends Model
 {
     //
-     protected $table ='observaciones';
+    public $timestamps = false;
+    protected $table ='observaciones';
     protected $primaryKey='id_observaciones';
 }
