@@ -1,6 +1,7 @@
 @extends('layouts.head')
 @include('layouts.menu_Navegacion_Administrador_VerAuditor')
-@include('crear_Auditor')
+
+@include('modalCrear_Auditor')
 
  <div class="row">
      <div class="col-md-5"></div>
