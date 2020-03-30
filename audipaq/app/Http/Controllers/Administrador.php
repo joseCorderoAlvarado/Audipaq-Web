@@ -18,8 +18,14 @@ use DB;
 			->select('id_empresa','nombre_empresa')
 			->orderBy('nombre_empresa','ASC')
 			->get(); 
+
+			$listaAuditores = DB::table('persona')
+			->join('empresa', 'empresa.id_empresa', '=', 'persona.fk_id_empresa')
+			->select('persona.id_persona','persona.nombre_persona','empresa.nombre_empresa','persona.correo_electronico')
+			->where('persona.fk_id_tipo','=','1')
+			->get(); 
 					
-			return view('ver_Auditor',['listaEmpresas'=>$listaEmpresas]);
+			return view('ver_Auditor',['listaEmpresas'=>$listaEmpresas,'listaAuditores'=>$listaAuditores]);
 		}
 
 		public function crear(Request $datos)
