@@ -25,5 +25,7 @@ use DB;
 		{
 			return view ('modificar_Auditor');
 		}
+		
+		
 	}
 ?>

@@ -26,8 +26,9 @@ Route::Get('btnLogout','Login@cerrarSesion');
 //Controlador de ver Auditor para mostrar la pagina
 Route::Get('homePage_Administrador','Administrador@index');
 Route::Get('ver_Auditor','Administrador@mostrar');
-Route::Get('crear_Auditor','Administrador@crear');
+Route::post('Ver_AuditorGuardar','Ver_Auditor@guardar');
 Route::Get('modificar_Auditor','Administrador@modificar');
+
 
 
 #Auth::routes();
