@@ -1,7 +1,7 @@
 @extends('layouts.head')
 @include('layouts.menu_Navegacion_Administrador_VerAuditor')
 
-@include('modales_Administrador')
+@include('modal_CrearAuditor')
 
 <br>
 <div class="row" style="margin-left: 80%;">
@@ -68,6 +68,7 @@
 		</div>
 	</div>
 	@include('modal_EliminarAuditor')
+	@include('modal_ModificarAuditor')
 	@endforeach
 </div>
 
