@@ -10,12 +10,16 @@
                 <b><label id="form_nombre">¿Estás seguro que deseas eliminar al auditor {{$auditor->nombre_persona}} ?</label></b>
             </div>
             <div class="modal-footer">
+                <form action="btnEliminar_Auditor" method="post" enctype="multipart/form-data">
+                {{ csrf_field() }}
                     <input type="hidden" name="txtIdPersona" value="{{$auditor->id_persona}}">
-                    <button type="button" class="btn btn-default" id="modal-btn-si" style="background: #00ACC1; border: none; align-items: center; color: white;">Si</button>
-                    <button type="button" class="btn btn-primary" id="modal-btn-no" style="background: #00ACC1; border: none; align-items: center;">No</button>
+                    <button id="button" class="btn btn-primary" style="background: #00ACC1; border: none; align-items: center; color: white;">Si</button>
+                </form>
+                <form action="ver_Auditor" method="get" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                    <button id="button" class="btn btn-primary" class="btn btn-sm btn-default" data-dismiss="modal" style="background: #00ACC1; border: none; align-items: center; color: white;">No</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
-
-<div class="alert" role="alert" id="result"></div>
