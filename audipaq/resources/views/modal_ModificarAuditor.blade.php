@@ -14,7 +14,8 @@
                                 <b><label>Nombre</label></b>
                             </div>
                             <div class="col-5">
-                                <input type="text" class="form-control" name="txtnombreAuditor" style="width: auto;">
+                                <input type="text" class="form-control" name="txtnombreAuditor"  style="width: auto;" value={{$auditor->nombre_persona}}>
+
                             </div>
                     </div>
                     <br>
@@ -23,7 +24,7 @@
                                 <b><label>Apellido Paterno</label></b>
                             </div>
                             <div class="col-5">
-                                <input type="text" class="form-control"  name="txtapellidoPatAuditor" style="width: auto;">
+                                <input type="text" class="form-control"  name="txtapellidoPatAuditor" style="width: auto;" value={{$auditor->apellido_materno}}>
                             </div>
                     </div>
                     <br>
@@ -32,7 +33,7 @@
                                 <b><label>Apellido Materno</label></b>
                             </div>
                             <div class="col-5">    
-                                <input type="text" class="form-control"  name="txtapellidoMatAuditor" style="width: auto;">
+                                <input type="text" class="form-control"  name="txtapellidoMatAuditor" style="width: auto;" value={{$auditor->apellido_paterno}}>
                             </div>
                     </div>
                     <br>
@@ -41,7 +42,7 @@
                                  <b><label>Correo</label></b>
                             </div>
                             <div class="col-5">
-                                  <input type="email" class="form-control" name="correoAuditor" style="width: auto;">
+                                  <input type="email" class="form-control" name="correoAuditor" style="width: auto;" value={{$auditor->correo_electronico}}>
                             </div>
                     </div>
                     <br>
@@ -50,7 +51,7 @@
                                 <b><label>Contrase&ntilde;a</label></b>
                              </div>
                              <div class="col-5">
-                                <input type="password" class="form-control"  name="contraAuditor" style="width: auto;">
+                                <input type="text" class="form-control"  name="contraAuditor" style="width: auto;" value={{$auditor->contrasena}}>
                              </div>
                     </div>
                     <br>

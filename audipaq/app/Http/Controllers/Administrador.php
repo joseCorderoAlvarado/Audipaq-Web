@@ -59,7 +59,7 @@ use DB;
 
 					$listaAuditores = DB::table('persona')
 					->join('empresa', 'empresa.id_empresa', '=', 'persona.fk_id_empresa')
-					->select('persona.id_persona','persona.nombre_persona','empresa.nombre_empresa','persona.correo_electronico')
+					->select('persona.id_persona','persona.nombre_persona', 'persona.apellido_paterno','persona.apellido_materno','persona.contrasena','persona.correo_electronico','empresa.nombre_empresa','persona.correo_electronico')
 					->where('persona.fk_id_tipo','=','1')
 					->get();
 							
@@ -94,8 +94,9 @@ use DB;
 			}
 		}
 
-		public function modificar()
+		public function modificar(Request $datos)
 		{
+			
 			return view ('modificar_Auditor');
 		}
 		
