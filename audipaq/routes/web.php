@@ -48,13 +48,15 @@ Route::post('btnLogin','Login@verificar');
 Route::Get('btnLogout','Login@cerrarSesion');
 
 
-//Controlador de ver Auditor para mostrar la pagina
+//Controladores de Administrador para mostrar la pagina
 Route::Get('homePage_Administrador','Administrador@index');
 Route::Get('ver_Auditor','Administrador@mostrar');
 Route::post('btnCrear_Auditor','Administrador@crear');
 Route::Get('modificar_Auditor','Administrador@modificar');
 
-
+//Controladores de Auditor para mostrar la pagina
+Route::Get('homePage_Auditor','Auditor@index');
+Route::Get('ver_Auditorias','Auditor@mostrar');
 
 #Auth::routes();
 
