@@ -99,6 +99,9 @@ use DB;
 			return view ('modificar_Auditor');
 		}
 		
-		
+		public function eliminar()
+		{
+			return view ('modificar_Auditor');
+		}
 	}
 ?>

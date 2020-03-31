@@ -1,7 +1,7 @@
 @extends('layouts.head')
 @include('layouts.menu_Navegacion_Administrador_VerAuditor')
 
-@include('modalCrear_Auditor')
+@include('modales_Administrador')
 
 <br>
 <div class="row" style="margin-left: 80%;">

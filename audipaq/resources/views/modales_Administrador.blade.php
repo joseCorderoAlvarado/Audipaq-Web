@@ -1,3 +1,4 @@
+{{-----------------------Modal Crear Auditor---------------------------}}
 <div id="crearAuditor" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -79,7 +80,7 @@
         </div>
     </div>
 </div>
-{{-----------------------Modificar---------------------------}}
+{{-----------------------Modal Modificar Auditor---------------------------}}
 <div id="modificarAuditor" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
