@@ -11,7 +11,32 @@
 |
 */
 
-Route::get('/', function(){return view('index');});
+Route::get('/', function()
+{
+	if (session()->has('s_tipoUsuario') ) 
+	{
+		if(session('s_tipoUsuario')=='1')
+		{
+			return redirect('homePage_Auditor');
+		}
+		elseif(session('s_tipoUsuario')=='2')
+		{
+			return redirect('homePage_Auditado');
+		}
+		elseif(session('s_tipoUsuario')=='3')
+		{
+			return redirect('homePage_Coauditor');
+		}
+		elseif(session('s_tipoUsuario')=='4')
+		{
+			return redirect('homePage_Administrador');
+		}
+	}
+	else
+	{
+		return view('index');
+	}
+});
 #Route::get('/', function(){return view('welcome');});
 
 
