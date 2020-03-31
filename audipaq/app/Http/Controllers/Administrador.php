@@ -10,22 +10,66 @@ use DB;
 	{
 		public function index()
 		{
-			return view ('homePage_Administrador');
+			if (session()->has('s_tipoUsuario') ) 
+			{
+				if(session('s_tipoUsuario')=='1')
+				{
+					return redirect('homePage_Auditor');
+				}
+				elseif(session('s_tipoUsuario')=='2')
+				{
+					return redirect('homePage_Auditado');
+				}
+				elseif(session('s_tipoUsuario')=='3')
+				{
+					return redirect('homePage_Coauditor');
+				}
+				elseif(session('s_tipoUsuario')=='4')
+				{
+					return view ('homePage_Administrador');
+				}
+			}
+			else
+			{
+				return redirect('/');
+			}
 		}
 		public function mostrar()
 		{
-			$listaEmpresas = DB::table('empresa')
-			->select('id_empresa','nombre_empresa')
-			->orderBy('nombre_empresa','ASC')
-			->get(); 
+			if (session()->has('s_tipoUsuario') ) 
+			{
+				if(session('s_tipoUsuario')=='1')
+				{
+					return redirect('homePage_Auditor');
+				}
+				elseif(session('s_tipoUsuario')=='2')
+				{
+					return redirect('homePage_Auditado');
+				}
+				elseif(session('s_tipoUsuario')=='3')
+				{
+					return redirect('homePage_Coauditor');
+				}
+				elseif(session('s_tipoUsuario')=='4')
+				{
+					$listaEmpresas = DB::table('empresa')
+					->select('id_empresa','nombre_empresa')
+					->orderBy('nombre_empresa','ASC')
+					->get(); 
 
-			$listaAuditores = DB::table('persona')
-			->join('empresa', 'empresa.id_empresa', '=', 'persona.fk_id_empresa')
-			->select('persona.id_persona','persona.nombre_persona','empresa.nombre_empresa','persona.correo_electronico')
-			->where('persona.fk_id_tipo','=','1')
-			->get(); 
-					
-			return view('ver_Auditor',['listaEmpresas'=>$listaEmpresas,'listaAuditores'=>$listaAuditores]);
+					$listaAuditores = DB::table('persona')
+					->join('empresa', 'empresa.id_empresa', '=', 'persona.fk_id_empresa')
+					->select('persona.id_persona','persona.nombre_persona','empresa.nombre_empresa','persona.correo_electronico')
+					->where('persona.fk_id_tipo','=','1')
+					->get(); 
+							
+					return view('ver_Auditor',['listaEmpresas'=>$listaEmpresas,'listaAuditores'=>$listaAuditores]);
+				}
+			}
+			else
+			{
+				return redirect('/');
+			}	
 		}
 
 		public function crear(Request $datos)
