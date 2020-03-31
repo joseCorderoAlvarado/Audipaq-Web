@@ -5,7 +5,7 @@
 
 <br>
 <div class="row" style="margin-left: 80%;">
-	<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none;" data-toggle="modal" data-target="#crearAuditor">Crear Auditor</button>
+	<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none;"data-toggle="modal" data-target="#crearAuditor">Crear Auditor</button>
 </div>
 <br>
 <div class="container-fluid center-block" style="margin: center; text-align: center; justify-content: center;">
@@ -39,11 +39,11 @@
     	<div class="row">
       	    <div class="col-0" style="background-color: white;  margin-left:15%; ">
       	    	<div >
-				  <div class="col-md-9">
-				    <a href="" style="text-align:center;">M</a>
+				  <div class="col-md-9" style="padding: 3px;">
+				    <a href="" style="text-align:center; background: #00ACC1" data-toggle="modal" data-target="#modificarAuditor"><img src="images/editar.png" width="20" height="20"></a>
 				  </div>
-				  <div class="col-md-9">
-				    <a href="" style="text-align:center;">E</a>
+				  <div class="col-md-9" style="padding: 3px;">
+				    <a href="" style="text-align:center; background: #00ACC1 "><img src="images/borrar.png" width="20" height="20"></a>
 				  </div>
 				</div>
            	</div>

@@ -22,8 +22,14 @@
 									</a>
 					            </div>
 			          		</div>
-
-
+						         <form >
+								    <div class="input-group" style="margin-left:-3%;">
+								     	<input class="form-control" type="search" placeholder="Buscar" name="txtBuscar">
+								     	<button class="btn" type="submit" style="background: #00ACC1">
+								      	<img src="images/buscador.png" width="20" height="20"	class="d-inline-block align-top">
+								      	</button>
+								    </div>
+								 </form>
 						<div class="nav-item dropdown">
 							<a	type="button" class="btn btn-primary" style="background: #00ACC1; border: none;" href="{{ url('btnLogout')}}" style="color: #fff"><b>Cerrar sesión</b></a>
 			            </div>
