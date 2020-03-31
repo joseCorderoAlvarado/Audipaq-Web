@@ -51,6 +51,7 @@ Route::Get('btnLogout','Login@cerrarSesion');
 //Controladores de Administrador para mostrar la pagina
 Route::Get('homePage_Administrador','Administrador@index');
 Route::Get('ver_Auditor','Administrador@mostrar');
+Route::post('ver_Auditor','Administrador@mostrarBusqueda');
 Route::post('btnCrear_Auditor','Administrador@crear');
 Route::post('btnModificar_Auditor','Administrador@modificar');
 Route::post('btnEliminar_Auditor','Administrador@eliminar');
