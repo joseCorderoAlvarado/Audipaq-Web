@@ -40,10 +40,10 @@
       	    <div class="col-0" style="background-color: white;  margin-left:15%; ">
       	    	<div >
 				  <div class="col-md-9" style="padding: 3px;">
-				    <a href="" style="text-align:center; background: #00ACC1" data-toggle="modal" data-target="#modificarAuditor"><img src="images/editar.png" width="20" height="20"></a>
+				    <button href="" style="text-align:center; background: #00ACC1" data-toggle="modal" data-target="#modificarAuditor"><img src="images/editar.png" width="20" height="20"></button>
 				  </div>
 				  <div class="col-md-9" style="padding: 3px;">
-				    <a href="" style="text-align:center; background: #00ACC1 "><img src="images/borrar.png" width="20" height="20"></a>
+				    <button href="" style="text-align:center; background: #00ACC1 "><img src="images/borrar.png" width="20" height="20"></button>
 				  </div>
 				</div>
            	</div>
