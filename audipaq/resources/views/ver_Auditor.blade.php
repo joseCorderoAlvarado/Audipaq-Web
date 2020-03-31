@@ -34,21 +34,27 @@
 		</div>
 	</div>
 	<br>
+	<?php
+	$i=-1;
+	?>
 	@foreach ($listaAuditores as $auditor)
+	<?php
+	$i=$i+1;
+	?>
 	<div class="container-fluid" style="border-radius: 3px; padding: 10px; " >
     	<div class="row">
       	    <div class="col-0" style="background-color: white;  margin-left:15%; ">
       	    	<div >
 				  <div class="col-md-9" style="padding: 3px;">
-				    <button href="" style="text-align:center; background: #00ACC1" data-toggle="modal" data-target="#modificarAuditor"><img src="images/editar.png" width="20" height="20"></button>
+				    <button style="text-align:center; background: #00ACC1" data-toggle="modal" data-target="#modificarAuditor"><img src="images/editar.png" width="20" height="20"></button>
 				  </div>
 				  <div class="col-md-9" style="padding: 3px;">
-				    <button href="" style="text-align:center; background: #00ACC1 "><img src="images/borrar.png" width="20" height="20"></button>
+				    <button style="text-align:center; background: #00ACC1" data-toggle="modal" data-target="#eliminarAuditor{{$auditor->id_persona}}" class="btn-floating btn-small waves-effect waves-light blue"><img src="images/borrar.png" width="20" height="20"></button>
 				  </div>
 				</div>
            	</div>
            	<div class="col-1" style="background-color: white;">
-           		<h8 style="text-align:center;">{{$auditor->id_persona}} </h8>
+           		<h8 style="text-align:center;">{{$auditor->id_persona}}</h8>
             </div>
 	     	<div class="col-2" style="background-color: white; margin-left:20px; ">
            		<h8 style="text-align:center;">{{$auditor->nombre_persona}}</h8>
@@ -61,8 +67,8 @@
 		    </div>	
 		</div>
 	</div>
+	@include('modal_EliminarAuditor')
 	@endforeach
 </div>
-
 
 @extends('layouts.footer')

@@ -61,7 +61,7 @@ use DB;
 					->join('empresa', 'empresa.id_empresa', '=', 'persona.fk_id_empresa')
 					->select('persona.id_persona','persona.nombre_persona','empresa.nombre_empresa','persona.correo_electronico')
 					->where('persona.fk_id_tipo','=','1')
-					->get(); 
+					->get();
 							
 					return view('ver_Auditor',['listaEmpresas'=>$listaEmpresas,'listaAuditores'=>$listaAuditores]);
 				}
@@ -99,9 +99,20 @@ use DB;
 			return view ('modificar_Auditor');
 		}
 		
-		public function eliminar()
+		public function eliminar(Request $datos)
 		{
-			return view ('modificar_Auditor');
+			$persona_variable = new persona;
+			$id_persona = $persona_variable->txtIdPersona = $datos->input ('txtIdPersona');
+
+			if(DB::delete('DELETE FROM persona  where id_persona=?',[$id_persona]))
+			{
+				\Session::flash('flash_message', '¡Auditor eliminado con éxito');
+				return redirect('ver_Auditor');
+				
+			}
+			else {
+				return back(); 
+			}
 		}
 	}
 ?>
