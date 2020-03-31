@@ -82,8 +82,16 @@ use DB;
 		 	$persona->contrasena=md5($datos->input('contraAuditor'));
 		 	$persona->fk_id_empresa=$datos->input('fkEmpresa');
 		 	$persona->fk_id_tipo='1';
-		 	$persona->save();
-			return redirect('ver_Auditor');
+		 	
+			if($persona->save()){
+			
+				\Session::flash('flash_message', '¡Nuevo usuario añadido con éxito');
+				return redirect('ver_Auditor');
+				
+			}
+			else {
+				return back(); 
+			}
 		}
 
 		public function modificar()
