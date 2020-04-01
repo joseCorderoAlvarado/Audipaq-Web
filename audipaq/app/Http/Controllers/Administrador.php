@@ -159,7 +159,23 @@ use DB;
 
 		public function modificar(Request $datos)
 		{
-			
+		            $idPersona=$datos->input('txtidpersona');
+       			    $persona=persona::find($idPersona);
+				 	$persona->nombre_persona=$datos->input('txtnombreAuditor');
+				 	$persona->apellido_paterno=$datos->input('txtapellidoPatAuditor');
+				 	$persona->apellido_materno=$datos->input('txtapellidoMatAuditor');
+				 	$persona->correo_electronico=$datos->input ('correoAuditor');
+				 	$persona->contrasena=md5($datos->input('contraAuditor'));
+				 	$persona->fk_id_empresa=$datos->input('fkEmpresa');
+				 	$persona->fk_id_tipo='1';
+					if($persona->save()){
+						\Session::flash('flash_message', '¡Usuario Modificado con exito');
+						return redirect('ver_Auditor');
+						
+					}
+					else {
+						return back(); 
+					}	
 			return view ('modificar_Auditor');
 		}
 		
