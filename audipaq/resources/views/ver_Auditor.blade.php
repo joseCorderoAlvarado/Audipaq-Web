@@ -50,10 +50,10 @@
       	    <div class="col-0" style="background-color: white;  margin-left:15%; ">
       	    	<div >
 				  <div class="col-md-9" style="padding: 3px;">
-				    <button style="text-align:center; background: #00ACC1" data-toggle="modal" data-target="#modificarAuditor"><img src="images/editar.png" width="20" height="20"></button>
+				    <button style="text-align:center; background: #00ACC1" data-toggle="modal" data-target="#modificarAuditor{{$auditor->id_persona}}"><img src="images/editar.png" width="20" height="20"></button>
 				  </div>
 				  <div class="col-md-9" style="padding: 3px;">
-				    <button style="text-align:center; background: #00ACC1" data-toggle="modal" data-target="#eliminarAuditor{{$auditor->id_persona}}" class="btn-floating btn-small waves-effect waves-light blue"><img src="images/borrar.png" width="20" height="20"></button>
+				    <button style="text-align:center; background: #00ACC1" data-toggle="modal" data-target="#eliminarAuditor{{$auditor->id_persona}}" ><img src="images/borrar.png" width="20" height="20"></button>
 				  </div>
 				</div>
            	</div>

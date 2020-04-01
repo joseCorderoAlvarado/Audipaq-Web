@@ -60,7 +60,7 @@ use DB;
 
 					$listaAuditores = DB::table('persona')
 					->join('empresa', 'empresa.id_empresa', '=', 'persona.fk_id_empresa')
-					->select('persona.id_persona','persona.nombre_persona', 'persona.apellido_paterno','persona.apellido_materno','persona.contrasena','persona.correo_electronico','empresa.nombre_empresa','persona.correo_electronico')
+					->select('persona.id_persona','persona.nombre_persona', 'persona.apellido_paterno','persona.apellido_materno','persona.correo_electronico','empresa.nombre_empresa','persona.correo_electronico','empresa.id_empresa')
 					->where('persona.fk_id_tipo','=','1')
 					->get();
 							
@@ -99,7 +99,7 @@ use DB;
 					$persona_variable = new persona;
 					$busqueda = $persona_variable->txtBuscar = $datos->input ('txtBuscar');
 
-					$listaAuditores = DB::select('select persona.id_persona, persona.nombre_persona, empresa.nombre_empresa, persona.correo_electronico FROM persona  
+					$listaAuditores = DB::select('select persona.id_persona, persona.nombre_persona, empresa.nombre_empresa, persona.correo_electronico,persona.apellido_paterno, persona.apellido_materno, empresa.id_empresa FROM persona  
 						INNER JOIN empresa ON empresa.id_empresa = persona.fk_id_empresa
 						WHERE persona.fk_id_tipo =1
 						AND (persona.nombre_persona like "%'.$busqueda.'%" OR empresa.nombre_empresa like "%'.$busqueda.'%" OR Persona.correo_electronico like "%'.$busqueda.'%")');
