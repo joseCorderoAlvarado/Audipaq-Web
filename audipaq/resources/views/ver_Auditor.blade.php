@@ -14,6 +14,10 @@
 				<div class="alert alert-success" role="alert">
 					{{ Session::get('flash_message') }}
 				</div>
+			@elseif(Session::has('mensaje'))
+				<div class="alert alert-danger" role="alert">
+					{{ Session::get('mensaje') }}
+				</div>
 			@endif
 		<div class="row">
 			<div class="col-0" style="background-color: white; margin-left:15%; padding: 1%; margin-top: 1%;">

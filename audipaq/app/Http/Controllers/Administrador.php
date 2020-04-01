@@ -147,7 +147,8 @@ use DB;
 						
 					}
 					else {
-						return back(); 
+						\Session::flash('mensaje','Error al añadir el usuario');
+						 return redirect('ver_Auditor');
 					}
 				}
 			}
