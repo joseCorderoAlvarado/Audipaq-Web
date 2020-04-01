@@ -9,11 +9,11 @@
 			{{csrf_field()}}
 				<div class="form-group">
 					<label>Correo</label>
-					<input type="email" name="txtCorreoElectronico" class="form-control"placeholder="Introduce tu correo">
+					<input type="email" name="txtCorreoElectronico" class="form-control"placeholder="Introduce tu correo" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" required>
 				</div>
 				<div class="form-group">
 					<label >Contraseña</label>
-					<input type="password" name="txtContrasena" class="form-control"  placeholder="Introduce tu contraseña">
+					<input type="password" name="txtContrasena" class="form-control"  placeholder="Introduce tu contraseña" required>
 				</div>
 				<br>
 				<center><button type="submit" class="btn btn-primary" style="background: #00ACC1; border: none;">Iniciar Sesi&oacute;n</button></center>
