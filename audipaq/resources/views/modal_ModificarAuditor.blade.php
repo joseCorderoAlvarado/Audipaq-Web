@@ -1,5 +1,5 @@
 {{-----------------------Modal Modificar Auditor---------------------------}}
-<div id="modificarAuditor" class="modal fade">
+<div id="modificarAuditor{{$auditor->id_persona}}" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background:#546E7A;">
@@ -51,7 +51,7 @@
                                 <b><label>Contrase&ntilde;a</label></b>
                              </div>
                              <div class="col-5">
-                                <input type="text" class="form-control"  name="contraAuditor" style="width: auto;" value={{$auditor->contrasena}}>
+                                <input type="text" class="form-control"  name="contraAuditor" style="width: auto;" value=>
                              </div>
                     </div>
                     <br>
@@ -61,7 +61,7 @@
                             </div>
                             <div class="col-5"> 
                                 <select name="fkEmpresa" class="form-control" style="width: auto;">
-                                    <option selected>Selecciona una empresa
+                                    <option value="{{$auditor->id_empresa }}" selected>{{$auditor->nombre_empresa}}
                                     </option>
                                     @foreach ($listaEmpresas as $empresa)
                                     <option value={{$empresa->id_empresa }}>
