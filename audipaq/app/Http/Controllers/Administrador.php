@@ -96,11 +96,13 @@ use DB;
 					->orderBy('nombre_empresa','ASC')
 					->get(); 
 
-					$listaAuditores = DB::table('persona')
-					->join('empresa', 'empresa.id_empresa', '=', 'persona.fk_id_empresa')
-					->select('persona.id_persona','persona.nombre_persona','empresa.nombre_empresa','persona.correo_electronico')
-					->where('persona.fk_id_tipo','=','1')
-					->get();
+					$persona_variable = new persona;
+					$busqueda = $persona_variable->txtBuscar = $datos->input ('txtBuscar');
+
+					$listaAuditores = DB::select('select persona.id_persona, persona.nombre_persona, empresa.nombre_empresa, persona.correo_electronico FROM persona  
+						INNER JOIN empresa ON empresa.id_empresa = persona.fk_id_empresa
+						WHERE persona.fk_id_tipo =1
+						AND (persona.nombre_persona like "%'.$busqueda.'%" OR empresa.nombre_empresa like "%'.$busqueda.'%" OR Persona.correo_electronico like "%'.$busqueda.'%")');
 							
 					return view('ver_Auditor',['listaEmpresas'=>$listaEmpresas,'listaAuditores'=>$listaAuditores]);
 				}
