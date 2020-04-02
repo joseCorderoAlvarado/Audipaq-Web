@@ -14,7 +14,7 @@
                                 <b><label>Id persona</label></b>
                             </div>
                             <div class="col-5">
-                                <input type="text" class="form-control" name="txtidpersona"  style="width: auto;" value={{$auditor->id_persona}}>
+                                <input type="text" readonly="true" class="form-control" name="txtidpersona"  style="width: auto;" value={{$auditor->id_persona}}>
                             </div>
                     </div>
                     <br>
@@ -54,7 +54,7 @@
                                   <input type="email" class="form-control" name="correoAuditor" style="width: auto;" value={{$auditor->correo_electronico}}>
                             </div>
                     </div>
-                    <br>
+                    <!--<br>
                     <div class="row">
                              <div class="col-3">
                                 <b><label>Contrase&ntilde;a</label></b>
@@ -62,7 +62,7 @@
                              <div class="col-5">
                                 <input type="text" class="form-control"  name="contraAuditor" style="width: auto;" value=>
                              </div>
-                    </div>
+                    </div>-->
                     <br>
                     <div class="row">
                             <div class="col-3">

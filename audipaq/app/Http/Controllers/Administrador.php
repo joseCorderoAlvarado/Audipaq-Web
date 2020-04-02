@@ -160,13 +160,29 @@ use DB;
 
 		public function modificar(Request $datos)
 		{
+			if (session()->has('s_tipoUsuario') ) 
+			{
+				if(session('s_tipoUsuario')=='1')
+				{
+					return redirect('homePage_Auditor');
+				}
+				elseif(session('s_tipoUsuario')=='2')
+				{
+					return redirect('homePage_Auditado');
+				}
+				elseif(session('s_tipoUsuario')=='3')
+				{
+					return redirect('homePage_Coauditor');
+				}
+				elseif(session('s_tipoUsuario')=='4')
+				{
 		            $idPersona=$datos->input('txtidpersona');
        			    $persona=persona::find($idPersona);
 				 	$persona->nombre_persona=$datos->input('txtnombreAuditor');
 				 	$persona->apellido_paterno=$datos->input('txtapellidoPatAuditor');
 				 	$persona->apellido_materno=$datos->input('txtapellidoMatAuditor');
 				 	$persona->correo_electronico=$datos->input ('correoAuditor');
-				 	$persona->contrasena=md5($datos->input('contraAuditor'));
+				 	/*$persona->contrasena=md5($datos->input('contraAuditor'));*/
 				 	$persona->fk_id_empresa=$datos->input('fkEmpresa');
 				 	$persona->fk_id_tipo='1';
 					if($persona->save()){
@@ -174,10 +190,17 @@ use DB;
 						return redirect('ver_Auditor');
 						
 					}
-					else {
-						return back(); 
+					else 
+					{
+						\Session::flash('mensaje','Error al modificar el usuario');
+						 return redirect('ver_Auditor');
 					}	
-			return view ('modificar_Auditor');
+				}
+			}
+			else
+			{
+				return redirect('/');
+			}
 		}
 		
 		public function eliminar(Request $datos)
@@ -204,11 +227,12 @@ use DB;
 					if(DB::delete('DELETE FROM persona  where id_persona=?',[$id_persona]))
 					{
 						\Session::flash('flash_message', '¡Auditor eliminado con éxito');
-						return redirect('ver_Auditor');
-						
+						return redirect('ver_Auditor');	
 					}
-					else {
-						return back(); 
+					else 
+					{
+						\Session::flash('mensaje','Error al eliminar el usuario');
+						 return redirect('ver_Auditor');
 					}
 				}
 			}

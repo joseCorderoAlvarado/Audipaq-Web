@@ -10,13 +10,13 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<div	class="navbar-nav ml-auto">
-						<a	class="navbar-brand" href="{{ url('homePage_Administrador')}}" style="color: #fff"><b>Inicio</b></a>
+						<a	class="navbar-brand" href="{{url('homePage_Administrador')}}" style="color: #fff"><b>Inicio</b></a>
 
                      		<div class="dropdown">
 					            <div class="nav-item dropdown" >
 									<a  class="navbar-brand" aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="{{ url('')}}" style="color: #fff"> <span class="caret"></span><b>Mi empresa</b>
 										<div class="dropdown-menu" aria-labelledby="dropdownmenu" style="background-color: #546E7A!important">
-		    							<a class="dropdown-item"  href="#" style="color: #fff">Ver Auditorias</a>
+		    							<a class="dropdown-item"  href="{{url('ver_Auditorias')}}" style="color: #fff">Ver Auditorias</a>
 		    							<a class="dropdown-item" href="#" style="color: #fff">Ver Coauditores</a>
 		  								</div>
 									</a>
