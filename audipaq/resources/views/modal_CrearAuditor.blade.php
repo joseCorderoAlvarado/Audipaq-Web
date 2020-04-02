@@ -19,15 +19,6 @@
                             </div>
                     </div>
                     <br>
-                    <div class="row">
-                            <div class="col-3">
-                                <b><label>Nombre</label></b>
-                            </div>
-                            <div class="col-5">
-                                <input type="text" class="form-control" name="txtnombreAuditor" style="width: auto;">
-                            </div>
-                    </div>
-                    <br>
                      <div class="row">
                             <div class="col-3">
                                 <b><label>Apellido Paterno</label></b>
