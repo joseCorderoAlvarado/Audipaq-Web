@@ -1,8 +1,11 @@
 @extends('layouts.head')
 @include('layouts.menu_Navegacion_Auditor')
+@include('modal_CrearActa')
+@include('modal_EditarActa')
 <br>
 <div class="row" style="margin-left: 80%;">
-	<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none;"data-toggle="modal" data-target="#crearAuditor">Nueva Auditor&iacute;a</button>
+	<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none;"data-toggle="modal" data-target="#crearActa">Nueva Acta</button>
+
 </div>
 <br>
 <br>
@@ -173,10 +176,10 @@
    	    <div class="col-0" style="background-color: white;  margin-left:5%; ">
       	    <div >
 				<div class="col-md-0" style="padding: 3px;">
-				    <button class="btn" style="text-align:center; background: #00ACC1; margin: 1px; width: auto;"><img src="images/editar.png" width="15" height="15"></button>
+				    <button class="btn" style="text-align:center; background: #00ACC1; margin: 1px; width: auto;" data-toggle="modal" data-target="#EditarActa"><img src="images/editar.png" width="15" height="15"></button>
 				</div>
 				<div class="col-md-9" style="padding: 3px;">
-				    <button class="btn" style="text-align:center; background: #00ACC1; margin: 1px; width: auto;"  class="btn-floating btn-small waves-effect waves-light blue"><img src="images/archivos-de-vista.png" width="15" height="15"></button>
+				    <button class="btn" style="text-align:center; background: #00ACC1; margin: 1px; width: auto;"  class="btn-floating btn-small waves-effect waves-light blue"><a	href="{{ url('verListadoObservaciones_Auditor')}}"><img src="images/archivos-de-vista.png" width="15" height="15"></a></button>
 				</div>
 				 <div class="col-md-9" style="padding: 3px;">
 				    <button class="btn" style="text-align:center; background: #00ACC1; margin: 1px; width: auto;"  class="btn-floating btn-small waves-effect waves-light blue"><img src="images/imprimir.png" width="15" height="15"></button>

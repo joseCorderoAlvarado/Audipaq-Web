@@ -1,5 +1,7 @@
 @extends('layouts.head')
 @include('layouts.menu_Navegacion_Auditor')
+@include('modal_CrearObservacion')
+@include('modal_EditarObservacion')
 <br>
 <button type="button" class="btn btn-primary" style="background: #00ACC1; border: none; margin-left: 80%"data-toggle="modal" data-target="#crearObservacion">Nueva Observaci&oacute;n</button>
 <br><br><br>
@@ -76,6 +78,7 @@
 				<div class="container" style="margin: 20px 45px;">
 					<div class="row">
 						<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none;" data-target="#crearAuditor">Responder</button>
+						<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none; margin-left:7px;" data-toggle="modal" data-target="#editarObservacion">Editar</button>
 					</div>
 				</div>			
 			</div>
