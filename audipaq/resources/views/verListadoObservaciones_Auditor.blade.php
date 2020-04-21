@@ -1,7 +1,7 @@
 @extends('layouts.head')
 @include('layouts.menu_Navegacion_Auditor')
-@include('modal_CrearObservacion')
-@include('modal_EditarObservacion')
+@include('modales_Auditor.modal_CrearObservacion')
+@include('modales_Auditor.modal_EditarObservacion')
 <br>
 <button type="button" class="btn btn-primary" style="background: #00ACC1; border: none; margin-left: 80%"data-toggle="modal" data-target="#crearObservacion">Nueva Observaci&oacute;n</button>
 <br><br><br>

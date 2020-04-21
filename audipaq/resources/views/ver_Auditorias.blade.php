@@ -1,7 +1,7 @@
 @extends('layouts.head')
 @include('layouts.menu_Navegacion_Auditor')
-@include('modal_CrearActa')
-@include('modal_EditarActa')
+@include('modales_Auditor.modal_CrearActa')
+@include('modales_Auditor.modal_EditarActa')
 <br>
 <div class="row" style="margin-left: 80%;">
 	<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none;"data-toggle="modal" data-target="#crearActa">Nueva Acta</button>
