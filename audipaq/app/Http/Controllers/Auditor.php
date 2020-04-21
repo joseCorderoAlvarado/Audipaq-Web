@@ -48,7 +48,6 @@ use DB;
 					->join('area', 'area.id_area', '=', 'acta.fk_id_area')
 					->join('departamento', 'departamento.id_departamento', '=', 'acta.fk_id_departamento')
 					->select('acta.id_acta','acta.fecha_inicio', 'acta.fecha_final','persona.nombre_persona','status.tipo_status','area.nombre_area','departamento.nombre_departamento')
-					->orderBy('observaciones.id_observaciones','Desc')
 					->get();
 							
 					return view('ver_Auditorias',['listaActas'=>$listaActas]);
@@ -117,6 +116,7 @@ use DB;
 					->join('prioridad', 'observaciones.fk_id_prioridad', '=', 'prioridad.id_prioridad')
 					->join('area', 'area.id_area', '=', 'acta.fk_id_area')
 					->select('observaciones.id_observaciones','observaciones.comentarios', 'status.tipo_status','persona.nombre_persona','acta.id_acta','acta.fecha_inicio','prioridad.tipo_prioridad','area.nombre_area','area.encargado_area')
+					->orderBy('observaciones.id_observaciones','Desc')
 					->get();		
 					return view('verListadoObservaciones_Auditor',['listaObservaciones'=>$listaObservaciones]);
 				}
