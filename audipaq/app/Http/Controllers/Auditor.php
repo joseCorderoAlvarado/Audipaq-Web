@@ -101,5 +101,33 @@ use DB;
 				return redirect('/');
 			}	
 		}
+
+		public function observaciones()
+		{
+			if (session()->has('s_tipoUsuario') ) 
+			{
+				if(session('s_tipoUsuario')=='1')
+				{
+							
+					return view('verListadoObservaciones_Auditor');
+				}
+				elseif(session('s_tipoUsuario')=='2')
+				{
+					return redirect('homePage_Auditado');
+				}
+				elseif(session('s_tipoUsuario')=='3')
+				{
+					return redirect('homePage_Coauditor');
+				}
+				elseif(session('s_tipoUsuario')=='4')
+				{			
+					return redirect ('homePage_Administrador');
+				}
+			}
+			else
+			{
+				return redirect('/');
+			}	
+		}
 	}
 ?>
