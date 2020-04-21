@@ -11,4 +11,3 @@ class acta extends Model
     protected $table ='acta';
     protected $primaryKey='id_acta';
 }
-}

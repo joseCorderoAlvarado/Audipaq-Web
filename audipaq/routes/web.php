@@ -59,6 +59,8 @@ Route::post('btnEliminar_Auditor','Administrador@eliminar');
 //Controladores de Auditor para mostrar la pagina
 Route::Get('homePage_Auditor','Auditor@index');
 Route::Get('ver_Auditorias','Auditor@mostrar');
+Route::post('ver_Auditorias','Auditor@mostrarBusqueda');
+Route::Get('verListadoObservaciones_Auditor','Auditor@observaciones');
 
 #Auth::routes();
 

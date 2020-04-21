@@ -6,9 +6,18 @@
                 <h4 class="modal-title" style="color: white" >Modificar Auditor/Coauditor</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
-            <form action="btnCrear_Auditor" method="post" enctype="multipart/form-data">
+            <form action="btnModificar_Auditor" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
                 <div class="modal-body mx-auto" style="width: auto; background-color: #ECEFF1">
+                     <div class="row">
+                            <div class="col-3">
+                                <b><label>Id persona</label></b>
+                            </div>
+                            <div class="col-5">
+                                <input type="text" readonly="true" class="form-control" name="txtidpersona"  style="width: auto;" value={{$auditor->id_persona}}>
+                            </div>
+                    </div>
+                    <br>
                     <div class="row">
                             <div class="col-3">
                                 <b><label>Nombre</label></b>
@@ -45,7 +54,7 @@
                                   <input type="email" class="form-control" name="correoAuditor" style="width: auto;" value={{$auditor->correo_electronico}}>
                             </div>
                     </div>
-                    <br>
+                    <!--<br>
                     <div class="row">
                              <div class="col-3">
                                 <b><label>Contrase&ntilde;a</label></b>
@@ -53,7 +62,7 @@
                              <div class="col-5">
                                 <input type="text" class="form-control"  name="contraAuditor" style="width: auto;" value=>
                              </div>
-                    </div>
+                    </div>-->
                     <br>
                     <div class="row">
                             <div class="col-3">
