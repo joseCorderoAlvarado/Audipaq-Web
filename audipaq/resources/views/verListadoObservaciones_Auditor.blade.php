@@ -67,65 +67,13 @@
 						</div>
 					</div>
 				</div>
-				<div class="container" style="margin: 20px 30px; border-style: solid; border-color: #707070; width: 95%;">
-					<div class="row">
-						<div class="col-2">
-							<b><h5>Respuesta</h5></b>
-						</div>
-						<div class="col-3">
-							Fecha:
-							<b><h8 style="text-align:center; background-color: #ECEFF1;"></h8></b>
-						</div>
-						<div class="col-5">
-							Evidencia:&nbsp;
-							<label for="file-upload2" class="subir">
-							   <i class="fa fa-cloud-upload" aria-hidden="true"></i> Subir archivo
-							</label>
-							<input id="file-upload2" onchange='cambiar2()' type="file" style='display: none;'/>
-							<label id="info2" style="background-color: #ECEFF1; width: unset;"></label>
-						</div>
-						<div class="col-12">
-							<textarea  type="text" id="respuestaObservacion" name="respuestaObservacion" style="width: 1000px; height: 80px; border: 0.7px solid; border-color: #707070; border-radius: 5px; color:gray;" readonly=true" ></textarea>
-						</div>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-					</div>
-				</div>
-				<div class="container" style="margin: 20px 30px; border-style: solid; border-color: #707070; width: 95%;">
-					<div class="row">
-						<div class="col-2">
-							<b><h5>Respuesta</h5></b>
-						</div>
-						<div class="col-3">
-							Fecha:
-							<b><h8 style="text-align:center; background-color: #ECEFF1;"></h8></b>
-						</div>
-						<div class="col-5">
-							Evidencia:&nbsp;
-							<label for="file-upload2" class="subir">
-							   <i class="fa fa-cloud-upload" aria-hidden="true"></i> Subir archivo
-							</label>
-							<input id="file-upload2" onchange='cambiar2()' type="file" style='display: none;'/>
-							<label id="info2" style="background-color: #ECEFF1; width: unset;"></label>
-						</div>
-						<div class="col-12">
-							<textarea  type="text" id="respuestaObservacion" name="respuestaObservacion" style="width: 1000px; height: 80px; border: 0.7px solid; border-color: #707070; border-radius: 5px; color:gray;" readonly=true" ></textarea>
-						</div>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-					</div>
-				</div>
-				
+
+				<!-- Aquí va el código de las respuestas -->
+
 				<div class="container" style="margin: 20px 45px;">
 					<div class="row">
-						<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none;" data-target="#crearAuditor">Responder</button>
-						<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none; margin-left:7px;" data-toggle="modal" data-target="#editarObservacion">Editar</button>
+						<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none;" data-target="#crearAuditor">Editar</button>
+						<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none; margin-left:7px;" data-toggle="modal" data-target="#editarObservacion">Eliminar</button>
 					</div>
 				</div>			
 			</div>
@@ -165,3 +113,64 @@
     background: #ECEFF1;
 }
 </style>
+
+
+<!-- Código de las respuestas-->
+
+<!--
+	<div class="container" style="margin: 20px 30px; border-style: solid; border-color: #707070; width: 95%;">
+					<div class="row">
+						<div class="col-2">
+							<b><h5>Respuesta</h5></b>
+						</div>
+						<div class="col-3">
+							Fecha:
+							<b><h8 style="text-align:center; background-color: #ECEFF1;"></h8></b>
+						</div>
+						<div class="col-5">
+							Evidencia:&nbsp;
+							<label for="file-upload2" class="subir">
+							   <i class="fa fa-cloud-upload" aria-hidden="true"></i> Subir archivo
+							</label>
+							<input id="file-upload2" onchange='cambiar2()' type="file" style='display: none;'/>
+							<label id="info2" style="background-color: #ECEFF1; width: unset;"></label>
+						</div>
+						<div class="col-12">
+							<textarea  type="text" id="respuestaObservacion" name="respuestaObservacion" style="width: 1000px; height: 80px; border: 0.7px solid; border-color: #707070; border-radius: 5px; color:gray;" readonly=true" ></textarea>
+						</div>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+					</div>
+				</div>
+				<div class="container" style="margin: 20px 30px; border-style: solid; border-color: #707070; width: 95%;">
+					<div class="row">
+						<div class="col-2">
+							<b><h5>Respuesta</h5></b>
+						</div>
+						<div class="col-3">
+							Fecha:
+							<b><h8 style="text-align:center; background-color: #ECEFF1;"></h8></b>
+						</div>
+						<div class="col-5">
+							Evidencia:&nbsp;
+							<label for="file-upload2" class="subir">
+							   <i class="fa fa-cloud-upload" aria-hidden="true"></i> Subir archivo
+							</label>
+							<input id="file-upload2" onchange='cambiar2()' type="file" style='display: none;'/>
+							<label id="info2" style="background-color: #ECEFF1; width: unset;"></label>
+						</div>
+						<div class="col-12">
+							<textarea  type="text" id="respuestaObservacion" name="respuestaObservacion" style="width: 1000px; height: 80px; border: 0.7px solid; border-color: #707070; border-radius: 5px; color:gray;" readonly=true" ></textarea>
+						</div>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+					</div>
+				</div>
+
+				-->
