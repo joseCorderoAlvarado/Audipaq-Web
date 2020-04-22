@@ -135,12 +135,15 @@ use DB;
 			}	
 		}
 
-		public function observaciones()
+		public function observaciones(Request $datos)
 		{
 			if (session()->has('s_tipoUsuario') ) 
 			{
 				if(session('s_tipoUsuario')=='1')
 				{
+					$acta_variable = new acta;
+					$id_acta = $acta_variable->txtIdActa = $datos->input ('txtIdActa');
+
 					$listaObservaciones = DB::table('observaciones')
 					->join('status', 'observaciones.fk_id_status', '=', 'status.id_status')
 					->join('persona', 'observaciones.fk_id_auditor', '=', 'persona.id_persona')
@@ -148,6 +151,7 @@ use DB;
 					->join('prioridad', 'observaciones.fk_id_prioridad', '=', 'prioridad.id_prioridad')
 					->join('area', 'area.id_area', '=', 'acta.fk_id_area')
 					->select('observaciones.id_observaciones','observaciones.comentarios', 'status.tipo_status','persona.nombre_persona','acta.id_acta','acta.fecha_inicio','prioridad.tipo_prioridad','area.nombre_area','area.encargado_area')
+					->where('fk_id_acta','=',$id_acta)
 					->orderBy('observaciones.id_observaciones','Desc')
 					->get();		
 					return view('verListadoObservaciones_Auditor',['listaObservaciones'=>$listaObservaciones]);
