@@ -7,12 +7,14 @@
 <button type="button" class="btn btn-primary" style="background: #00ACC1; border: none; margin-left: 80%"data-toggle="modal" data-target="#crearObservacion">Nueva Observaci&oacute;n</button>
 <br><br><br>
 
+<p style=" margin: 20px 45px; font-size: 30px">Observaciones del acta no. {{$id_acta}}</p>
+
 @foreach ($listaObservaciones as $observacion)
 <div class="container">
 	<div class="row">
 		<div class="col-12">
 			<div style="width:auto; height: auto; background-color: white; border: 1px groove; border-color: #707070; border-radius: 3px;">
-				<p style=" margin: 20px 45px; font-size: 20px">Observaci&oacute;n</p>
+				<p style=" margin: 20px 45px; font-size: 20px">Observaci&oacute;n no. {{$observacion->id_observaciones}}</p>
 				<div class="container" style="margin: 20px 30px;">
 					<div class="row">
 						<div class="col-1">

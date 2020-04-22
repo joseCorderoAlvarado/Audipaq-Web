@@ -152,9 +152,9 @@ use DB;
 					->join('area', 'area.id_area', '=', 'acta.fk_id_area')
 					->select('observaciones.id_observaciones','observaciones.comentarios', 'status.tipo_status','persona.nombre_persona','acta.id_acta','acta.fecha_inicio','prioridad.tipo_prioridad','area.nombre_area','area.encargado_area')
 					->where('fk_id_acta','=',$id_acta)
-					->orderBy('observaciones.id_observaciones','Desc')
+					->orderBy('observaciones.fk_id_prioridad','Asc')
 					->get();		
-					return view('verListadoObservaciones_Auditor',['listaObservaciones'=>$listaObservaciones]);
+					return view('verListadoObservaciones_Auditor',['listaObservaciones'=>$listaObservaciones,'id_acta'=>$id_acta]);
 				}
 				elseif(session('s_tipoUsuario')=='2')
 				{
@@ -207,8 +207,6 @@ use DB;
 						\Session::flash('mensaje','Error al añadir el acta');
 						 return redirect('ver_Auditorias');
 					}
-							
-					return view('ver_Auditorias',['listaActas'=>$listaActas]);
 				}
 				elseif(session('s_tipoUsuario')=='2')
 				{
@@ -230,35 +228,38 @@ use DB;
 		}
 
 
-		public function modificar(Request $datos)
+		public function editar_Acta(Request $datos)
 		{
 			if (session()->has('s_tipoUsuario') ) 
 			{
 				if(session('s_tipoUsuario')=='1')
 				{
+					$ConsultaidPersona = DB::table('persona')
+					->select('persona.id_persona')
+					->where('correo_electronico','=',session('s_identificador'))
+					->get();
 
-                    $idPersona=$datos->input('txtidpersona');
-       			    $persona=persona::find($idPersona);
-				 	$persona->nombre_persona=$datos->input('txtnombreAuditor');
-				 	$persona->apellido_paterno=$datos->input('txtapellidoPatAuditor');
-				 	$persona->apellido_materno=$datos->input('txtapellidoMatAuditor');
-				 	$persona->correo_electronico=$datos->input ('correoAuditor');
-				 	/*$persona->contrasena=md5($datos->input('contraAuditor'));*/
-				 	$persona->fk_id_empresa=$datos->input('fkEmpresa');
-				 	$persona->fk_id_tipo='1';
-					if($persona->save()){
-						\Session::flash('flash_message', '¡Usuario Modificado con exito');
-						return redirect('ver_Auditor');
+					$idConversion = json_decode(json_encode($ConsultaidPersona),true);
+					$idPersona = implode($idConversion[0]);
+
+                    $idActa=$datos->input('txtIdActa');
+       			    $Acta=acta::find($idActa);
+				 	$Acta->fecha_final=$datos->input('txtFechaFinal');
+				 	$Acta->fk_id_persona=$idPersona;
+				 	$Acta->fk_id_auditor=$idPersona;
+				 	$Acta->fk_id_status=$datos->input('txtEstatus');
+				 	$Acta->fk_id_area=$datos->input('txtArea');
+				 	$Acta->fk_id_departamento=$datos->input('txtDepartamento');
+					if($Acta->save()){
+						\Session::flash('flash_message', '¡Acta Modificada con exito');
+						return redirect('ver_Auditorias');
 						
 					}
 					else 
 					{
-						\Session::flash('mensaje','Error al modificar el usuario');
-						 return redirect('ver_Auditor');
+						\Session::flash('mensaje','Error al modificar el acta');
+						 return redirect('ver_Auditorias');
 					}	
-                    
-							
-					return view('ver_Auditorias',['listaActas'=>$listaActas]);
 				}
 				elseif(session('s_tipoUsuario')=='2')
 				{

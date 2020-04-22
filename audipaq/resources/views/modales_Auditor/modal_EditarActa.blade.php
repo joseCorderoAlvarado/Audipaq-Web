@@ -25,13 +25,13 @@
                                 <b><label>Fecha Inicio</label></b>
                             </div>
                             <div class="col-5">
-                                <input type="text" readonly="true"  class="form-control" style="width: auto;" min="2020-01-01" max="2023-12-31" name="txtFechaInicio" value="{{$acta->fecha_inicio}}">
+                                <input type="text" readonly="true"  class="form-control" style="width: auto;" min="2020-01-01" max="2023-12-31" id="txtFechaInicio" value="{{$acta->fecha_inicio}}">
                             </div>
                     </div>
                     <br>
                      <div class="row">
                             <div class="col-3">
-                                <b><label >Fecha Final</label></b>
+                                <b><label>Fecha Final</label></b>
                             </div>
                             <div class="col-5">
                                   <input type="date" class="form-control" style="width: auto;" min="2020-01-01" max="2023-12-31" name="txtFechaFinal">
@@ -87,7 +87,7 @@
                              </div>
                     </div>       
                 </div>
-                <div class="modal-footer" style="background:#546E7A; margin: auto;">
+                <div class="modal-footer" style="background:#546E7A; margin: auto; width: 100%;">
                     <button id="button" class="btn btn-primary" style="background: #00ACC1; border: none; align-items: center;">Guardar</button> 
 
                 </div>
