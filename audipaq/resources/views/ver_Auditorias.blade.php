@@ -1,7 +1,6 @@
 @extends('layouts.head')
 @include('layouts.menu_Navegacion_Auditor')
 @include('modales_Auditor.modal_CrearActa')
-@include('modales_Auditor.modal_EditarActa')
 <br>
 <div class="row" style="margin-left: 80%;">
 	<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none;"data-toggle="modal" data-target="#crearActa">Nueva Acta</button>
@@ -24,7 +23,7 @@
 <div class="container-fluid center-block" style="margin: center; text-align: center; justify-content: center;">
 	<div class="row">
 		<div class="col-0" style="background-color: white; margin-left:5%; padding: 1%; margin-top: 1%;">
-	        <h5 style="text-align:center;">&nbsp;&nbsp;&nbsp;</h5>
+	        <h5 style="text-align:center;">&nbsp;&nbsp;&nbsp;&nbsp;</h5>
 		</div>
 		<div class="col-1" style="background-color: white; padding: 1%; margin-top: 1%; border-radius: 3px;">
 	        <h5 style="text-align:center;">ID</h5>
@@ -54,7 +53,7 @@
    	    <div class="col-0" style="background-color: white;  margin-left:5%; ">
       	    <div >
 				<div class="col-md-0" style="padding: 3px;">
-				    <button class="btn" style="text-align:center; background: #00ACC1; margin: 1px; width: auto;" data-toggle="modal" data-target="#EditarActa"><img src="images/editar.png" width="15" height="15"></button>
+				    <button class="btn" style="text-align:center; background: #00ACC1; margin: 1px; width: auto;" data-toggle="modal" data-target="#EditarActa{{$acta->id_acta}}"><img src="images/editar.png" width="15" height="15"></button>
 				</div>
 				<div class="col-md-9" style="padding: 3px;">
 				    <button class="btn" style="text-align:center; background: #00ACC1; margin: 1px; width: auto;"  class="btn-floating btn-small waves-effect waves-light blue"><a	href="{{url('verListadoObservaciones_Auditor')}}"><img src="images/archivos-de-vista.png" width="15" height="15"></a></button>
@@ -87,6 +86,7 @@
 		</div>	
 	</div>
 	<hr style="width:95%;">
+	@include('modales_Auditor.modal_EditarActa')
 	@endforeach
 </div>
 <br>

@@ -1,5 +1,5 @@
 {{-----------------------Modal Editar Acta---------------------------}}
-<div id="EditarActa" class="modal fade">
+<div id="EditarActa{{$acta->id_acta}}" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background:#546E7A;">
@@ -16,7 +16,7 @@
                                 <b><label>Id Acta</label></b>
                             </div>
                             <div class="col-5">
-                                <input type="text" readonly="true"  class="form-control" style="width: auto;"  name="txtIdActa">
+                                <input type="text" readonly="true"  class="form-control" style="width: auto;"  name="txtIdActa" value="{{$acta->id_acta}}">
                             </div>
                     </div>
                     <br>
@@ -25,35 +25,19 @@
                                 <b><label>Fecha Inicio</label></b>
                             </div>
                             <div class="col-5">
-                                <input type="date" class="form-control" style="width: auto;" min="2020-01-01" max="2023-12-31" name="txtFechaInicio">
+                                <input type="text" readonly="true"  class="form-control" style="width: auto;" min="2020-01-01" max="2023-12-31" name="txtFechaInicio" value="{{$acta->fecha_inicio}}">
                             </div>
                     </div>
                     <br>
                      <div class="row">
                             <div class="col-3">
-                                <b><label>Fecha Final</label></b>
+                                <b><label >Fecha Final</label></b>
                             </div>
                             <div class="col-5">
                                   <input type="date" class="form-control" style="width: auto;" min="2020-01-01" max="2023-12-31" name="txtFechaFinal">
                             </div>
                     </div>
-                    <br>
-                    <div class="row">
-                            <div class="col-3">
-                                <b><label>Auditor</label></b>
-                            </div>
-                            <div class="col-5">    
-                               <select name="txtAuditor" class="form-control" style="width: auto;">
-                                    <option selected>Selecciona el auditor
-                                    </option>
-                                    @foreach ($listaAuditores as $persona)
-                                    <option value={{$persona->id_persona }}>
-                                        {{ $persona->nombre_persona}} 
-                                    </option>
-                                    @endforeach     
-                                </select> 
-                            </div>
-                    </div>
+                    
                     <br>
                     <div class="row">
                             <div class="col-3">
@@ -61,7 +45,7 @@
                             </div>
                             <div class="col-5">
                                    <select name="txtEstatus" class="form-control" style="width: auto;">
-                                    <option selected>Selecciona el auditor
+                                    <option value="{{$acta->id_status}}" selected>{{$acta->tipo_status}}
                                     @foreach ($listastatus as $status)
                                     <option value={{$status->id_status }}>
                                         {{ $status->tipo_status}} 
@@ -77,8 +61,7 @@
                              </div>
                              <div class="col-5">
                                 <select name="txtArea" class="form-control" style="width: auto;">
-                                    <option selected>Selecciona el área
-                                    </option>
+                                    <option value="{{$acta->id_area }}" selected>{{$acta->nombre_area}}
                                     @foreach ($listaArea as $area)
                                     <option value={{$area->id_area }}>
                                         {{ $area->nombre_area}} 
@@ -94,8 +77,7 @@
                             </div>
                            <div class="col-5">
                                <select name="txtDepartamento" class="form-control" style="width: auto;">
-                                    <option selected>Selecciona el departamento
-                                    </option>
+                                    <option value="{{$acta->id_departamento }}" selected>{{$acta->nombre_departamento}}
                                     @foreach ($listaDepartamento as $departamento)
                                     <option value={{$departamento->id_departamento }}>
                                         {{ $departamento->nombre_departamento}} 
