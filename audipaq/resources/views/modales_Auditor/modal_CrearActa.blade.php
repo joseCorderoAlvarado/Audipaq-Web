@@ -33,7 +33,15 @@
                                 <b><label>Auditor</label></b>
                             </div>
                             <div class="col-5">    
-                                <input type="text" class="form-control"  name="txtAuditor" style="width: auto;">
+                               <select name="txtAuditor" class="form-control" style="width: auto;">
+                                    <option selected>Selecciona el auditor
+                                    </option>
+                                    @foreach ($listaAuditores as $persona)
+                                    <option value={{$persona->id_persona }}>
+                                        {{ $persona->nombre_persona}} 
+                                    </option>
+                                    @endforeach     
+                                </select> 
                             </div>
                     </div>
                     <br>
@@ -42,7 +50,14 @@
                                  <b><label>Estatus</label></b>
                             </div>
                             <div class="col-5">
-                                  <input type="text" class="form-control" name="txtEstatus" style="width: auto;">
+                                   <select name="txtEstatus" class="form-control" style="width: auto;">
+                                    <option selected>Selecciona el auditor
+                                    @foreach ($listastatus as $status)
+                                    <option value={{$status->id_status }}>
+                                        {{ $status->tipo_status}} 
+                                    </option>
+                                    @endforeach     
+                                </select> 
                             </div>
                     </div>
                     <br>
@@ -51,7 +66,15 @@
                                 <b><label>Área</label></b>
                              </div>
                              <div class="col-5">
-                                <input type="text" class="form-control"  name="txtArea" style="width: auto;">
+                                <select name="txtArea" class="form-control" style="width: auto;">
+                                    <option selected>Selecciona el área
+                                    </option>
+                                    @foreach ($listaArea as $area)
+                                    <option value={{$area->id_area }}>
+                                        {{ $area->nombre_area}} 
+                                    </option>
+                                    @endforeach     
+                                </select> 
                              </div>
                     </div>
                     <br>
@@ -60,7 +83,15 @@
                                 <b><label>Departamento</label></b>
                             </div>
                            <div class="col-5">
-                                <input type="text" class="form-control"  name="txtDepartamento" style="width: auto;">
+                               <select name="txtDepartamento" class="form-control" style="width: auto;">
+                                    <option selected>Selecciona el departamento
+                                    </option>
+                                    @foreach ($listaDepartamento as $departamento)
+                                    <option value={{$departamento->id_departamento }}>
+                                        {{ $departamento->nombre_departamento}} 
+                                    </option>
+                                    @endforeach     
+                                </select> 
                              </div>
                     </div>       
                 </div>

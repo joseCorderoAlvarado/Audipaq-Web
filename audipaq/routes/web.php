@@ -61,6 +61,7 @@ Route::Get('homePage_Auditor','Auditor@index');
 Route::Get('ver_Auditorias','Auditor@mostrar');
 Route::post('ver_Auditorias','Auditor@mostrarBusqueda');
 Route::Get('verListadoObservaciones_Auditor','Auditor@observaciones');
+Route::post('btnCrear_Acta','Auditor@insertar');
 
 #Auth::routes();
 
