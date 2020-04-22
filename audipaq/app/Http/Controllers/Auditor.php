@@ -6,6 +6,7 @@ use App\acta;
 use App\observaciones;
 use Illuminate\Http\Request;
 use DB;
+use Input; 
 
 	class Auditor extends Controller
 	{
@@ -296,6 +297,7 @@ use DB;
 			{
 				if(session('s_tipoUsuario')=='1')
 				{
+					
 					$ConsultaidPersona = DB::table ('persona')
 					->select('persona.id_persona')
 					->where('correo_electronico','=',session('s_identificador'))
@@ -310,18 +312,84 @@ use DB;
 					$observaciones->comentarios=$datos->input('txtObservacion'); 
 					$observaciones->fk_id_status=$datos->input('fkStatus'); 
 					$observaciones->fk_id_auditor=$idPersona; 
-					$observaciones->fk_id_acta='1'; 
+					$observaciones->fk_id_acta=$datos->input('txtIdACta'); 
 					$observaciones->fk_id_prioridad=$datos->input('fkPrioridad'); 
-					$observaciones->save(); 
-					$doc = new doc; 
+					if($observaciones->save() ){
+					
+						\Session::flash('flash_message', '¡Nueva observación añadida con éxito');
+						return redirect('verListadoObservaciones_Auditor');			
+					}
+					else {
+						\Session::flash('mensaje','Error al añadir la observacion');
+						 return redirect('verListadoObservaciones_Auditor');
+					}
+					//$doc = new doc; 
 					//$doc->nombre_doc='Evidencia'; 
-					//doc->evidencia=file('evidenciaObservacion'); 
+					// if(Input::hasFile('archivo')) {
+						//$file= Input::file('archivo');
+						//$aleatorio = str_random(6); 
+						//$nombre= $aleatorio.'-'.$file->getClientOriginalName(); 
+						//$file->move('public','NuevoNombre', $nombre);
+						//}
+					//echo $doc->evidencia->file('archivo'); 
+					//exit();
 					//$doc->save(); 
 					
 					
 				}
 				
 			}
+		}
+		
+		public function modificarObservacion (Request $datos)
+		{
+			if (session()->has('s_tipoUsuario') ) 
+			{
+				if(session('s_tipoUsuario')=='1')
+				{
+					$ConsultaidPersona = DB::table('persona')
+					->select('persona.id_persona')
+					->where('correo_electronico','=',session('s_identificador'))
+					->get();
+
+					$idConversion = json_decode(json_encode($ConsultaidPersona),true);
+					$idPersona = implode($idConversion[0]);
+
+                    $idActa=$datos->input('txtIdActa');
+       			    $observaciones=observaciones::find($idActa);
+					$observaciones->comentarios=$datos->input('txtObservacion'); 
+					$observaciones->fk_id_status=$datos->input('fkStatus'); 
+					$observaciones->fk_id_auditor=$idPersona; 
+					$observaciones->fk_id_acta=$datos->input('txtIdACta'); 
+					if($Acta->save()){
+						\Session::flash('flash_message', '¡Observación modificada con exito');
+						return redirect('verListadoObservaciones_Auditor');
+						
+					}
+					else 
+					{
+						\Session::flash('mensaje','Error al modificar la observación');
+						 return redirect('verListadoObservaciones_Auditor');
+					}	
+				}
+				elseif(session('s_tipoUsuario')=='2')
+				{
+					return redirect('homePage_Auditado');
+				}
+				elseif(session('s_tipoUsuario')=='3')
+				{
+					return redirect('homePage_Coauditor');
+				}
+				elseif(session('s_tipoUsuario')=='4')
+				{			
+					return redirect ('homePage_Administrador');
+				}
+			}
+			else
+			{
+				return redirect('/');
+			}
+			
 		}
 	}
 ?>

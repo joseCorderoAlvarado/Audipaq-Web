@@ -1,5 +1,5 @@
 {{-----------------------Modal Editar Observación---------------------------}}
-<div id="editarObservacion" class="modal fade">
+<div id="editarObservacion{{$id_acta}}" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background:#546E7A;">
@@ -15,12 +15,21 @@
                                 <b><label>No. Acta</label></b>
                             </div>
                             <div class="col-5">    
-                                <input type="text" class="form-control"  name="txtArea" style="width: auto;">
+                                <input type="text" class="form-control"  name="txtIdActa" style="width: auto;" value="{{$id_acta}}">
                             </div>
                     </div>
+			
                     <div class="row">
                             <div class="col-3">
                                  <b><label>Prioridad</label></b>
+								  <select name="txtPrioridad" class="form-control" style="width: auto;">
+                                    <option value=""selected>
+									
+                                    <option >
+										
+                                    </option>
+                                   
+                                </select>
                             </div>
                             <div class="col-5">
                                   <input type="text" class="form-control" name="txtPrioridad" style="width: auto;">
@@ -32,7 +41,14 @@
                                 <b><label>Estatus</label></b>
                              </div>
                              <div class="col-5">
-                                <input type="text" class="form-control"  name="txtEstatus" style="width: auto;">
+                                <select name="txtEstatus" class="form-control" style="width: auto;">
+                                    <option>
+                                   
+                                    <option >
+                                     
+                                    </option>
+                                      
+                                </select>
                              </div>
                     </div>
                     <br>
@@ -54,7 +70,8 @@
                                <input  type="file" id="idevidenciaObservacion" name="evidenciaObservacion">
                            </div>
                              
-                    </div>       
+                    </div>      
+				
                 </div>
                 <div class="modal-footer" style="background:#546E7A; margin: auto;">
                     <button id="button" class="btn btn-primary" style="background: #00ACC1; border: none; align-items: center;">Guardar</button> 

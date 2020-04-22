@@ -73,7 +73,7 @@
 
 				<div class="container" style="margin: 20px 45px;">
 					<div class="row">
-						<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none;" data-target="#crearAuditor">Editar</button>
+						<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none;" data-toggle="modal" data-target="#editarObservacion{{$id_acta}}">Editar</button>
 						<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none; margin-left:7px;" data-toggle="modal" data-target="#editarObservacion">Eliminar</button>
 					</div>
 				</div>			
