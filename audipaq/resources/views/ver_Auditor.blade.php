@@ -1,7 +1,7 @@
 @extends('layouts.head')
 @include('layouts.menu_Navegacion_Administrador_VerAuditor')
 
-@include('modales_Administrador.modal_CrearAuditor')
+@include('modal_CrearAuditor')
 
 <br>
 <div class="row" style="margin-left: 80%;">
@@ -20,7 +20,7 @@
 				</div>
 			@endif
 		<div class="row">
-			<div class="col-0" style="background-color: white; margin-left:13%; padding: 1%; margin-top: 1%;">
+			<div class="col-0" style="background-color: white; margin-left:15%; padding: 1%; margin-top: 1%;">
 		        <h5 style="text-align:center;">&nbsp;&nbsp;</h5>
 			</div>
 		    <div class="col-1" style="background-color: white; padding: 1%; margin-top: 1%;">
@@ -38,16 +38,22 @@
 		</div>
 	</div>
 	<br>
+	<?php
+	$i=-1;
+	?>
 	@foreach ($listaAuditores as $auditor)
+	<?php
+	$i=$i+1;
+	?>
 	<div class="container-fluid" style="border-radius: 3px; padding: 10px; " >
     	<div class="row">
-      	    <div class="col-0" style="background-color: white;  margin-left:13%; ">
+      	    <div class="col-0" style="background-color: white;  margin-left:15%; ">
       	    	<div >
 				  <div class="col-md-9" style="padding: 3px;">
-				    <button style="text-align:center; background: #00ACC1" data-toggle="modal" data-target="#modificarAuditor{{$auditor->id_persona}}"><img src="images/editar.png" width="20" height="20"></button>
+				    <button style="text-align:center; background: #00ACC1" data-toggle="modal" data-target="#modificarAuditor"><img src="images/editar.png" width="20" height="20"></button>
 				  </div>
 				  <div class="col-md-9" style="padding: 3px;">
-				    <button style="text-align:center; background: #00ACC1" data-toggle="modal" data-target="#eliminarAuditor{{$auditor->id_persona}}" ><img src="images/borrar.png" width="20" height="20"></button>
+				    <button style="text-align:center; background: #00ACC1" data-toggle="modal" data-target="#eliminarAuditor{{$auditor->id_persona}}" class="btn-floating btn-small waves-effect waves-light blue"><img src="images/borrar.png" width="20" height="20"></button>
 				  </div>
 				</div>
            	</div>
@@ -65,11 +71,9 @@
 		    </div>	
 		</div>
 	</div>
-	@include('modales_Administrador.modal_EliminarAuditor')
-	@include('modales_Administrador.modal_ModificarAuditor')
+	@include('modal_EliminarAuditor')
+	@include('modal_ModificarAuditor')
 	@endforeach
-	<br>
-	<br>
 </div>
 
 @extends('layouts.footer')

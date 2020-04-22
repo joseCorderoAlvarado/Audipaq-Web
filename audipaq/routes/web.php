@@ -63,6 +63,7 @@ Route::post('ver_Auditorias','Auditor@mostrarBusqueda');
 Route::post('verListadoObservaciones_Auditor','Auditor@observaciones');
 Route::post('btnCrear_Acta','Auditor@crear_Acta');
 Route::post('btnEditar_Acta','Auditor@editar_Acta');
+Route::post('btnCrear_Observacion', 'Auditor@crearObservacion');
 
 #Auth::routes();
 

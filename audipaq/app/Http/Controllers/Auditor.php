@@ -153,8 +153,18 @@ use DB;
 					->select('observaciones.id_observaciones','observaciones.comentarios', 'status.tipo_status','persona.nombre_persona','acta.id_acta','acta.fecha_inicio','prioridad.tipo_prioridad','area.nombre_area','area.encargado_area')
 					->where('fk_id_acta','=',$id_acta)
 					->orderBy('observaciones.fk_id_prioridad','Asc')
-					->get();		
-					return view('verListadoObservaciones_Auditor',['listaObservaciones'=>$listaObservaciones,'id_acta'=>$id_acta]);
+					->get();	
+						
+					$listaPrioridad = DB::table('prioridad')
+					->select('id_prioridad','tipo_prioridad')
+					->get();	
+					
+					$listaStatus= DB::table('status')
+					->select('id_status','tipo_status')
+					->get();
+					
+					
+					return view('verListadoObservaciones_Auditor',['listaObservaciones'=>$listaObservaciones,'id_acta'=>$id_acta, 'listaPrioridad'=>$listaPrioridad, 'listaStatus'=>$listaStatus]);
 				}
 				elseif(session('s_tipoUsuario')=='2')
 				{
@@ -278,6 +288,40 @@ use DB;
 			{
 				return redirect('/');
 			}	
+		}
+		
+		public function crearObservacion(Request $datos)
+		{
+			if (session ()->has('s_tipoUsuario'))
+			{
+				if(session('s_tipoUsuario')=='1')
+				{
+					$ConsultaidPersona = DB::table ('persona')
+					->select('persona.id_persona')
+					->where('correo_electronico','=',session('s_identificador'))
+					->get(); 
+					
+					
+					$idConversion = json_decode(json_encode($ConsultaidPersona),true); 
+					$idPersona= implode ($idConversion[0]); 
+					
+					
+					$observaciones = new observaciones; 
+					$observaciones->comentarios=$datos->input('txtObservacion'); 
+					$observaciones->fk_id_status=$datos->input('fkStatus'); 
+					$observaciones->fk_id_auditor=$idPersona; 
+					$observaciones->fk_id_acta='1'; 
+					$observaciones->fk_id_prioridad=$datos->input('fkPrioridad'); 
+					$observaciones->save(); 
+					$doc = new doc; 
+					//$doc->nombre_doc='Evidencia'; 
+					//doc->evidencia=file('evidenciaObservacion'); 
+					//$doc->save(); 
+					
+					
+				}
+				
+			}
 		}
 	}
 ?>

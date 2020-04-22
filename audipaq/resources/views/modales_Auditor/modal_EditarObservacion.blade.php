@@ -10,6 +10,14 @@
             <form action="btnEditar_Observacion" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
                 <div class="modal-body mx-auto" style="width: auto; background-color: #ECEFF1">
+				  <div class="row">
+                            <div class="col-3">
+                                <b><label>No. Acta</label></b>
+                            </div>
+                            <div class="col-5">    
+                                <input type="text" class="form-control"  name="txtArea" style="width: auto;">
+                            </div>
+                    </div>
                     <div class="row">
                             <div class="col-3">
                                  <b><label>Prioridad</label></b>
@@ -35,25 +43,8 @@
                             <div class="col-5">
                                   <input type="text" class="form-control" name="txtObservacion" style="width: 200px; height: 80px;  border-radius: 5px">
                             </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                            <div class="col-3">
-                                <b><label>Área</label></b>
-                            </div>
-                            <div class="col-5">    
-                                <input type="text" class="form-control"  name="txtArea" style="width: auto;">
-                            </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                            <div class="col-3">
-                                <b><label>Departamento</label></b>
-                            </div>
-                            <div class="col-5">    
-                                <input type="text" class="form-control"  name="txtDepartamento" style="width: auto;">
-                            </div>
-                    </div>
+                    </div>   
+                  
                     <br>
                     <div class="row">
                             <div class="col-2">
