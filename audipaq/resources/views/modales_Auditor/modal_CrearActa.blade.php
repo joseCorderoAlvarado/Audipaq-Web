@@ -51,7 +51,6 @@
                              <div class="col-5">
                                 <select name="txtArea" class="form-control" style="width: auto;">
                                     <option selected>Selecciona el área
-                                    </option>
                                     @foreach ($listaArea as $area)
                                     <option value={{$area->id_area }}>
                                         {{ $area->nombre_area}} 
