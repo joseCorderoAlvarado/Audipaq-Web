@@ -2,9 +2,8 @@
 @extends('layouts.head')
 @include('layouts.menu_Navegacion_Auditor')
 @include('modales_Auditor.modal_CrearObservacion')
-@include('modales_Auditor.modal_EditarObservacion')
 <br>
-<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none; margin-left: 80%"data-toggle="modal" data-target="#crearObservacion">Nueva Observaci&oacute;n</button>
+<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none; margin-left: 80%"data-toggle="modal" data-target="#crearObservacion{{$id_acta}}">Nueva Observaci&oacute;n</button>
 <br><br><br>
 
 <p style=" margin: 20px 45px; font-size: 30px">Observaciones del acta no. {{$id_acta}}</p>
@@ -84,6 +83,7 @@
 </div>
 <br>
 <br>
+@include('modales_Auditor.modal_EditarObservacion')
 @endforeach
 
 @extends('layouts.footer')

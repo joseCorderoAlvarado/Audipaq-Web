@@ -1,5 +1,5 @@
 {{-----------------------Modal Crear Observación---------------------------}}
-<div id="crearObservacion" class="modal fade">
+<div id="crearObservacion{{$id_acta}}" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background:#546E7A;">
@@ -10,7 +10,15 @@
             <form action="btnCrear_Observacion" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
                 <div class="modal-body mx-auto" style="width: auto; background-color: #ECEFF1">
-                    
+                     <div class="row">
+                            <div class="col-4">
+                                 <b><label>ID del Acta</label></b>
+                            </div>
+                            <div class="col-4">
+                                  <input type="text" class="form-control" name="txtIdACta" readonly="true" border-radius: 5px" value="{{$id_acta}}">
+                            </div>
+                    </div>
+                    <br>
 					<div class="row">
 					   
                             <div class="col-3">
@@ -58,12 +66,15 @@
                    
                     <br>
                     <div class="row">
-                            <div class="col-2">
-                                <b><label>Evidencia</label></b>
-                            </div>
-                            <div class="col-6">  
-                               <input  type="file" id="idevidenciaObservacion" name="evidenciaObservacion">
-                           </div>
+                            <div class="col-12">
+                            <p>Evidencia</p>
+                            
+                            <label for="file-upload2" class="subir">
+                               <i class="fa fa-cloud-upload" aria-hidden="true"></i> Subir archivo
+                            </label>
+                            <input id="file-upload2" onchange='cambiar2()' type="file" style='display: none;'/>
+                            <label id="info2" style="background-color: #ECEFF1; width: unset;"></label>
+                        </div>
                              
                     </div>       
                 </div>
