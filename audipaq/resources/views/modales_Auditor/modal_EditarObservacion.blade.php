@@ -69,20 +69,37 @@
                             </div>
                             <div class="col-5">
                                   <textarea  type="text" id="idcomentarioObservacion" name="txtObservacion" style="width: 250px; height: 80px; border: 0.7px solid; border-color: transparent; border-radius: 5px; color:gray;"  >{{$observacion->comentarios}}</textarea>
-                                
                             </div>
                     </div>
                    
                     <br>
-                    <div class="row">
-                            <div class="col-12">
-                            <p>Evidencia</p>
+                    <div class="row" style="border-style: solid;">
+                        <div class="col-12">
+                            <b><p>Evidencia(s)</p></b>
+
+                            @foreach($listaDocumento as $doc)
+                                <?php
+                                echo "<label style='font-size:14px;'>Reemplazar el documento: ".$doc->nombre_doc."</label>";
+                                ?>
+                                <input name='documentosModificar[]' id='documentosModificar' type='file' style='padding: 5px 10px; background: gray; color:#fff; border:0px solid #fff; '>
+                                <?php
+                                echo "<input type='text' class='form-control' name='id_documentos[]' id='id_documentos'  value='$doc->id_doc'>";
+                                echo "<br>";
+                                ?>
+                            @endforeach
                             
-                            <label for="file-upload3" class="subir">
-                               <i class="fa fa-cloud-upload" aria-hidden="true"></i> Subir archivo
-                            </label>
-                            <input id="file-upload3" onchange='cambiar3()' name="archivo" type="file" style='display: none;'/>
-                            <label id="info3" style="background-color: #ECEFF1; width: unset;"></label>
+                        </div>
+                             
+                    </div>  
+                    <br>
+                    <div class="row" >
+                        <div class="col-12">
+                            <b><p>Añadir nueva(s) evidencia(s)</p></b>
+
+                            <div class="input-group">
+                                <input multiple="multiple"  name="documentos[]" type="file" style="padding: 5px 10px; background: #546E7A; color:#fff; border:0px solid #fff; ">
+                            </div>
+                            
                         </div>
                              
                     </div>       

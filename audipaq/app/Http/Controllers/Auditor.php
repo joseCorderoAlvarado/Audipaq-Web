@@ -437,37 +437,142 @@ use Illuminate\Support\Str;
 			}	
 		}
 		
-		public function Editar_Observacion (Request $datos)
+		public function Editar_Observacion (subidaDocumentoRequest $datos)
 		{
 			if (session()->has('s_tipoUsuario') ) 
 			{
 				if(session('s_tipoUsuario')=='1')
 				{
-					$ConsultaidPersona = DB::table('persona')
-					->select('persona.id_persona')
-					->where('correo_electronico','=',session('s_identificador'))
-					->get();
+					try 
+					{
+         				DB::beginTransaction(); 
 
-					$idConversion = json_decode(json_encode($ConsultaidPersona),true);
-					$idPersona = implode($idConversion[0]);
+						$ConsultaidPersona = DB::table('persona')
+						->select('persona.id_persona')
+						->where('correo_electronico','=',session('s_identificador'))
+						->get();
 
-                    $idObservacion=$datos->input('txtIdObservacion');
-       			    $observaciones=observaciones::find($idObservacion);
-					$observaciones->comentarios=$datos->input('txtObservacion'); 
-					$observaciones->fk_id_status=$datos->input('fkStatus'); 
-					$observaciones->fk_id_auditor=$idPersona; 
-					$observaciones->fk_id_acta=$datos->input('txtIdACta'); 
+						$idConversion = json_decode(json_encode($ConsultaidPersona),true);
+						$idPersona = implode($idConversion[0]);
+
+	                    $idObservacion=$datos->input('txtIdObservacion');
+	       			    $observaciones=observaciones::find($idObservacion);
+						$observaciones->comentarios=$datos->input('txtObservacion'); 
+						$observaciones->fk_id_status=$datos->input('fkStatus'); 
+						$observaciones->fk_id_auditor=$idPersona; 
+						$observaciones->fk_id_acta=$datos->input('txtIdACta'); 
+						$observaciones->fk_id_prioridad=$datos->input('fkPrioridad'); 
+						$observaciones->save();
+						$observacionEditada=$observaciones->id_observaciones;
+
+						$consulta_area = DB::table('acta')
+						->select('fk_id_area')
+						->where('id_acta','=',$datos->input('txtIdACta')) 
+						->get();	
+
+						$idConversion = json_decode(json_encode($consulta_area),true); 
+						$id_area= implode ($idConversion[0]); 
+
+						if ($datos->documentosModificar!=null)
+						{
+							$i=0;
+
+							foreach ($datos->documentosModificar as $docModi)
+							{
+								$nombreOriginal = $docModi->getClientOriginalName();
+								$fecha = new DateTime();
+								$carpeta="/documentosActas/";
+								$nombreCambiado=$carpeta.$fecha->format('Y-m-d_H-i-s')."_".$nombreOriginal;
+								Storage::disk('public')->put($nombreCambiado,  File::get($docModi));
+
+								$id_documento=$datos->id_documentos[$i];
+								//echo $id_documento;
+								//exit();
+								$doc=doc::find($id_documento);
+								$doc->nombre_doc=$nombreOriginal;
+								$doc->evidencia=$nombreCambiado;
+								$doc->save();
+
+								$consulta_detalle=DB::table('detalle')
+								->select('id_detalle')
+								->where('fk_id_observaciones','=',$datos->input('txtIdObservacion'))
+								->get();
+
+								$idDetalle =json_decode(json_encode($consulta_detalle),true); 
+								$id_detalle= implode ($idDetalle[0]);
+								
+								$doc_detalle=detalle::find($id_detalle);
+								$doc_detalle->fecha=$fecha; 
+								$doc_detalle->fk_id_area=$id_area; 
+								$doc_detalle->fk_id_persona=$idPersona; 
+								$doc_detalle->fk_id_doc=$id_documento; 
+								$doc_detalle->fk_id_observaciones=$idObservacion; 
+								$doc_detalle->save(); 
+
+								$i++;
+							}
+						} 
+
+						DB::commit();
+
+						\Session::flash('flash_message', '¡Observación modificada con éxito!');
+
+					 	$acta_variable = new acta;
+						$id_acta = $acta_variable->txtIdActa = $datos->input('txtIdACta'); 
+
+						$listaObservaciones = DB::table('observaciones')
+						->join('status', 'observaciones.fk_id_status', '=', 'status.id_status')
+						->join('persona', 'observaciones.fk_id_auditor', '=', 'persona.id_persona')
+						->join('acta', 'observaciones.fk_id_acta', '=', 'acta.id_acta')
+						->join('prioridad', 'observaciones.fk_id_prioridad', '=', 'prioridad.id_prioridad')
+						->join('area', 'area.id_area', '=', 'acta.fk_id_area')
+						->select('observaciones.id_observaciones','observaciones.comentarios', 'status.tipo_status','status.id_status','persona.nombre_persona','acta.id_acta','acta.fecha_inicio','prioridad.tipo_prioridad','prioridad.id_prioridad','area.nombre_area','area.id_area','area.encargado_area')
+						->where('fk_id_acta','=',$id_acta)
+						->orderBy('observaciones.fk_id_prioridad','Asc')
+						->get();	
+							
+						$listaPrioridad = DB::table('prioridad')
+						->select('id_prioridad','tipo_prioridad')
+						->get();	
 						
-					$observaciones->fk_id_prioridad=$datos->input('fkPrioridad'); 
-					if($observaciones->save() ){
+						$listaStatus= DB::table('status')
+						->select('id_status','tipo_status')
+						->get();
 					
-						\Session::flash('flash_message', '¡Observación con éxito!');
-						return redirect('verListadoObservaciones_Auditor');			
+					
+						return view('verListadoObservaciones_Auditor',['listaObservaciones'=>$listaObservaciones,'id_acta'=>$id_acta,'listaPrioridad'=>$listaPrioridad, 'listaStatus'=>$listaStatus]);
+
+			        } 
+			        catch (Exception $e) 
+			        {
+			          	db::rollback();
+
+			          	\Session::flash('mensaje','Error al modificar la observacion');
+						$acta_variable = new acta;
+						$id_acta = $acta_variable->txtIdActa = $datos->input('txtIdACta'); 
+
+						$listaObservaciones = DB::table('observaciones')
+						->join('status', 'observaciones.fk_id_status', '=', 'status.id_status')
+						->join('persona', 'observaciones.fk_id_auditor', '=', 'persona.id_persona')
+						->join('acta', 'observaciones.fk_id_acta', '=', 'acta.id_acta')
+						->join('prioridad', 'observaciones.fk_id_prioridad', '=', 'prioridad.id_prioridad')
+						->join('area', 'area.id_area', '=', 'acta.fk_id_area')
+						->select('observaciones.id_observaciones','observaciones.comentarios', 'status.tipo_status','status.id_status','persona.nombre_persona','acta.id_acta','acta.fecha_inicio','prioridad.tipo_prioridad','prioridad.id_prioridad','area.nombre_area','area.id_area','area.encargado_area')
+						->where('fk_id_acta','=',$id_acta)
+						->orderBy('observaciones.fk_id_prioridad','Asc')
+						->get();	
+							
+						$listaPrioridad = DB::table('prioridad')
+						->select('id_prioridad','tipo_prioridad')
+						->get();	
+						
+						$listaStatus= DB::table('status')
+						->select('id_status','tipo_status')
+						->get();
+					
+					
+						return view('verListadoObservaciones_Auditor',['listaObservaciones'=>$listaObservaciones,'id_acta'=>$id_acta,'listaPrioridad'=>$listaPrioridad, 'listaStatus'=>$listaStatus]);
 					}
-					else {
-						\Session::flash('mensaje','Error al modificar la observacion');
-						 return redirect('verListadoObservaciones_Auditor');
-					}	
 				}
 				elseif(session('s_tipoUsuario')=='2')
 				{
