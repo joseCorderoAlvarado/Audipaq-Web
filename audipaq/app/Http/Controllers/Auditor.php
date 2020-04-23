@@ -172,7 +172,6 @@ use Illuminate\Support\Str;
 					->select('id_status','tipo_status')
 					->get();
 					
-					
 					return view('verListadoObservaciones_Auditor',['listaObservaciones'=>$listaObservaciones,'id_acta'=>$id_acta,'listaPrioridad'=>$listaPrioridad, 'listaStatus'=>$listaStatus]);
 				}
 				elseif(session('s_tipoUsuario')=='2')

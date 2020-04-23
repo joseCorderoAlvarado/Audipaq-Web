@@ -33,13 +33,24 @@
 							<b><h8 style="text-align:center; background-color: #ECEFF1;">{{$observacion->fecha_inicio}}</h8></b>
 						</div>
 						<div class="col-6">
-							<p>Evidencia</p>
-							
-							<label for="file-upload" class="subir">
-							   <i class="fa fa-cloud-upload" aria-hidden="true"></i> Subir archivo
-							</label>
-							<input id="file-upload" onchange='cambiar()' type="file" style='display: none;'/>
-							<label id="info" style="background-color: #ECEFF1; width: unset;"></label>
+							<p>Evidencia(s)</p>
+
+							<?php
+							$listaDocumento = DB::select('SELECT doc.nombre_doc,doc.id_doc, doc.evidencia 
+								FROM detalle
+								INNER JOIN doc ON doc.id_doc=detalle.fk_id_doc
+								INNER JOIN observaciones ON observaciones.id_observaciones=detalle.fk_id_observaciones
+								WHERE observaciones.fk_id_acta=? AND detalle.fk_id_observaciones=?'
+								,[$observacion->id_acta,$observacion->id_observaciones]);
+							?>
+
+							@foreach($listaDocumento as $doc)
+								<?php
+								echo "<a title='Descargar Archivo' href='$doc->evidencia' download='$doc->evidencia'  style='color: blue; font-size:18px;'>". $doc->nombre_doc."</a>";
+								echo "<br>";
+
+								?>
+							@endforeach
 						</div>
 					</div>
 				</div>
