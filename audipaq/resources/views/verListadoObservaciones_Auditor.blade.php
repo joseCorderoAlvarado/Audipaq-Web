@@ -57,7 +57,7 @@
 				<div class="container" style="margin: 20px 30px;">
 					<div class="row">
 						<div class="col-12">
-							<p style=" margin-top: 20px; font-size: 20px">Comentario inicial de la observación</p>
+							<b><p style=" margin-top: 20px; font-size: 15px">Decripción:</p></b>
 							<textarea  type="text" id="idcomentarioObservacion" name="comentarioObservacion" style="width: 1000px; height: 80px; border: 0.7px solid; border-color: transparent; border-radius: 5px; color:gray;" readonly=true" >{{$observacion->comentarios}}</textarea>
 						</div>
 					</div>
