@@ -7,7 +7,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
         
-            <form action="btnCrear_Observacion" method="post" enctype="multipart/form-data">
+            <form action="btnEditar_Observacion" method="post"  enctype="multipart/form-data">
             {{ csrf_field() }}
                 <div class="modal-body mx-auto" style="width: auto; background-color: #ECEFF1">
                      <div class="row">
@@ -24,7 +24,7 @@
                                  <b><label>No. de Observación</label></b>
                             </div>
                             <div class="col-4">
-                                  <input type="text" class="form-control" name="txtIdObservacion" readonly="true" border-radius: 5px" value="{{$observacion->id_observaciones}}">
+                                  <input type="text" class="form-control" name="txtIdObservacion" readonly="true" border-radius: "5px" value="{{$observacion->id_observaciones}}">
                             </div>
                     </div>
                     <br>
@@ -68,7 +68,7 @@
                                  <b><label>Observación</label></b>
                             </div>
                             <div class="col-5">
-                                  <textarea  type="text" id="idcomentarioObservacion" name="comentarioObservacion" style="width: 250px; height: 80px; border: 0.7px solid; border-color: transparent; border-radius: 5px; color:gray;" readonly=true" >{{$observacion->comentarios}}</textarea>
+                                  <textarea  type="text" id="idcomentarioObservacion" name="txtObservacion" style="width: 250px; height: 80px; border: 0.7px solid; border-color: transparent; border-radius: 5px; color:gray;"  >{{$observacion->comentarios}}</textarea>
                                 
                             </div>
                     </div>
@@ -81,7 +81,7 @@
                             <label for="file-upload3" class="subir">
                                <i class="fa fa-cloud-upload" aria-hidden="true"></i> Subir archivo
                             </label>
-                            <input id="file-upload3" onchange='cambiar3()' type="file" style='display: none;'/>
+                            <input id="file-upload3" onchange='cambiar3()' name="archivo" type="file" style='display: none;'/>
                             <label id="info3" style="background-color: #ECEFF1; width: unset;"></label>
                         </div>
                              

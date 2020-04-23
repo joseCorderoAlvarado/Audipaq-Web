@@ -6,7 +6,8 @@ use App\acta;
 use App\observaciones;
 use Illuminate\Http\Request;
 use DB;
-use Input; 
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Str;
 
 	class Auditor extends Controller
 	{
@@ -315,14 +316,20 @@ use Input;
 					$observaciones->fk_id_acta=$datos->input('txtIdACta'); 
 					$observaciones->fk_id_prioridad=$datos->input('fkPrioridad'); 
 					if($observaciones->save() ){
-					
+						 //if ($datos->hasFile('archivo')) {
+						//$file=$datos->file('archivo'); 
+						//$aleatorio= Str::random(6);
+						//$nombre=  uniqid() . $file->getClientOriginalName() . '.' . $file->getClientOriginalExtension();
+						//$file->move('documentos',$nombre); 
 						\Session::flash('flash_message', '¡Nueva observación añadida con éxito');
-						return redirect('verListadoObservaciones_Auditor');			
+						return redirect('ver_Auditorias');	
+						}
 					}
 					else {
 						\Session::flash('mensaje','Error al añadir la observacion');
-						 return redirect('verListadoObservaciones_Auditor');
+						 return redirect('ver_Auditorias');
 					}
+					
 					//$doc = new doc; 
 					//$doc->nombre_doc='Evidencia'; 
 					// if(Input::hasFile('archivo')) {
@@ -341,7 +348,7 @@ use Input;
 			}
 		}
 		
-		public function modificarObservacion (Request $datos)
+		public function Editar_Observacion (Request $datos)
 		{
 			if (session()->has('s_tipoUsuario') ) 
 			{
@@ -355,21 +362,21 @@ use Input;
 					$idConversion = json_decode(json_encode($ConsultaidPersona),true);
 					$idPersona = implode($idConversion[0]);
 
-                    $idActa=$datos->input('txtIdActa');
-       			    $observaciones=observaciones::find($idActa);
+                    $idObservacion=$datos->input('txtIdObservacion');
+       			    $observaciones=observaciones::find($idObservacion);
 					$observaciones->comentarios=$datos->input('txtObservacion'); 
 					$observaciones->fk_id_status=$datos->input('fkStatus'); 
 					$observaciones->fk_id_auditor=$idPersona; 
 					$observaciones->fk_id_acta=$datos->input('txtIdACta'); 
-					if($Acta->save()){
-						\Session::flash('flash_message', '¡Observación modificada con exito');
-						return redirect('verListadoObservaciones_Auditor');
-						
+					$observaciones->fk_id_prioridad=$datos->input('fkPrioridad'); 
+					if($observaciones->save() ){
+					
+						\Session::flash('flash_message', '¡Observación con éxito!');
+						return redirect('ver_Auditorias');			
 					}
-					else 
-					{
-						\Session::flash('mensaje','Error al modificar la observación');
-						 return redirect('verListadoObservaciones_Auditor');
+					else {
+						\Session::flash('mensaje','Error al modificar la observacion');
+						 return redirect('ver_Auditorias');
 					}	
 				}
 				elseif(session('s_tipoUsuario')=='2')

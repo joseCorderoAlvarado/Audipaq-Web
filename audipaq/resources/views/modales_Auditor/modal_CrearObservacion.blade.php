@@ -59,7 +59,8 @@
                                  <b><label>Observación</label></b>
                             </div>
                             <div class="col-5">
-                                  <input type="text" class="form-control" name="txtObservacion" style="width: 200px; height: 80px;  border-radius: 5px">
+                                  <textarea type="text" class="form-control" name="txtObservacion" style="width: 200px; height: 80px;  border-radius: 5px">
+								   </textarea>
 								
                             </div>
                     </div>
