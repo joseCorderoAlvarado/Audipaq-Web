@@ -81,6 +81,7 @@
                 </div>
                 <div class="modal-footer" style="background:#546E7A; margin: auto;">
                     <button id="button" class="btn btn-primary" style="background: #00ACC1; border: none; align-items: center;">Guardar</button> 
+
                 </div>
             </form>
         </div>

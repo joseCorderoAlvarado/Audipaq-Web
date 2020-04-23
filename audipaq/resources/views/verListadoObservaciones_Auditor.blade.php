@@ -90,37 +90,40 @@
 
 
 <script type="text/javascript">
-	function cambiar(){
-    var pdrs = document.getElementById('file-upload').files[3].name;
-    document.getElementById('info').innerHTML = pdrs;
-    
+	function cambiar()
+	{
+    	var pdrs = document.getElementById('file-upload').files[3].name;
+    	document.getElementById('info').innerHTML = pdrs;
 	}
 
-	function cambiar2(){
-    var pdrs = document.getElementById('file-upload2').files[3].name;
-    document.getElementById('info2').innerHTML = pdrs;
+	function cambiar2()
+	{
+    	var pdrs = document.getElementById('file-upload2').files[3].name;
+    	document.getElementById('info2').innerHTML = pdrs;
 	}
 
-	function cambiar3(){
-    var pdrs = document.getElementById('file-upload3').files[3].name;
-    document.getElementById('info3').innerHTML = pdrs;
+	function cambiar3()
+	{
+    	var pdrs = document.getElementById('file-upload3').files[3].name;
+    	document.getElementById('info3').innerHTML = pdrs;
 	}
 </script>
 
 <style type="text/css">
-	.subir{
-    padding: 5px 10px;
-    background: #546E7A;
-    color:#fff;
-    border:0px solid #fff;
-}
+	.subi
+	{
+	    padding: 5px 10px;
+	    background: #546E7A;
+	    color:#fff;
+	    border:0px solid #fff;
+	}
  
-.subir:hover{
-    color:black;
-    background: #ECEFF1;
-}
+	.subir:hover
+	{
+    	color:black;
+    	background: #ECEFF1;
+	}
 </style>
-
 
 <!-- Código de las respuestas-->
 
