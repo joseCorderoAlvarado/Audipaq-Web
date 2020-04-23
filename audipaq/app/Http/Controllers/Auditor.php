@@ -151,7 +151,7 @@ use Input;
 					->join('acta', 'observaciones.fk_id_acta', '=', 'acta.id_acta')
 					->join('prioridad', 'observaciones.fk_id_prioridad', '=', 'prioridad.id_prioridad')
 					->join('area', 'area.id_area', '=', 'acta.fk_id_area')
-					->select('observaciones.id_observaciones','observaciones.comentarios', 'status.tipo_status','persona.nombre_persona','acta.id_acta','acta.fecha_inicio','prioridad.tipo_prioridad','area.nombre_area','area.encargado_area')
+					->select('observaciones.id_observaciones','observaciones.comentarios', 'status.tipo_status','status.id_status','persona.nombre_persona','acta.id_acta','acta.fecha_inicio','prioridad.tipo_prioridad','prioridad.id_prioridad','area.nombre_area','area.id_area','area.encargado_area')
 					->where('fk_id_acta','=',$id_acta)
 					->orderBy('observaciones.fk_id_prioridad','Asc')
 					->get();	

@@ -73,7 +73,7 @@
 
 				<div class="container" style="margin: 20px 45px;">
 					<div class="row">
-						<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none;" data-toggle="modal" data-target="#editarObservacion{{$id_acta}}">Editar</button>
+						<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none;" data-toggle="modal" data-target="#editarObservacion{{$observacion->id_observaciones}}">Editar</button>
 						<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none; margin-left:7px;" data-toggle="modal" data-target="#editarObservacion">Eliminar</button>
 					</div>
 				</div>			
@@ -99,7 +99,12 @@
 	function cambiar2(){
     var pdrs = document.getElementById('file-upload2').files[0].name;
     document.getElementById('info2').innerHTML = pdrs;
-}
+	}
+
+	function cambiar3(){
+    var pdrs = document.getElementById('file-upload3').files[0].name;
+    document.getElementById('info3').innerHTML = pdrs;
+	}
 </script>
 
 <style type="text/css">
