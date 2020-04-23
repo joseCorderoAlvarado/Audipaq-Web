@@ -91,18 +91,18 @@
 
 <script type="text/javascript">
 	function cambiar(){
-    var pdrs = document.getElementById('file-upload').files[0].name;
+    var pdrs = document.getElementById('file-upload').files[3].name;
     document.getElementById('info').innerHTML = pdrs;
     
 	}
 
 	function cambiar2(){
-    var pdrs = document.getElementById('file-upload2').files[0].name;
+    var pdrs = document.getElementById('file-upload2').files[3].name;
     document.getElementById('info2').innerHTML = pdrs;
 	}
 
 	function cambiar3(){
-    var pdrs = document.getElementById('file-upload3').files[0].name;
+    var pdrs = document.getElementById('file-upload3').files[3].name;
     document.getElementById('info3').innerHTML = pdrs;
 	}
 </script>

@@ -66,14 +66,14 @@
                    
                     <br>
                     <div class="row">
-                            <div class="col-12">
+                        <div class="col-12">
                             <p>Evidencia</p>
                             
-                            <label for="file-upload2" class="subir">
-                               <i class="fa fa-cloud-upload" aria-hidden="true"></i> Subir archivo
-                            </label>
-                            <input id="file-upload2" onchange='cambiar2()' type="file" style='display: none;'/>
-                            <label id="info2" style="background-color: #ECEFF1; width: unset;"></label>
+                            <div class="photo">
+                                <div class="input-group">
+                                <input multiple="multiple"  name="documentos[]" type="file" style="padding: 5px 10px; background: #546E7A; color:#fff; border:0px solid #fff; ">
+                                </div>
+                             </div>
                         </div>
                              
                     </div>       

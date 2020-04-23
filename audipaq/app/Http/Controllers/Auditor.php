@@ -3,8 +3,15 @@ namespace App\Http\Controllers;
 use App\Http \Controllers\Controller;
 use App\persona;
 use App\acta;
+use App\doc;
+use App\area;
+use App\detalle;
 use App\observaciones;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use App\Http\Requests\subidaDocumentoRequest;
+use DateTime;
 use DB;
 use Input; 
 
@@ -145,6 +152,11 @@ use Input;
 					$acta_variable = new acta;
 					$id_acta = $acta_variable->txtIdActa = $datos->input ('txtIdActa');
 
+					$id_area = DB::table('acta')
+					->select('fk_id_area','id_acta')
+					->where('id_acta','=',$id_acta)
+					->get();	
+
 					$listaObservaciones = DB::table('observaciones')
 					->join('status', 'observaciones.fk_id_status', '=', 'status.id_status')
 					->join('persona', 'observaciones.fk_id_auditor', '=', 'persona.id_persona')
@@ -165,7 +177,7 @@ use Input;
 					->get();
 					
 					
-					return view('verListadoObservaciones_Auditor',['listaObservaciones'=>$listaObservaciones,'id_acta'=>$id_acta, 'listaPrioridad'=>$listaPrioridad, 'listaStatus'=>$listaStatus]);
+					return view('verListadoObservaciones_Auditor',['listaObservaciones'=>$listaObservaciones,'id_acta'=>$id_acta,'id_area'=>$id_area, 'listaPrioridad'=>$listaPrioridad, 'listaStatus'=>$listaStatus]);
 				}
 				elseif(session('s_tipoUsuario')=='2')
 				{
@@ -291,51 +303,78 @@ use Input;
 			}	
 		}
 		
-		public function crearObservacion(Request $datos)
+		public function crearObservacion(subidaDocumentoRequest $datos)
 		{
 			if (session ()->has('s_tipoUsuario'))
 			{
 				if(session('s_tipoUsuario')=='1')
 				{
 					
-					$ConsultaidPersona = DB::table ('persona')
-					->select('persona.id_persona')
-					->where('correo_electronico','=',session('s_identificador'))
-					->get(); 
+					try 
+					{
+         				 DB::beginTransaction();
 					
-					
-					$idConversion = json_decode(json_encode($ConsultaidPersona),true); 
-					$idPersona= implode ($idConversion[0]); 
-					
-					
-					$observaciones = new observaciones; 
-					$observaciones->comentarios=$datos->input('txtObservacion'); 
-					$observaciones->fk_id_status=$datos->input('fkStatus'); 
-					$observaciones->fk_id_auditor=$idPersona; 
-					$observaciones->fk_id_acta=$datos->input('txtIdACta'); 
-					$observaciones->fk_id_prioridad=$datos->input('fkPrioridad'); 
-					if($observaciones->save() ){
-					
-						\Session::flash('flash_message', '¡Nueva observación añadida con éxito');
-						return redirect('verListadoObservaciones_Auditor');			
-					}
-					else {
+						$ConsultaidPersona = DB::table ('persona')
+						->select('persona.id_persona')
+						->where('correo_electronico','=',session('s_identificador'))
+						->get(); 
+						
+						
+						$idConversion = json_decode(json_encode($ConsultaidPersona),true); 
+						$idPersona= implode ($idConversion[0]); 
+
+						$observaciones = new observaciones; 
+						$observaciones->comentarios=$datos->input('txtObservacion'); 
+						$observaciones->fk_id_status=$datos->input('fkStatus'); 
+						$observaciones->fk_id_auditor=$idPersona; 
+						$observaciones->fk_id_acta=$datos->input('txtIdACta'); 
+						$observaciones->fk_id_prioridad=$datos->input('fkPrioridad'); 
+						$observaciones->save();
+						$observacionAgregada=$observaciones->id_observaciones;
+
+						foreach ($datos->documentos as $documento) 
+						{
+				          	$nombreOriginal = $documento->getClientOriginalName();
+							$fecha = new DateTime();
+							$carpeta="/documentosActas/";
+							$nombreCambiado=$carpeta.$fecha->format('Y-m-d_H-i-s')."_".$nombreOriginal;
+							Storage::disk('public')->put($nombreCambiado,  File::get($documento));
+									
+						    $archivo_doc = new doc;
+							$archivo_doc->nombre_doc=$nombreOriginal;
+							$archivo_doc->evidencia=$nombreCambiado;
+							$archivo_doc->save();
+							$documentoAgregado=$archivo_doc->id_doc;
+
+							/*$consulta_area = DB::table('acta')
+							->select('fk_id_area')
+							->where('id_acta','=',$datos->input('txtIdACta')) 
+							->get();	
+
+							$idConversion = json_decode(json_encode($consulta_area),true); 
+							$id_area= implode ($idConversion[0]); 
+
+							$doc_detalle = new detalle;
+							$doc_detalle->fecha=$fecha;
+							$doc_detalle->fk_id_area=$id_area;
+							$doc_detalle->fk_id_persona=$idPersona;
+							$doc_detalle->fk_id_doc=$documentoAgregado; 
+							$doc_detalle->fk_id_observaciones=$observacionAgregada; 
+							$doc_detalle->save();*/
+
+		        		}
+
+					 	DB::commit(); 
+					 	\Session::flash('flash_message', '¡Nueva observación añadida con éxito');
+						return redirect('verListadoObservaciones_Auditor');	
+			        } 
+			        catch (Exception $e) 
+			        {
+			          	db::rollback();
+
 						\Session::flash('mensaje','Error al añadir la observacion');
-						 return redirect('verListadoObservaciones_Auditor');
-					}
-					//$doc = new doc; 
-					//$doc->nombre_doc='Evidencia'; 
-					// if(Input::hasFile('archivo')) {
-						//$file= Input::file('archivo');
-						//$aleatorio = str_random(6); 
-						//$nombre= $aleatorio.'-'.$file->getClientOriginalName(); 
-						//$file->move('public','NuevoNombre', $nombre);
-						//}
-					//echo $doc->evidencia->file('archivo'); 
-					//exit();
-					//$doc->save(); 
-					
-					
+						return redirect('verListadoObservaciones_Auditor');
+			        }
 				}
 				
 			}
@@ -362,6 +401,7 @@ use Input;
 					$observaciones->fk_id_auditor=$idPersona; 
 					$observaciones->fk_id_acta=$datos->input('txtIdACta'); 
 					if($Acta->save()){
+
 						\Session::flash('flash_message', '¡Observación modificada con exito');
 						return redirect('verListadoObservaciones_Auditor');
 						
