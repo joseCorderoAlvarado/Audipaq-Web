@@ -511,7 +511,34 @@ use Illuminate\Support\Str;
 
 								$i++;
 							}
-						} 
+						}
+
+						if($datos->documentos !=null)
+						{
+							foreach ($datos->documentos as $documento) 
+							{
+					          	$nombreOriginal = $documento->getClientOriginalName();
+								$fecha = new DateTime();
+								$carpeta="/documentosActas/";
+								$nombreCambiado=$carpeta.$fecha->format('Y-m-d_H-i-s')."_".$nombreOriginal;
+								Storage::disk('public')->put($nombreCambiado,  File::get($documento));
+										
+							    $archivo_doc = new doc;
+								$archivo_doc->nombre_doc=$nombreOriginal;
+								$archivo_doc->evidencia=$nombreCambiado;
+								$archivo_doc->save();
+								$documentoAgregado=$archivo_doc->id_doc;
+
+								$doc_detalle = new detalle;
+								$doc_detalle->fecha=$fecha;
+								$doc_detalle->fk_id_area=$id_area;
+								$doc_detalle->fk_id_persona=$idPersona;
+								$doc_detalle->fk_id_doc=$documentoAgregado; 
+								$doc_detalle->fk_id_observaciones=$observacionEditada; 
+								$doc_detalle->save();
+
+			        		}
+			        	} 
 
 						DB::commit();
 
