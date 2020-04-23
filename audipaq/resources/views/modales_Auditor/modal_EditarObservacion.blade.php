@@ -76,6 +76,7 @@
                     <div class="row" style="border-style: solid;">
                         <div class="col-12">
                             <b><p>Evidencia(s)</p></b>
+
                             @foreach($listaDocumento as $doc)
                                 <?php
                                 echo "<label style='font-size:14px;'>Reemplazar el documento: ".$doc->nombre_doc."</label>";
@@ -85,7 +86,6 @@
                                 echo "<input type='text' class='form-control' name='id_documentos[]'  value='$doc->id_doc'>";
                                 echo "<br>";
                                 ?>
-                                
                             @endforeach
                             
                         </div>
