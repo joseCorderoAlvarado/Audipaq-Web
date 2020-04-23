@@ -332,6 +332,14 @@ use Illuminate\Support\Str;
 						$observaciones->save();
 						$observacionAgregada=$observaciones->id_observaciones;
 
+						$consulta_area = DB::table('acta')
+						->select('fk_id_area')
+						->where('id_acta','=',$datos->input('txtIdACta')) 
+						->get();	
+
+						$idConversion = json_decode(json_encode($consulta_area),true); 
+						$id_area= implode ($idConversion[0]); 
+
 						foreach ($datos->documentos as $documento) 
 						{
 				          	$nombreOriginal = $documento->getClientOriginalName();
@@ -346,21 +354,13 @@ use Illuminate\Support\Str;
 							$archivo_doc->save();
 							$documentoAgregado=$archivo_doc->id_doc;
 
-							/*$consulta_area = DB::table('acta')
-							->select('fk_id_area')
-							->where('id_acta','=',$datos->input('txtIdACta')) 
-							->get();	
-
-							$idConversion = json_decode(json_encode($consulta_area),true); 
-							$id_area= implode ($idConversion[0]); 
-
 							$doc_detalle = new detalle;
 							$doc_detalle->fecha=$fecha;
 							$doc_detalle->fk_id_area=$id_area;
 							$doc_detalle->fk_id_persona=$idPersona;
 							$doc_detalle->fk_id_doc=$documentoAgregado; 
 							$doc_detalle->fk_id_observaciones=$observacionAgregada; 
-							$doc_detalle->save();*/
+							$doc_detalle->save();
 
 		        		}
 
