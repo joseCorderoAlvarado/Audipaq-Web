@@ -86,6 +86,7 @@
                                 echo "<input type='text' class='form-control' name='id_documentos[]'  value='$doc->id_doc'>";
                                 echo "<br>";
                                 ?>
+                                
                             @endforeach
                             
                         </div>

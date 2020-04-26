@@ -66,6 +66,17 @@ Route::post('btnEditar_Acta','Auditor@editar_Acta');
 Route::post('btnCrear_Observacion', 'Auditor@crearObservacion');
 Route::post('btnEditar_Observacion', 'Auditor@Editar_Observacion');
 
+
+//Controladores de Coauditor para mostrar la pagina
+Route::Get('homePage_Coauditor','Coauditor@index');
+Route::Get('ver_Auditorias_Coa','Coauditor@mostrar');
+Route::post('ver_Auditorias_Coa','Coauditor@mostrarBusqueda');
+Route::post('verListadoObservaciones_Coauditor','Coauditor@observaciones');
+Route::post('btnCrear_Acta_Coa','Coauditor@crear_Acta');
+Route::post('btnEditar_Acta_Coa','Coauditor@editar_Acta');
+Route::post('btnCrear_Observacion_Coa', 'Coauditor@crearObservacion');
+Route::post('btnEditar_Observacion_Coa', 'Coauditor@Editar_Observacion');
+
 #Auth::routes();
 
 #Route::get('/home', 'HomeController@index')->name('home');
