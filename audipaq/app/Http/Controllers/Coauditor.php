@@ -24,7 +24,7 @@ use Illuminate\Support\Str;
 			{
 				if(session('s_tipoUsuario')=='1')
 				{
-					return view('homePage_Auditor');
+					return redirect('homePage_Auditor');
 				}
 				elseif(session('s_tipoUsuario')=='2')
 				{
@@ -32,7 +32,7 @@ use Illuminate\Support\Str;
 				}
 				elseif(session('s_tipoUsuario')=='3')
 				{
-					return redirect('homePage_Coauditor');
+					return view('homePage_Coauditor');
 				}
 				elseif(session('s_tipoUsuario')=='4')
 				{
