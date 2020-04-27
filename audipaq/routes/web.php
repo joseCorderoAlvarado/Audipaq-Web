@@ -76,6 +76,8 @@ Route::post('btnCrear_Acta_Coa','Coauditor@crear_Acta');
 Route::post('btnEditar_Acta_Coa','Coauditor@editar_Acta');
 Route::post('btnCrear_Observacion_Coa', 'Coauditor@crearObservacion');
 Route::post('btnEditar_Observacion_Coa', 'Coauditor@Editar_Observacion');
+Route::post('btnCrear_Coauditor','Coauditor@crear_coauditor');
+Route::post('btnModificar_Coauditor','Coauditor@modificar');
 
 #Auth::routes();
 

@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background:#546E7A;">
-                <h4 class="modal-title" style="color: white" >Modificar Coauditor</h4>
+                <h4 class="modal-title" style="color: white" >Modificar Auditor/Coauditor</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <form action="btnModificar_Coauditor" method="post" enctype="multipart/form-data">
@@ -23,7 +23,7 @@
                                 <b><label>Nombre</label></b>
                             </div>
                             <div class="col-5">
-                                <input type="text" class="form-control" name="txtnombreCoauditor"  style="width: auto;" value="">
+                                <input type="text" class="form-control" name="txtnombreAuditor"  style="width: auto;" value=>
 
                             </div>
                     </div>
@@ -33,7 +33,7 @@
                                 <b><label>Apellido Paterno</label></b>
                             </div>
                             <div class="col-5">
-                                <input type="text" class="form-control"  name="txtapellidoPatCoauditor" style="width: auto;" value="">
+                                <input type="text" class="form-control"  name="txtapellidoPatAuditor" style="width: auto;" value=>
                             </div>
                     </div>
                     <br>
@@ -42,7 +42,7 @@
                                 <b><label>Apellido Materno</label></b>
                             </div>
                             <div class="col-5">    
-                                <input type="text" class="form-control"  name="txtapellidoMatCoauditor" style="width: auto;" value="">
+                                <input type="text" class="form-control"  name="txtapellidoMatAuditor" style="width: auto;" value=>
                             </div>
                     </div>
                     <br>
@@ -51,19 +51,29 @@
                                  <b><label>Correo</label></b>
                             </div>
                             <div class="col-5">
-                                  <input type="email" class="form-control" name="correoCoauditor" style="width: auto;" value="">
+                                  <input type="email" class="form-control" name="correoAuditor" style="width: auto;" value=>
                             </div>
                     </div>
-                    <br>
+                    <!--<br>
                     <div class="row">
                              <div class="col-3">
                                 <b><label>Contrase&ntilde;a</label></b>
                              </div>
                              <div class="col-5">
-                                <input type="password" class="form-control"  name="contraCoauditor" style="width: auto;">
+                                <input type="text" class="form-control"  name="contraAuditor" style="width: auto;" value=>
                              </div>
-                    </div>
+                    </div>-->
                     <br>
+                    <div class="row">
+                            <div class="col-3">
+                                <b><label>Empresa</label></b>
+                            </div>
+                            <div class="col-5"> 
+                                <select name="fkEmpresa" class="form-control" style="width: auto;">
+                                     
+                                </select> 
+                            </div>
+                    </div>       
                 </div>
                 <div class="modal-footer" style="background:#546E7A; margin: auto;">
                     <button id="button" class="btn btn-primary" style="background: #00ACC1; border: none; align-items: center;">Guardar</button> 
