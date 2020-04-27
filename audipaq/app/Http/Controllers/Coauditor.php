@@ -60,7 +60,7 @@ use Illuminate\Support\Str;
 				}
 				elseif(session('s_tipoUsuario')=='3')
 				{
-					return redirect('homePage_Coauditor');
+					return view('ver_Auditorias_Coa');
 				}
 				elseif(session('s_tipoUsuario')=='4')
 				{

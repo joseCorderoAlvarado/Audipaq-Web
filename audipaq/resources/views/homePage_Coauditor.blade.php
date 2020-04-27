@@ -1,5 +1,5 @@
 @extends('layouts.head')
-@include('layouts.menu_Navegacion_Auditor')
+@include('layouts.menu_Navegacion_Coauditor')
 <br>
 @include('layouts.Carrusel')
 
