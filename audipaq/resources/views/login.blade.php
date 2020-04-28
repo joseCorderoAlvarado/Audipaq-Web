@@ -20,10 +20,7 @@
 				<br>
 				<center><a style="color: #00ACC1"><b>¿Olvidaste la contraseña?</b></a></center>
 			</form>
-		</div>
-	<div>
-</div>
-	
+		</div>	
 	</div>
 </div>
 <br>

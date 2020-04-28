@@ -15,7 +15,7 @@
                                  <b><label>ID del Acta</label></b>
                             </div>
                             <div class="col-4">
-                                  <input type="text" class="form-control" name="txtIdACta" readonly="true" border-radius: 5px" value="{{$id_acta}}">
+                                  <input type="text" class="form-control" name="txtIdACta" readonly="true" style="border-radius: 5px" value="{{$id_acta}}">
                             </div>
                     </div>
                     <br>
