@@ -1,5 +1,5 @@
 {{-----------------------Modal de confirmación de Eliminar Empresa---------------------------}}
-<div id="eliminarEmpresa" class="modal fade">
+<div id="eliminarEmpresa{{$empresas->id_empresa}}" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background:#546E7A;">
@@ -7,12 +7,12 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body mx-auto" style="width: auto; background-color: #ECEFF1">
-                <b><label id="form_nombre">¿Estás seguro que deseas eliminar la empresa xxxxxxxxx ?</label></b>
+                <b><label id="form_nombre">¿Estás seguro que deseas eliminar la empresa {{$empresas->nombre_empresa}} ?</label></b>
             </div>
             <div class="modal-footer">
-                <form action="btnEliminar_Auditor" method="post" enctype="multipart/form-data">
+                <form action="btnEliminarEmpresa" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
-                    <input type="hidden" name="txtIdPersona" value="">
+                    <input type="hidden" name="txtIdEmpresa" value="{{$empresas->id_empresa}}">
                     <button id="button" class="btn btn-primary" style="background: #00ACC1; border: none; align-items: center; color: white;">Si</button>
                 </form>
                 <form action="ver_Auditor" method="get" enctype="multipart/form-data">

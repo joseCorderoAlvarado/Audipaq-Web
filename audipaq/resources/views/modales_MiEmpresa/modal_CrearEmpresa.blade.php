@@ -7,7 +7,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
 		
-            <form class="formulario" action="btnLogin" method="post" enctype="multipart/form-data" style="padding-left: 20px; padding-right: 20px; padding-top: 10px; padding-bottom: 10px;">
+            <form class="formulario" action="btnCrearEmpresa" method="post" enctype="multipart/form-data" style="padding-left: 20px; padding-right: 20px; padding-top: 10px; padding-bottom: 10px;">
                 {{csrf_field()}}
                 <div class="row">
                     <div class="col-6">
@@ -69,15 +69,19 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label>Logotipo</label>
-                            <input type="file" id="idlogotipoEmpresa" name="logotipoEmpresa" class="form-control">
+                            <div class="photo">
+                                <div class="input-group">
+                                <input multiple="multiple"  name="logotipo[]" type="file" style="padding: 5px 10px; background: #546E7A; color:#fff; border:0px solid #fff; ">
+                                </div>
+                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
             <br>
             <div class="modal-footer" style="background:#546E7A;">
                 <button type="submit" class="btn btn-primary" style="background: #00ACC1; border: none;">Guardar</button>
             </div>
+		</form>
         </div>
     </div>
 </div>

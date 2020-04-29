@@ -1,46 +1,60 @@
 @extends('layouts.head')
 @include('layouts.menu_Navegacion_Administrador')
 @include('modales_MiEmpresa.modal_CrearEmpresa')
-@include('modales_MiEmpresa.modal_ModificarEmpresa')
-@include('modales_MiEmpresa.modal_EliminarEmpresa')
 <br>
 <button type="button" class="btn btn-primary" style="background: #00ACC1; border: none; margin-left: 80%" data-toggle="modal" data-target="#crearEmpresa">Nueva Empresa</button>
 <br><br><br>
 <div style="margin-left: 25%; margin-right: 75%">
 	<h4>Empresas</h4>
 </div>
+	@if(Session::has('flash_message'))
+		<div class="alert alert-success" role="alert">
+			{{ Session::get('flash_message') }}
+		</div>
+	@elseif(Session::has('mensaje'))
+		<div class="alert alert-danger" role="alert">
+			{{ Session::get('mensaje') }}
+		</div>
+	@endif
 <br>
+@foreach($listaEmpresas as $empresas)
+
 <div style="background-color: white; border: none; padding: 40px 50px; border-radius: 5px; width: 55%; margin-left: auto; margin-right: auto">
+	<input type="hidden" value="{{$empresas->id_empresa}}" id="idEmpresa">
+	<br><br>
 	<b>Logotipo</b><br><br>
-	<img src="images/audipaq.png" style="width: 100px">
+	<img src="{{$empresas->logotipo}}" style="width: 100px">
 	<br><br><br>
 	<b>Nombre</b><br>
-	AudiPaq
+	{{$empresas->nombre_empresa}}
 	<br><br><br>
 	<b>Giro</b><br>
-	Auditorías
+	{{$empresas->giro}}
 	<br><br><br>
 	<b>Misión</b><br>
-	xxxxxxxxxxxxx xx xxx x xxxx x xxxxxxxx
+	{{$empresas->mision}}
 	<br><br><br>
 	<b>Visión</b><br>
-	xxxxxxxxxxxxx xx xxx x xxxx x xxxxxxxx
+	{{$empresas->vision}}
 	<br><br><br>
 	<b>Valores</b><br>
-	xxxxxx, xxxxxxx, xxxxx, xxxx, xxxxxxxxx, xxxxxxx
+	{{$empresas->valores}}
 	<br><br><br>
 	<b>Correro</b><br>
-	xxxxxxxxxxx@xxxx.xxxx
+	{{$empresas->correo_electronico}}
 	<br><br><br>
 	<b>Teléfono</b><br>
-	xxxxxxxxxxx
+	{{$empresas->telefono}}
 	<br><br><br>
 	<b>Dirección</b><br>
-	xxxxxxxx #127, xxxxx
+	{{$empresas->direccion}}
 	<br><br><br>
-	<button type="submit" class="btn btn-primary" style="background: #00ACC1; border: none;" data-toggle="modal" data-target="#modificarEmpresa">Modificar</button>
-    <button type="submit" class="btn btn-primary" style="background: #00ACC1; border: none; margin-left: 5%" data-toggle="modal" data-target="#eliminarEmpresa">Eliminar</button>
+	<button type="submit" class="btn btn-primary" style="background: #00ACC1; border: none;" data-toggle="modal" data-target="#modificarEmpresa{{$empresas->id_empresa}}">Modificar</button>
+    <button type="submit" class="btn btn-primary" style="background: #00ACC1; border: none; margin-left: 5%" data-toggle="modal" data-target="#eliminarEmpresa{{$empresas->id_empresa}}">Eliminar</button>
 </div>
-<br>
+@include('modales_MiEmpresa.modal_ModificarEmpresa')
+@include('modales_MiEmpresa.modal_EliminarEmpresa')
+@endforeach
+<br><br>
 <br>
 @extends('layouts.footer')

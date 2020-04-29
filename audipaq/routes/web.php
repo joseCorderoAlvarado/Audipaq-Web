@@ -79,6 +79,13 @@ Route::post('btnEditar_Observacion_Coa', 'Coauditor@Editar_Observacion');
 Route::post('btnCrear_Coauditor','Coauditor@crear_coauditor');
 Route::post('btnModificar_Coauditor','Coauditor@modificar');
 
+//Controladores de MiEmpresa para mostrar la página. 
+//Route::Get('homePage_Administrador','MiEmpresa@index'); 
+Route::Get('ver_MiEmpresa','EmpresaController@mostrar');
+Route::post('btnCrearEmpresa', 'EmpresaController@crearEmpresa'); 
+Route::post('btnModificarEmpresa', 'EmpresaController@modificarEmpresa');
+Route::post('btnEliminarEmpresa', 'EmpresaController@eliminarEmpresa');
+
 #Auth::routes();
 
 #Route::get('/home', 'HomeController@index')->name('home');
