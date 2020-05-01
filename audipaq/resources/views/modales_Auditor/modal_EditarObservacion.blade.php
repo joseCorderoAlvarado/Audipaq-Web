@@ -83,7 +83,7 @@
                                 ?>
                                 <input name='documentosModificar[]' id='documentosModificar' type='file' style='padding: 5px 10px; background: gray; color:#fff; border:0px solid #fff; '>
                                 <?php
-                                echo "<input type='text' class='form-control' name='id_documentos[]'  value='$doc->id_doc'>";
+                                echo "<input type='text' class='form-control' name='id_documentos[".$doc->nombre_doc."]'  value='$doc->id_doc'>";
                                 echo "<br>";
                                 ?>
                                 

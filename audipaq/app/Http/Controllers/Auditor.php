@@ -463,7 +463,6 @@ use Illuminate\Support\Str;
 						$observaciones->fk_id_acta=$datos->input('txtIdACta'); 
 						$observaciones->fk_id_prioridad=$datos->input('fkPrioridad'); 
 						$observaciones->save();
-						$observacionEditada=$observaciones->id_observaciones;
 
 						$consulta_area = DB::table('acta')
 						->select('fk_id_area')
@@ -488,6 +487,7 @@ use Illuminate\Support\Str;
 								$id_documento=$datos->id_documentos[$i];
 								//echo $id_documento;
 								//exit();
+
 								$doc=doc::find($id_documento);
 								$doc->nombre_doc=$nombreOriginal;
 								$doc->evidencia=$nombreCambiado;
@@ -534,7 +534,7 @@ use Illuminate\Support\Str;
 								$doc_detalle->fk_id_area=$id_area;
 								$doc_detalle->fk_id_persona=$idPersona;
 								$doc_detalle->fk_id_doc=$documentoAgregado; 
-								$doc_detalle->fk_id_observaciones=$observacionEditada; 
+								$doc_detalle->fk_id_observaciones=$idObservacion; 
 								$doc_detalle->save();
 
 			        		}
