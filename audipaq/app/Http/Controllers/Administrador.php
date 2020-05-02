@@ -53,6 +53,7 @@ use DB;
 				}
 				elseif(session('s_tipoUsuario')=='4')
 				{
+
 					$listaEmpresas = DB::table('empresa')
 					->select('id_empresa','nombre_empresa')
 					->orderBy('nombre_empresa','ASC')
@@ -65,6 +66,34 @@ use DB;
 					->get();
 							
 					return view('ver_Auditor',['listaEmpresas'=>$listaEmpresas,'listaAuditores'=>$listaAuditores]);
+							
+				}
+			}
+			else
+			{
+				return redirect('/');
+			}	
+		}
+
+		public function mostrarCoauditor()
+		{
+			if (session()->has('s_tipoUsuario') ) 
+			{
+				if(session('s_tipoUsuario')=='1')
+				{
+					return redirect('homePage_Auditor');
+				}
+				elseif(session('s_tipoUsuario')=='2')
+				{
+					return redirect('homePage_Auditado');
+				}
+				elseif(session('s_tipoUsuario')=='3')
+				{
+					return redirect('homePage_Coauditor');
+				}
+				elseif(session('s_tipoUsuario')=='4')
+				{
+					return view('ver_Auditorias_Coa');	
 				}
 			}
 			else

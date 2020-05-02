@@ -1,5 +1,5 @@
 @extends('layouts.head')
-@include('layouts.menu_Navegacion_Administrador_VerCoauditor')
+@include('layouts.menu_Navegacion_Administrador_VerAuditor')
 @include('modales_Coauditor.modal_CrearCoauditor')
 @include('modales_Coauditor.modal_ModificarCoauditor')
 <br>
@@ -30,9 +30,6 @@
 		    </div>
 		    <div class="col-2" style="background-color: white; margin-left:20px; padding: 1%; margin-top: 1%;">
 		       	<h5 style="text-align:center;">Coauditor</h5>
-		    </div>
-		    <div class="col-2" style="background-color: white; margin-left:20px; padding: 1%; margin-top: 1%;">
-		       	<h5 style="text-align:center;">Telefono</h5>
 		    </div>
 		  	<div class="col-2" style="background-color: white; margin-left:20px; padding: 1%; margin-top: 1%;">
 		      	<h5 style="text-align:center;">Correo Electronico</h5>
@@ -65,9 +62,7 @@
 	      	<div class="col-2" style="background-color: white; margin-left:20px;">
 		      	
 		    </div>
-		    <div class="col-2" style="background-color: white; margin-left:20px;">
-		      	
-		    </div>	
+		    	
 		</div>
 	</div>
 

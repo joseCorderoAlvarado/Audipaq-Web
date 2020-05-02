@@ -64,6 +64,14 @@
                              </div>
                     </div>
                     <br>
+                    <div class="row">
+                            <div class="col-3">
+                                 <b><label>Empresa</label></b>
+                            </div>
+                            <div class="col-5">
+                                  <input type="text" class="form-control" name="empresaCoauditor" style="width: auto;">
+                            </div>
+                    </div>
                 </div>
                 <div class="modal-footer" style="background:#546E7A; margin: auto;">
                     <button id="button" class="btn btn-primary" style="background: #00ACC1; border: none; align-items: center;">Guardar</button> 

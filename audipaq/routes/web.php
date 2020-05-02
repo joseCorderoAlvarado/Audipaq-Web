@@ -56,6 +56,16 @@ Route::post('btnCrear_Auditor','Administrador@crear');
 Route::post('btnModificar_Auditor','Administrador@modificar');
 Route::post('btnEliminar_Auditor','Administrador@eliminar');
 
+Route::Get('ver_Auditorias_Coa','Administrador@mostrarCoauditor');
+Route::post('ver_Auditorias_Coa','Administrador@mostrarBusqueda');
+Route::post('verListadoObservaciones_Coauditor','Administrador@observaciones');
+Route::post('btnCrear_Acta_Coa','Administrador@crear_Acta');
+Route::post('btnEditar_Acta_Coa','Administrador@editar_Acta');
+Route::post('btnCrear_Observacion_Coa', 'Administrador@crearObservacion');
+Route::post('btnEditar_Observacion_Coa', 'Administrador@Editar_Observacion');
+Route::post('btnCrear_Coauditor','Administrador@crear_coauditor');
+Route::post('btnModificar_Coauditor','Administrador@modificar');
+
 //Controladores de Auditor para mostrar la pagina
 Route::Get('homePage_Auditor','Auditor@index');
 Route::Get('ver_Auditorias','Auditor@mostrar');
@@ -69,15 +79,8 @@ Route::post('btnEditar_Observacion', 'Auditor@Editar_Observacion');
 
 //Controladores de Coauditor para mostrar la pagina
 Route::Get('homePage_Coauditor','Coauditor@index');
-Route::Get('ver_Auditorias_Coa','Coauditor@mostrar');
-Route::post('ver_Auditorias_Coa','Coauditor@mostrarBusqueda');
-Route::post('verListadoObservaciones_Coauditor','Coauditor@observaciones');
-Route::post('btnCrear_Acta_Coa','Coauditor@crear_Acta');
-Route::post('btnEditar_Acta_Coa','Coauditor@editar_Acta');
-Route::post('btnCrear_Observacion_Coa', 'Coauditor@crearObservacion');
-Route::post('btnEditar_Observacion_Coa', 'Coauditor@Editar_Observacion');
-Route::post('btnCrear_Coauditor','Coauditor@crear_coauditor');
-Route::post('btnModificar_Coauditor','Coauditor@modificar');
+//Route::Get('ver_Auditorias_Coa','Coauditor@mostrar');
+
 
 //Controladores de MiEmpresa para mostrar la página. 
 //Route::Get('homePage_Administrador','MiEmpresa@index'); 
