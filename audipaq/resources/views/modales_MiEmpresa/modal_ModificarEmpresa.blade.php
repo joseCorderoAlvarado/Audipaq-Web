@@ -69,7 +69,8 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
-                            <label>Logotipo</label>
+                            <b><label>Logotipo</label></b>
+                            <label>Solo seleccionar archivos si se deseea cambiar la imagen actual</label>
                             <div class="photo">
                                 <div class="input-group">
                                 <input multiple="multiple"  name="logotipo[]" type="file" style="padding: 5px 10px; background: #546E7A; color:#fff; border:0px solid #fff;" value="{{$empresas->logotipo}}">

@@ -23,7 +23,7 @@
 	<input type="hidden" value="{{$empresas->id_empresa}}" id="idEmpresa">
 	<br><br>
 	<b>Logotipo</b><br><br>
-	<img src="{{$empresas->logotipo}}" style="width: 100px">
+	<img class="img-rounded" src="../storage/app/public{{$empresas->logotipo}}" width="100em" height="100em">
 	<br><br><br>
 	<b>Nombre</b><br>
 	{{$empresas->nombre_empresa}}

@@ -4,7 +4,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request; 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
-use App\Http\Requests\subidaDocumentoRequest;
+use App\Http\Requests\subidaLogotipoRequest;
 use DateTime;
 use App\empresa;
 use DB; 
@@ -70,7 +70,7 @@ use DB;
 			}
 		}
 		
-		public function crearEmpresa (Request $datos)
+		public function crearEmpresa (subidaLogotipoRequest $datos)
 		{
 			if (session()->has('s_tipoUsuario'))
 			{
@@ -90,6 +90,7 @@ use DB;
 				{
 					$empresa = new empresa;
 					$empresa->nombre_empresa=$datos->input('nombreEmpresa');
+
 					foreach($datos->logotipo as $logotipo)
 					{
 						$nombreOriginal=$logotipo->getClientOriginalName();
@@ -98,6 +99,7 @@ use DB;
 						$nombreCambiado=$carpeta.$fecha->format('Y-m-d_H-i-s')."_".$nombreOriginal; 
 						Storage::disk('public')->put($nombreCambiado,File::get($logotipo)); 
 					}
+
 					$empresa->logotipo=$nombreCambiado;
 					$empresa->giro=$datos->input('giroEmpresa');
 					$empresa->mision=$datos->input('misionEmpresa');
@@ -106,9 +108,11 @@ use DB;
 					$empresa->direccion=$datos->input('direccionEmpresa');
 					$empresa->telefono=$datos->input('telefonoEmpresa');
 					$empresa->correo_electronico=$datos->input('correoEmpresa');
+
 					if($empresa->save())
 					{
-						\Session::flash('flash_message', 'Â¡Empresa creada con exito');
+						\Session::flash('flash_message', '¡Empresa creada con éxito');
+
 						$listaEmpresas = DB::table('empresa')
 						->select('id_empresa','nombre_empresa','logotipo','giro','mision','vision','valores','direccion','telefono','correo_electronico')
 						->orderBy('nombre_empresa','ASC')
@@ -130,7 +134,7 @@ use DB;
 			}
 		}
 		
-		public function modificarEmpresa (Request $datos)
+		public function modificarEmpresa (subidaLogotipoRequest $datos)
 		{
 			if (session()->has('s_tipoUsuario') ) 
 			{
@@ -151,7 +155,7 @@ use DB;
 					$idEmpresa=$datos->input('txtIdEmpresa'); 
 					$empresa=empresa::find($idEmpresa); 
 					$empresa->nombre_empresa=$datos->input('nombreEmpresa');
-					/*foreach($datos->logotipo as $logotipo)
+					foreach($datos->logotipo as $logotipo)
 					{
 						$nombreOriginal=$logotipo->getClientOriginalName();
 						$fecha=new DateTime(); 
@@ -159,7 +163,7 @@ use DB;
 						$nombreCambiado=$carpeta.$fecha->format('Y-m-d_H-i-s')."_".$nombreOriginal; 
 						Storage::disk('public')->put($nombreCambiado,File::get($logotipo)); 
 					}
-					$empresa->logotipo=$nombreCambiado;*/
+					$empresa->logotipo=$nombreCambiado;
 					$empresa->giro=$datos->input('giroEmpresa');
 					$empresa->mision=$datos->input('misionEmpresa');
 					$empresa->vision=$datos->input('visionEmpresa'); 
