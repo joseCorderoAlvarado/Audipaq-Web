@@ -79,10 +79,10 @@ Route::Get('homePage_Coauditor','Coauditor@index');
 
 //Controladores de MiEmpresa para mostrar la página. 
 //Route::Get('homePage_Administrador','MiEmpresa@index'); 
-Route::Get('ver_MiEmpresa','Empresa@mostrar');
-Route::post('btnCrearEmpresa', 'Empresa@crearEmpresa'); 
-Route::post('btnModificarEmpresa', 'Empresa@modificarEmpresa');
-Route::post('btnEliminarEmpresa', 'Empresa@eliminarEmpresa');
+Route::Get('ver_MiEmpresa','EmpresaController@mostrar');
+Route::post('btnCrearEmpresa', 'EmpresaController@crearEmpresa'); 
+Route::post('btnModificarEmpresa', 'EmpresaController@modificarEmpresa');
+Route::post('btnEliminarEmpresa', 'EmpresaController@eliminarEmpresa');
 
 #Auth::routes();
 

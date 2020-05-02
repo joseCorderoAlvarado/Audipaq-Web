@@ -12,7 +12,7 @@
 					<ul	class="navbar-nav ml-auto">
 						<a	class="navbar-brand" href="{{ url('homePage_Administrador')}}" style="color: #fff"><b>Inicio</b></a>
 						<li class="nav-item dropdown">
-							<a	class="navbar-brand" href="#" style="color: #fff"><b>Empresas</b></a>
+							<a	class="navbar-brand" href="{{ url('ver_MiEmpresa')}}" style="color: #fff"><b>Empresas</b></a>
 			            </li>
 			            <li class="nav-item dropdown">
 							<a	class="navbar-brand" href="{{ url('ver_Auditor')}}" style="color: #fff"><b>Ver auditores</b></a>

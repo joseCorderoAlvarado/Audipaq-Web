@@ -54,6 +54,7 @@
 </div>
 @include('modales_MiEmpresa.modal_ModificarEmpresa')
 @include('modales_MiEmpresa.modal_EliminarEmpresa')
+<br>
 @endforeach
 <br><br>
 <br>
