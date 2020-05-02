@@ -9,7 +9,7 @@ use DateTime;
 use App\empresa;
 use DB; 
 
-	class EmpresaController extends Controller 
+	class Empresa extends Controller 
 	{
 		public function index ()
 		{
