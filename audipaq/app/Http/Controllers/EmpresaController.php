@@ -152,27 +152,40 @@ use DB;
 				}
 				elseif(session('s_tipoUsuario')=='4')
 				{
-					$idEmpresa=$datos->input('txtIdEmpresa'); 
-					$empresa=empresa::find($idEmpresa); 
-					$empresa->nombre_empresa=$datos->input('nombreEmpresa');
-					foreach($datos->logotipo as $logotipo)
+					try 
 					{
-						$nombreOriginal=$logotipo->getClientOriginalName();
-						$fecha=new DateTime(); 
-						$carpeta="/logotiposEmpresa/";
-						$nombreCambiado=$carpeta.$fecha->format('Y-m-d_H-i-s')."_".$nombreOriginal; 
-						Storage::disk('public')->put($nombreCambiado,File::get($logotipo)); 
-					}
-					$empresa->logotipo=$nombreCambiado;
-					$empresa->giro=$datos->input('giroEmpresa');
-					$empresa->mision=$datos->input('misionEmpresa');
-					$empresa->vision=$datos->input('visionEmpresa'); 
-					$empresa->valores=$datos->input('valoresEmpresa');
-					$empresa->direccion=$datos->input('direccionEmpresa');
-					$empresa->telefono=$datos->input('telefonoEmpresa');
-					$empresa->correo_electronico=$datos->input('correoEmpresa');
-					if($empresa->save())
-					{
+         				 DB::beginTransaction();
+
+						$idEmpresa=$datos->input('txtIdEmpresa'); 
+						$empresa=empresa::find($idEmpresa); 
+						
+						if ($datos->documentosModificar!=null)
+						{
+							foreach($datos->logotipo as $logotipo)
+							{
+								$nombreOriginal=$logotipo->getClientOriginalName();
+								$fecha=new DateTime(); 
+								$carpeta="/logotiposEmpresa/";
+								$nombreCambiado=$carpeta.$fecha->format('Y-m-d_H-i-s')."_".$nombreOriginal; 
+								Storage::disk('public')->put($nombreCambiado,File::get($logotipo)); 
+							}
+							$empresa->logotipo=$nombreCambiado;
+							$empresa->save();
+						}
+
+						$empresa2=empresa::find($idEmpresa); 
+						$empresa2->nombre_empresa=$datos->input('nombreEmpresa');
+						$empresa2->giro=$datos->input('giroEmpresa');
+						$empresa2->mision=$datos->input('misionEmpresa');
+						$empresa2->vision=$datos->input('visionEmpresa'); 
+						$empresa2->valores=$datos->input('valoresEmpresa');
+						$empresa2->direccion=$datos->input('direccionEmpresa');
+						$empresa2->telefono=$datos->input('telefonoEmpresa');
+						$empresa2->correo_electronico=$datos->input('correoEmpresa');
+						$empresa2->save();
+
+						DB::commit(); 
+
 						\Session::flash('flash_message', '¡Empresa modificada con éxito');
 						$listaEmpresas = DB::table('empresa')
 						->select('id_empresa','nombre_empresa','logotipo','giro','mision','vision','valores','direccion','telefono','correo_electronico')
@@ -180,9 +193,11 @@ use DB;
 						->get(); 
 							
 						return view('ver_MiEmpresa',['listaEmpresas'=>$listaEmpresas]);
-					}
-					else 
-					{
+					
+			        } 
+			        catch (Exception $e) 
+			        {
+			          	db::rollback();
 						\Session::flash('mensaje','Error al modificar la empresa');
 						$listaEmpresas = DB::table('empresa')
 						->select('id_empresa','nombre_empresa','logotipo','giro','mision','vision','valores','direccion','telefono','correo_electronico')
