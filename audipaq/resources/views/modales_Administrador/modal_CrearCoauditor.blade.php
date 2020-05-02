@@ -55,14 +55,22 @@
                              </div>
                     </div>
                     <br>
-                    <div class="row">
+                   <div class="row">
                             <div class="col-3">
-                                 <b><label>Empresa</label></b>
+                                <b><label>Empresa</label></b>
                             </div>
-                            <div class="col-5">
-                                  <input type="text" class="form-control" name="empresaCoauditor" style="width: auto;">
+                            <div class="col-5"> 
+                                <select name="fkEmpresa" class="form-control" style="width: auto;">
+                                    <option selected>Selecciona una empresa
+                                    </option>
+                                    @foreach ($listaEmpresas as $empresa)
+                                    <option value={{$empresa->id_empresa }}>
+                                        {{ $empresa->nombre_empresa}} 
+                                    </option>
+                                    @endforeach     
+                                </select> 
                             </div>
-                    </div>
+                    </div> 
                     <br>     
                 </div>
                 <div class="modal-footer" style="background:#546E7A; margin: auto;">

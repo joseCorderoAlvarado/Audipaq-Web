@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background:#546E7A;">
-                <h4 class="modal-title" style="color: white" >Crear Auditor/Coauditor</h4>
+                <h4 class="modal-title" style="color: white" >Crear Auditor</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
 		

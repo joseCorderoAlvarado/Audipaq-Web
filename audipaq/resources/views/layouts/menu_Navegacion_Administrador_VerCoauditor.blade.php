@@ -22,7 +22,7 @@
 									</a>
 					            </div>
 			          		</div>
-						          <form action="ver_Auditor" method="post" enctype="multipart/form-data">
+						          <form action="ver_Coauditor" method="post" enctype="multipart/form-data">
                 					{{ csrf_field() }}
 								    <div class="input-group" style="margin-left:-3%;">
 								     	<input class="form-control" type="search" placeholder="Buscar" name="txtBuscar">
