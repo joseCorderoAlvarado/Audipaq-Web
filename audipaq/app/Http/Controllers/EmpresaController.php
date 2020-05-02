@@ -159,7 +159,7 @@ use DB;
 						$idEmpresa=$datos->input('txtIdEmpresa'); 
 						$empresa=empresa::find($idEmpresa); 
 						
-						if ($datos->documentosModificar!=null)
+						if ($datos->logotipo!=null)
 						{
 							foreach($datos->logotipo as $logotipo)
 							{
