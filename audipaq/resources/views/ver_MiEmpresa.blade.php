@@ -20,37 +20,72 @@
 @foreach($listaEmpresas as $empresas)
 
 <div style="background-color: white; border: none; padding: 40px 50px; border-radius: 5px; width: 55%; margin-left: auto; margin-right: auto">
+
+	
+	<div class="col-12" style="font-size:35px; font-weight: bold;  font-style:italic;">
+	<center>Mi empresa </center>
+    </div>
+
+<form class="needs-validation" novalidate>
+		  <div class="form-row">
+		  	<div class="col-12">
+				<center><label><b>Logotipo</b></label><br>		
+				<img class="img-rounded" src="../storage/app/public{{$empresas->logotipo}}" width="160em" height="160em">
+				</center>			
+			</div>
+		    <div class="col-md-4 mb-3">
+		      <label><b>Nombre</b></label>
+		      <input type="text" readonly="readonly" class="form-control" value="{{$empresas->nombre_empresa}}">
+		    </div>
+		    <div class="col-md-4 mb-3">
+		      <label> <b>Giro</b></label>
+		      <input type="text" class="form-control" readonly="readonly"  value="{{$empresas->giro}}">
+		    </div>
+
+		    <div class="col-md-4 mb-3">
+		      <label><b>Correo Electronico</b></label>
+		      <div class="input-group">
+		        <div class="input-group-prepend">
+		          <span class="input-group-text">@</span>
+		        </div>
+		       <input type="text" class="form-control" readonly="readonly"  value="{{$empresas->correo_electronico}}">
+		      </div>
+		    </div>
+
+		  </div>
+		  <div class="form-row">
+		    <div class="col-md-6 mb-3">
+		      <label><b>Mision</b></label>
+		       <textarea readonly="readonly" class="form-control" > {{$empresas->mision}}
+		       </textarea>
+		    </div>
+		    <div class="col-md-6 mb-3">
+		      <label ><b>Vision</b></label>
+		       <textarea  class="form-control" readonly="readonly"  >{{$empresas->vision}}
+		       </textarea>
+		    </div>
+		    <div class="col-md-6 mb-3">
+		      <label><b>Valores</b></label>
+		       <textarea  class="form-control" readonly="readonly"  >{{$empresas->valores}}
+		       </textarea>
+		      
+		    </div>
+		    <div class="col-md-3 mb-3">
+		      <label ><b>Télefono</b></label>
+		      <input type="text" class="form-control" readonly="readonly"  value="{{$empresas->telefono}}">
+		    </div>
+		     <div class="col-md-3 mb-3">
+		      <label ><b>Dirección</b></label>
+		      <input type="text" class="form-control" readonly="readonly"  value="{{$empresas->direccion}}">
+		    </div>
+		  </div>
+		</form>
 	<input type="hidden" value="{{$empresas->id_empresa}}" id="idEmpresa">
-	<br><br>
-	<b>Logotipo</b><br><br>
-	<img class="img-rounded" src="../storage/app/public{{$empresas->logotipo}}" width="100em" height="100em">
-	<br><br><br>
-	<b>Nombre</b><br>
-	{{$empresas->nombre_empresa}}
-	<br><br><br>
-	<b>Giro</b><br>
-	{{$empresas->giro}}
-	<br><br><br>
-	<b>Misión</b><br>
-	{{$empresas->mision}}
-	<br><br><br>
-	<b>Visión</b><br>
-	{{$empresas->vision}}
-	<br><br><br>
-	<b>Valores</b><br>
-	{{$empresas->valores}}
-	<br><br><br>
-	<b>Correro</b><br>
-	{{$empresas->correo_electronico}}
-	<br><br><br>
-	<b>Teléfono</b><br>
-	{{$empresas->telefono}}
-	<br><br><br>
-	<b>Dirección</b><br>
-	{{$empresas->direccion}}
-	<br><br><br>
+	<br>
+	
 	<button type="submit" class="btn btn-primary" style="background: #00ACC1; border: none;" data-toggle="modal" data-target="#modificarEmpresa{{$empresas->id_empresa}}">Modificar</button>
     <button type="submit" class="btn btn-primary" style="background: #00ACC1; border: none; margin-left: 5%" data-toggle="modal" data-target="#eliminarEmpresa{{$empresas->id_empresa}}">Eliminar</button>
+
 </div>
 @include('modales_MiEmpresa.modal_ModificarEmpresa')
 @include('modales_MiEmpresa.modal_EliminarEmpresa')
@@ -59,3 +94,4 @@
 <br><br>
 <br>
 @extends('layouts.footer')
+
