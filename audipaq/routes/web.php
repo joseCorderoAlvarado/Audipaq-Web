@@ -94,6 +94,7 @@ Route::post('btnEliminarEmpresa', 'EmpresaController@eliminarEmpresa');
 
 //Controladores de MiEmpresa para mostrar la página. 
 Route::Get('homePage_Auditado','Auditado@index');
+Route::Get('homePage_Auditado','Auditado@mostrar'); 
 
 #Auth::routes();
 

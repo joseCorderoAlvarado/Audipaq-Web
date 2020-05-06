@@ -44,8 +44,6 @@ use Illuminate\Support\Str;
 				return redirect('/');
 			}
 		}
-
-
 		
 		public function mostrar()
 		{
@@ -57,34 +55,38 @@ use Illuminate\Support\Str;
 				}
 				elseif(session('s_tipoUsuario')=='2')
 				{
-					return redirect('homePage_Auditado');
+					$ConsultaidPersona = DB::table('persona')
+					->select('persona.id_persona')
+					->where('correo_electronico','=',session('s_identificador'))
+					->get();
+
+					$idConversion = json_decode(json_encode($ConsultaidPersona),true);
+					$idPersona = implode($idConversion[0]);
+
+					$listaObservaciones = DB::table('observaciones')
+					->join('status', 'observaciones.fk_id_status', '=', 'status.id_status')
+					->join('persona', 'observaciones.fk_id_auditor', '=', 'persona.id_persona')
+					->join('detalle', 'observaciones.id_observaciones', '=', 'detalle.fk_id_observaciones')
+					->join('prioridad', 'observaciones.fk_id_prioridad', '=', 'prioridad.id_prioridad')
+					->join('doc', 'detalle.fk_id_doc', '=', 'doc.id_doc')
+					->select('observaciones.id_observaciones','observaciones.comentarios', 'status.tipo_status','status.id_status','persona.nombre_persona','prioridad.tipo_prioridad','prioridad.id_prioridad','detalle.fecha', 'doc.nombre_doc')
+					->where('detalle.fk_id_persona','=',$idPersona)
+					->orderBy('observaciones.fk_id_prioridad','Asc')
+					->get();	
+						
+					$listaPrioridad = DB::table('prioridad')
+					->select('id_prioridad','tipo_prioridad')
+					->get();	
+					
+					$listaStatus= DB::table('status')
+					->select('id_status','tipo_status')
+					->get();
+					return view('homePage_Auditado',['listaObservaciones'=>$listaObservaciones,'listaPrioridad'=>$listaPrioridad, 'listaStatus'=>$listaStatus]);
+					//return redirect('homePage_Auditado');
 				}
 				elseif(session('s_tipoUsuario')=='3')
 				{
-					 $listastatus = DB::table('status')
-					->select('id_status','tipo_status')
-					->orderBy('tipo_status','ASC')
-					->get(); 
-
-					$listaArea = DB::table('area')
-					->select('id_area','nombre_area')
-					->orderBy('nombre_area','ASC')
-					->get();
-
-					$listaDepartamento = DB::table('departamento')
-					->select('id_departamento','nombre_departamento')
-					->orderBy('nombre_departamento','ASC')
-					->get();
-
-					$listaActas = DB::table('acta')
-					->join('persona', 'persona.id_persona', '=', 'acta.fk_id_persona')
-					->join('status', 'status.id_status', '=', 'acta.fk_id_status')
-					->join('area', 'area.id_area', '=', 'acta.fk_id_area')
-					->join('departamento', 'departamento.id_departamento', '=', 'acta.fk_id_departamento')
-					->select('acta.id_acta','acta.fecha_inicio', 'acta.fecha_final','persona.nombre_persona','status.tipo_status','area.nombre_area','departamento.nombre_departamento','status.id_status','area.id_area','departamento.id_departamento')
-					->get();
-							
-					return view('ver_Auditorias',['listaActas'=>$listaActas,'listastatus'=>$listastatus, 'listaArea'=>$listaArea, 'listaDepartamento'=>$listaDepartamento]);
+					
 				}
 				elseif(session('s_tipoUsuario')=='4')
 				{
@@ -97,49 +99,6 @@ use Illuminate\Support\Str;
 			}	
 		}
 
-		public function modificar(Request $datos)
-		{
-			if (session()->has('s_tipoUsuario') ) 
-			{
-				if(session('s_tipoUsuario')=='1')
-				{
-					return redirect('homePage_Auditor');
-				}
-				elseif(session('s_tipoUsuario')=='2')
-				{
-					return redirect('homePage_Auditado');
-				}
-				elseif(session('s_tipoUsuario')=='3')
-				{
-					$idPersona=$datos->input('txtidpersona');
-       			    $persona=persona::find($idPersona);
-				 	$persona->nombre_persona=$datos->input('txtnombreAuditor');
-				 	$persona->apellido_paterno=$datos->input('txtapellidoPatAuditor');
-				 	$persona->apellido_materno=$datos->input('txtapellidoMatAuditor');
-				 	$persona->correo_electronico=$datos->input ('correoAuditor');
-				 	/*$persona->contrasena=md5($datos->input('contraAuditor'));*/
-				 	$persona->fk_id_empresa=$datos->input('fkEmpresa');
-				 	$persona->fk_id_tipo='1';
-					if($persona->save()){
-						\Session::flash('flash_message', '¡Usuario Modificado con exito');
-						return redirect('ver_Auditor');
-						
-					}
-					else 
-					{
-						\Session::flash('mensaje','Error al modificar el usuario');
-						 return redirect('ver_Auditor');
-					}
-				}
-				elseif(session('s_tipoUsuario')=='4')
-				{
-		            return redirect ('homePage_Administrador');
-				}
-			}
-			else
-			{
-				return redirect('/');
-			}
-		}
+		
 	}
 ?>
