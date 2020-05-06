@@ -92,6 +92,9 @@ Route::post('btnCrearEmpresa', 'EmpresaController@crearEmpresa');
 Route::post('btnModificarEmpresa', 'EmpresaController@modificarEmpresa');
 Route::post('btnEliminarEmpresa', 'EmpresaController@eliminarEmpresa');
 
+//Controladores de MiEmpresa para mostrar la página. 
+Route::Get('homePage_Auditado','Auditado@index');
+
 #Auth::routes();
 
 #Route::get('/home', 'HomeController@index')->name('home');
