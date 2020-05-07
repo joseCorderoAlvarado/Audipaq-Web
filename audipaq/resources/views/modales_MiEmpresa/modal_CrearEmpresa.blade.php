@@ -13,13 +13,15 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label>Nombre</label>
-                            <input type="text" id="idnombreEmpresa" name="nombreEmpresa" class="form-control">
+                            <input type="text" id="idnombreEmpresa" name="nombreEmpresa" class="form-control" title="El nombre debe llevar solo letras, numeros y espacios" pattern="[A-Za-z0-9\s]+" required>
                         </div>
+                       
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label>Giro</label>
-                            <input type="text" id="idgiroEmpresa" name="giroEmpresa" class="form-control">
+                            <input type="text" id="idgiroEmpresa" name="giroEmpresa" class="form-control" pattern="[A-Za-z\s]+"
+                            title="El giro debe llevar solo letras y espacios" required>
                         </div>
                     </div>
                 </div>
@@ -27,13 +29,15 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label>Misión</label>
-                            <textarea id="idmisionEmpresa" name="misionEmpresa" class="form-control"></textarea>
+                            <textarea id="idmisionEmpresa" name="misionEmpresa" class="form-control" pattern="[A-Za-z\s]+"
+                            title="La mision debe llevar solo letras y espacios" required></textarea>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label>Visión</label>
-                            <textarea id="idvisionEmpresa" name="visionEmpresa" class="form-control"></textarea>
+                            <textarea id="idvisionEmpresa" name="visionEmpresa" class="form-control" pattern="[A-Za-z\s]+"
+                            title="La Vision debe llevar solo letras y espacios" required></textarea>
                         </div>
                     </div>
                 </div>
@@ -41,13 +45,14 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label>Valores</label>
-                            <input type="text" id="idvaloresEmpresa" name="valoresEmpresa" class="form-control">
+                            <input type="text" id="idvaloresEmpresa" name="valoresEmpresa" class="form-control" pattern="[A-Za-z\s]+"
+                            title="Los valores debe llevar solo letras y espacios" required>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label>Dirección</label>
-                            <input type="text" id="iddireccionEmpresa" name="direccionEmpresa" class="form-control">
+                            <input type="text" id="iddireccionEmpresa" name="direccionEmpresa" class="form-control" pattern="[A-Za-z\s#0-9]+" title="La direccion debe llevar solo letras, #, números y espacios" required>
                         </div>
                     </div>
                 </div>
@@ -55,13 +60,13 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label>Teléfono</label>
-                            <input type="text" id="idtelefonoEmpresa" name="telefonoEmpresa" class="form-control">
+                            <input type="text" id="idtelefonoEmpresa" name="telefonoEmpresa" class="form-control" pattern="[0-9]+" required="">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label>Correo</label>
-                            <input type="text" id="idcorreoEmpresa" name="correoEmpresa" class="form-control">
+                            <input type="text" id="idcorreoEmpresa" name="correoEmpresa" class="form-control" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" title="El correo debe de llevar un @" required="">
                         </div>
                     </div>
                 </div>
@@ -71,7 +76,7 @@
                             <label>Logotipo</label>
                             <div class="photo">
                                 <div class="input-group">
-                                <input name="logotipo[]" type="file" style="padding: 5px 10px; background: #546E7A; color:#fff; border:0px solid #fff; ">
+                                <input name="logotipo[]" type="file" required style="padding: 5px 10px; background: #546E7A; color:#fff; border:0px solid #fff; ">
                                 </div>
                              </div>
                         </div>

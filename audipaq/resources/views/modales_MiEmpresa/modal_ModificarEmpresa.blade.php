@@ -14,13 +14,13 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label>Nombre</label>
-                            <input type="text" id="idnombreEmpresa" name="nombreEmpresa" class="form-control" value="{{$empresas->nombre_empresa}}">
+                            <input type="text"  id="idnombreEmpresa" name="nombreEmpresa" class="form-control" value="{{$empresas->nombre_empresa}}" title="El nombre debe llevar solo letras, numeros y espacios" pattern="[A-Za-z0-9\s]+" required>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label>Giro</label>
-                            <input type="text" id="idgiroEmpresa" name="giroEmpresa" class="form-control" value="{{$empresas->giro}}">
+                            <input type="text" id="idgiroEmpresa" name="giroEmpresa" class="form-control" value="{{$empresas->giro}}" pattern="[A-Za-z\s]+" title="El giro debe llevar solo letras y espacios" required>
                         </div>
                     </div>
                 </div>
@@ -28,13 +28,13 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label>Misión</label>
-                            <textarea id="idmisionEmpresa" name="misionEmpresa" class="form-control">{{$empresas->mision}}</textarea>
+                            <textarea id="idmisionEmpresa" name="misionEmpresa" class="form-control" pattern="[A-Za-z\s]+" title="La mision debe llevar solo letras y espacios" required>{{$empresas->mision}}</textarea>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label>Visión</label>
-                            <textarea id="idvisionEmpresa" name="visionEmpresa" class="form-control">{{$empresas->vision}}</textarea>
+                            <textarea id="idvisionEmpresa" name="visionEmpresa" class="form-control" pattern="[A-Za-z\s]+" title="La vision debe llevar solo letras y espacios" required>{{$empresas->vision}}</textarea>
                         </div>
                     </div>
                 </div>
@@ -42,13 +42,14 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label>Valores</label>
-                            <textarea type="text" id="idvaloresEmpresa" name="valoresEmpresa" class="form-control">{{$empresas->valores}}</textarea>
+                            <textarea type="text" id="idvaloresEmpresa" name="valoresEmpresa" class="form-control" pattern="[A-Za-z\s]+"
+                            title="Los valores debe llevar solo letras y espacios" required>{{$empresas->valores}}</textarea>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label>Dirección</label>
-                            <input type="text" id="iddireccionEmpresa" name="direccionEmpresa" class="form-control" value="{{$empresas->direccion}}">
+                            <input type="text" id="iddireccionEmpresa" name="direccionEmpresa" class="form-control" value="{{$empresas->direccion}}" pattern="[A-Za-z\s#0-9]+" title="La direccion debe llevar solo letras, #, números y espacios" required>
                         </div>
                     </div>
                 </div>
@@ -56,13 +57,13 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label>Teléfono</label>
-                            <input type="text" id="idtelefonoEmpresa" name="telefonoEmpresa" class="form-control" value="{{$empresas->telefono}}">
+                            <input type="text" id="idtelefonoEmpresa" name="telefonoEmpresa" class="form-control" value="{{$empresas->telefono}}" pattern="[0-9]+" required="">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label>Correo</label>
-                            <input type="text" id="idcorreoEmpresa" name="correoEmpresa" class="form-control" value="{{$empresas->correo_electronico}}">
+                            <input type="text"id="idcorreoEmpresa" name="correoEmpresa" class="form-control" value="{{$empresas->correo_electronico}}" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" title="El correo debe de llevar un @" required="">
                         </div>
                     </div>
                 </div>
