@@ -3,11 +3,11 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background:#546E7A;">
-                <h4 class="modal-title" style="color: white" >Editar Acta</h4>
+                <h4 class="modal-title" style="color: white" >Editar Acta Coa</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
 		
-            <form action="btnEditar_Acta" method="post" enctype="multipart/form-data">
+            <form action="btnEditar_Acta_Coa" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
                 <div class="modal-body mx-auto" style="width: auto; background-color: #ECEFF1">
 

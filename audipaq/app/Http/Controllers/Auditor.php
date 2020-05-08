@@ -253,6 +253,7 @@ use Illuminate\Support\Str;
 						$acta = new acta;
 					 	$acta->fecha_inicio=$datos->input('txtFechaInicio');
 					 	$acta->fecha_final=$datos->input('txtFechaFinal');
+					 	$acta->fk_id_persona=$idPersona;
 					 	$acta->fk_id_auditor=$idPersona;
 					 	$acta->fk_id_status=$datos->input('txtEstatus');
 					 	$acta->fk_id_area=$datos->input('txtArea');

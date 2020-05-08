@@ -7,7 +7,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
 		
-            <form action="btnAgregar_Acta_Coa" method="post" enctype="multipart/form-data">
+            <form action="btnCrear_Acta_Coa" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
                 <div class="modal-body mx-auto" style="width: auto; background-color: #ECEFF1">
                     <div class="row">
@@ -15,7 +15,7 @@
                             <b><label>Acta</label></b>
                         </div>
                         <div class="col-5">
-                           <select name="txtEstatus" class="form-control" style="width: auto;"  >
+                           <select name="txtIdActa" class="form-control" style="width: auto;"  >
                                 <option selected >Selecciona el acta que quieras agregar
                                 </option>
                                 @foreach ($listaTodasActas as $acta2)

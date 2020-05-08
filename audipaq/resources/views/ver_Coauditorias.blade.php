@@ -65,7 +65,7 @@
 				    <button class="btn" style="text-align:center; background: #00ACC1; margin: 1px; width: auto;" data-toggle="modal" data-target="#EditarActa{{$acta->id_acta}}"><img src="images/editar.png" width="15" height="15"></button>
 				</div>
 				<div class="col-md-9" style="padding: 3px;">
-					<form action="verListadoObservaciones_Auditor" method="post" enctype="multipart/form-data" target="_blank">
+					<form action="verListadoObservaciones_Coauditor" method="post" enctype="multipart/form-data" target="_blank">
 					{{ csrf_field() }}
 					<input type="hidden" name="txtIdActa" value="{{$acta->id_acta}}">
 				    <button class="btn" style="text-align:center; background: #00ACC1; margin: 1px; width: auto;"  class="btn-floating btn-small waves-effect waves-light blue"><img src="images/archivos-de-vista.png" width="15" height="15"></a></button>
@@ -99,7 +99,7 @@
 		</div>	
 	</div>
 	<hr style="width:95%;">
-	@include('modales_Auditor.modal_EditarActa')
+	@include('modales_Coauditor.modal_EditarActa')
 	@endforeach
 </div>
 <br>
