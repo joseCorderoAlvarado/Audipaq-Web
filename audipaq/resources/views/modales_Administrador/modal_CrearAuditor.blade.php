@@ -15,7 +15,7 @@
                                 <b><label>Nombre</label></b>
                             </div>
                             <div class="col-5">
-                                <input type="text" class="form-control" name="txtnombreAuditor" style="width: auto;">
+                                <input type="text" class="form-control" name="txtnombreAuditor" title="El nombre debe llevar solo letras y espacios" pattern="[A-Za-z\s]+" required style="width: auto;">
                             </div>
                     </div>
                     <br>
@@ -24,7 +24,7 @@
                                 <b><label>Apellido Paterno</label></b>
                             </div>
                             <div class="col-5">
-                                <input type="text" class="form-control"  name="txtapellidoPatAuditor" style="width: auto;">
+                                <input type="text" class="form-control"  name="txtapellidoPatAuditor" title="El apellido paterno debe llevar solo letras y espacios" pattern="[A-Za-z\s]+" required style="width: auto;">
                             </div>
                     </div>
                     <br>
@@ -33,7 +33,7 @@
                                 <b><label>Apellido Materno</label></b>
                             </div>
                             <div class="col-5">    
-                                <input type="text" class="form-control"  name="txtapellidoMatAuditor" style="width: auto;">
+                                <input type="text" class="form-control"  name="txtapellidoMatAuditor" title="El apellido materno debe llevar solo letras y espacios" pattern="[A-Za-z\s]+" required style="width: auto;">
                             </div>
                     </div>
                     <br>
@@ -42,7 +42,7 @@
                                  <b><label>Correo</label></b>
                             </div>
                             <div class="col-5">
-                                  <input type="email" class="form-control" name="correoAuditor" style="width: auto;">
+                                  <input type="email" class="form-control" name="correoAuditor" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="El correo debe contener entre caracteres el símbolo de '@' en seguida el símbolo de '.' y finalmente el dominio" required style="width: auto;">
                             </div>
                     </div>
                     <br>
@@ -51,7 +51,7 @@
                                 <b><label>Contrase&ntilde;a</label></b>
                              </div>
                              <div class="col-5">
-                                <input type="password" class="form-control"  name="contraAuditor" style="width: auto;">
+                                <input type="password" class="form-control"  name="contraAuditor" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="La contraseña debe contener al menos 8 caracteres invluyendo como mínimo un número, una minúscula y una mayúscula" required style="width: auto;">
                              </div>
                     </div>
                     <br>

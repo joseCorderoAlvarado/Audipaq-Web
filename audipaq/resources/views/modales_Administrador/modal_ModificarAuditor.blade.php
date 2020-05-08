@@ -23,7 +23,7 @@
                                 <b><label>Nombre</label></b>
                             </div>
                             <div class="col-5">
-                                <input type="text" class="form-control" name="txtnombreAuditor"  style="width: auto;" value={{$auditor->nombre_persona}}>
+                                <input type="text" class="form-control" name="txtnombreAuditor" title="El nombre debe llevar solo letras y espacios" pattern="[A-Za-z\s]+" required style="width: auto;" value={{$auditor->nombre_persona}}>
 
                             </div>
                     </div>
@@ -33,7 +33,7 @@
                                 <b><label>Apellido Paterno</label></b>
                             </div>
                             <div class="col-5">
-                                <input type="text" class="form-control"  name="txtapellidoPatAuditor" style="width: auto;" value={{$auditor->apellido_materno}}>
+                                <input type="text" class="form-control"  name="txtapellidoPatAuditor" title="El apellido paterno debe llevar solo letras y espacios" pattern="[A-Za-z\s]+" required style="width: auto;" value={{$auditor->apellido_materno}}>
                             </div>
                     </div>
                     <br>
@@ -42,7 +42,7 @@
                                 <b><label>Apellido Materno</label></b>
                             </div>
                             <div class="col-5">    
-                                <input type="text" class="form-control"  name="txtapellidoMatAuditor" style="width: auto;" value={{$auditor->apellido_paterno}}>
+                                <input type="text" class="form-control"  name="txtapellidoMatAuditor" title="El apellido materno debe llevar solo letras y espacios" pattern="[A-Za-z\s]+" required style="width: auto;" value={{$auditor->apellido_paterno}}>
                             </div>
                     </div>
                     <br>
@@ -51,7 +51,7 @@
                                  <b><label>Correo</label></b>
                             </div>
                             <div class="col-5">
-                                  <input type="email" class="form-control" name="correoAuditor" style="width: auto;" value={{$auditor->correo_electronico}}>
+                                  <input type="email" class="form-control" name="correoAuditor" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="El correo debe contener entre caracteres el símbolo de '@' en seguida el símbolo de '.' y finalmente el dominio" required style="width: auto;" value={{$auditor->correo_electronico}}>
                             </div>
                     </div>
                     <!--<br>

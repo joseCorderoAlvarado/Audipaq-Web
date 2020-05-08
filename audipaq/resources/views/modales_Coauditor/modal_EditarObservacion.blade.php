@@ -68,7 +68,7 @@
                                  <b><label>Observación</label></b>
                             </div>
                             <div class="col-5">
-                                  <textarea  type="text" id="idcomentarioObservacion" name="txtObservacion" style="width: 250px; height: 80px; border: 0.7px solid; border-color: transparent; border-radius: 5px; color:gray;"  >{{$observacion->comentarios}}</textarea>
+                                  <textarea  type="text" id="idcomentarioObservacion" name="txtObservacion" title="La observación debe llevar solo letras, números y espacios" pattern="[A-Za-z0-9\s]+" required style="width: 250px; height: 80px; border: 0.7px solid; border-color: transparent; border-radius: 5px; color:gray;"  >{{$observacion->comentarios}}</textarea>
                             </div>
                     </div>
                    

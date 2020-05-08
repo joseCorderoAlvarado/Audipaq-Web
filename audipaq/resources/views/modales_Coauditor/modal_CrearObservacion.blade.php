@@ -59,7 +59,7 @@
                                  <b><label>Observación</label></b>
                             </div>
                             <div class="col-5">
-                                  <textarea type="text" class="form-control" name="txtObservacion" style="width: 200px; height: 80px;  border-radius: 5px">
+                                  <textarea type="text" class="form-control" name="txtObservacion" title="La observación debe llevar solo letras, números y espacios" pattern="[A-Za-z0-9\s]+" required style="width: 200px; height: 80px;  border-radius: 5px">
 								   </textarea>
 								
                             </div>
