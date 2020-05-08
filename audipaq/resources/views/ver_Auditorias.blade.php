@@ -20,9 +20,7 @@
 <br>
 
 
-<div class="container-fluid center-block" style="margin: center; text-align: center; justify-content: center;">
-	<div class="row">
-		@if(Session::has('flash_message'))
+@if(Session::has('flash_message'))
 				<div class="alert alert-success container" role="alert" style="text-align: center; width: 55%">
 					{{ Session::get('flash_message') }}
 				</div>
@@ -31,6 +29,9 @@
 					{{ Session::get('mensaje') }}
 				</div>
 			@endif
+			
+<div class="container-fluid center-block" style="margin: center; text-align: center; justify-content: center;">
+	<div class="row">
 		
 		<div class="col-0" style="background-color: white; margin-left:5%; padding: 1%; margin-top: 1%;">
 	        <h5 style="text-align:center;">&nbsp;&nbsp;&nbsp;&nbsp;</h5>
