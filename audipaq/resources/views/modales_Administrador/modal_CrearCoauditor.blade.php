@@ -15,7 +15,7 @@
                                 <b><label>Nombre</label></b>
                             </div>
                             <div class="col-5">
-                                <input type="text" class="form-control" name="txtnombreCoauditor" style="width: auto;">
+                                <input type="text" class="form-control" name="txtnombreCoauditor" title="El nombre debe llevar solo letras y espacios" pattern="[A-Za-z\s]+" required style="width: auto;">
                             </div>
                     </div>
                     <br>
@@ -24,7 +24,7 @@
                                 <b><label>Apellido Paterno</label></b>
                             </div>
                             <div class="col-5">
-                                <input type="text" class="form-control"  name="txtapellidoPatCoauditor" style="width: auto;">
+                                <input type="text" class="form-control"  name="txtapellidoPatCoauditor" title="El apellido paterno debe llevar solo letras y espacios" pattern="[A-Za-z\s]+" required style="width: auto;">
                             </div>
                     </div>
                     <br>
@@ -33,7 +33,7 @@
                                 <b><label>Apellido Materno</label></b>
                             </div>
                             <div class="col-5">    
-                                <input type="text" class="form-control"  name="txtapellidoMatCoauditor" style="width: auto;">
+                                <input type="text" class="form-control"  name="txtapellidoMatCoauditor" title="El apellido materno debe llevar solo letras y espacios" pattern="[A-Za-z\s]+" required style="width: auto;">
                             </div>
                     </div>
                     <br>
@@ -42,7 +42,7 @@
                                  <b><label>Correo</label></b>
                             </div>
                             <div class="col-5">
-                                  <input type="email" class="form-control" name="correoCoauditor" style="width: auto;">
+                                  <input type="email" class="form-control" name="correoCoauditor" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="El correo debe contener entre caracteres el símbolo de '@' en seguida el símbolo de '.' y finalmente el dominio" required style="width: auto;">
                             </div>
                     </div>
                     <br>
@@ -51,7 +51,7 @@
                                 <b><label>Contrase&ntilde;a</label></b>
                              </div>
                              <div class="col-5">
-                                <input type="password" class="form-control"  name="contraCoauditor" style="width: auto;">
+                                <input type="password" class="form-control"  name="contraCoauditor" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="La contraseña debe contener al menos 8 caracteres invluyendo como mínimo un número, una minúscula y una mayúscula" required style="width: auto;">
                              </div>
                     </div>
                     <br>
