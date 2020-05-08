@@ -36,7 +36,7 @@
                                    <select name="txtEstatus" class="form-control" style="width: auto;"  >
                                     <option selected >Selecciona el estatus
                                     @foreach ($listastatus as $status)
-                                    <option value={{$status->id_status }}>
+                                    <option selected value={{$status->id_status }}>
                                         {{ $status->tipo_status}} 
                                     </option>
                                     @endforeach     
@@ -52,7 +52,7 @@
                                 <select name="txtArea" class="form-control" style="width: auto;" title="Tienes que seleccionar un area" required>
                                     <option selected>Selecciona el área
                                     @foreach ($listaArea as $area)
-                                    <option value={{$area->id_area }}>
+                                    <option selected value={{$area->id_area }} >
                                         {{ $area->nombre_area}} 
                                     </option>
                                     @endforeach     
@@ -69,7 +69,7 @@
                                     <option selected>Selecciona el departamento
                                     </option>
                                     @foreach ($listaDepartamento as $departamento)
-                                    <option value={{$departamento->id_departamento }}>
+                                    <option selected value={{$departamento->id_departamento }}>
                                         {{ $departamento->nombre_departamento}} 
                                     </option>
                                     @endforeach     

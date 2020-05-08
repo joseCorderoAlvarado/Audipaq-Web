@@ -29,7 +29,7 @@
     							    <option selected>Selecciona la prioridad
                                     </option>
                                     @foreach ($listaPrioridad as $prioridad)
-                                    <option value={{$prioridad->id_prioridad }}>
+                                    <option selected value={{$prioridad->id_prioridad }}>
                                         {{ $prioridad->tipo_prioridad}} 
                                     </option>
                                     @endforeach		
@@ -46,7 +46,7 @@
     							    <option selected>Selecciona el estatus
                                     </option>
                                     @foreach ($listaStatus as $estatus)
-                                    <option value={{$estatus->id_status }}>
+                                    <option selected value={{$estatus->id_status }}>
                                         {{ $estatus->tipo_status}} 
                                     </option>
                                     @endforeach		
