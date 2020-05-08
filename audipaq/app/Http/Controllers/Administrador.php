@@ -579,19 +579,27 @@ use DB;
 				}
 				elseif(session('s_tipoUsuario')=='4')
 				{
-					$persona_variable = new persona;
-					$id_persona = $persona_variable->txtIdPersona = $datos->input ('txtIdPersona');
+					try
+					{
+						$persona_variable = new persona;
+						$id_persona = $persona_variable->txtIdPersona = $datos->input ('txtIdPersona');
 
-					if(DB::delete('DELETE FROM persona  where id_persona=?',[$id_persona]))
-					{
-						\Session::flash('flash_message', '¡Auditor eliminado con éxito');
-						return redirect('ver_Auditor');	
+						if(DB::delete('DELETE FROM persona  where id_persona=?',[$id_persona]))
+						{
+							\Session::flash('flash_message', '¡Auditor eliminado con éxito');
+							return redirect('ver_Auditor');	
+						}
+						else 
+						{
+							\Session::flash('mensaje','Error al eliminar el auditor');
+							 return redirect('ver_Auditor');
+						}
 					}
-					else 
-					{
-						\Session::flash('mensaje','Error al eliminar el usuario');
-						 return redirect('ver_Auditor');
-					}
+					catch (Exception $e) 
+			        {
+			        	\Session::flash('mensaje','Error al eliminar el auditor, intentelo más tarde');
+									 return redirect('ver_Auditor');
+			        }
 				}
 			}
 			else
@@ -618,19 +626,27 @@ use DB;
 				}
 				elseif(session('s_tipoUsuario')=='4')
 				{
-					$persona_variable = new persona;
-					$id_persona = $persona_variable->txtIdPersona = $datos->input ('txtIdPersona');
+					try
+					{
+						$persona_variable = new persona;
+						$id_persona = $persona_variable->txtIdPersona = $datos->input ('txtIdPersona');
 
-					if(DB::delete('DELETE FROM persona  where id_persona=?',[$id_persona]))
-					{
-						\Session::flash('flash_message', '¡Coauditor eliminado con éxito');
-						return redirect('ver_Coauditor');	
+						if(DB::delete('DELETE FROM persona  where id_persona=?',[$id_persona]))
+						{
+							\Session::flash('flash_message', '¡Coauditor eliminado con éxito');
+							return redirect('ver_Coauditor');	
+						}
+						else 
+						{
+							\Session::flash('mensaje','Error al eliminar el usuario');
+							 return redirect('ver_Coauditor');
+						}
 					}
-					else 
-					{
-						\Session::flash('mensaje','Error al eliminar el usuario');
-						 return redirect('ver_Coauditor');
-					}
+					catch (Exception $e) 
+			        {
+			        	\Session::flash('mensaje','Error al eliminar el coauditor, intentelo más tarde');
+									 return redirect('ver_Coauditor');
+			        }
 				}
 			}
 			else
