@@ -74,7 +74,7 @@
                             <label>Solo seleccionar archivos si se deseea cambiar la imagen actual</label>
                             <div class="photo">
                                 <div class="input-group">
-                                <input multiple="multiple"  name="logotipo[]" type="file" style="padding: 5px 10px; background: #546E7A; color:#fff; border:0px solid #fff;" value="{{$empresas->logotipo}}">
+                                <input multiple="multiple"  name="logotipo[]" type="file" accept="image/*" style="padding: 5px 10px; background: #546E7A; color:#fff; border:0px solid #fff;" value="{{$empresas->logotipo}}">
                                 </div>
                              </div>
                         </div>

@@ -8,11 +8,11 @@
 	<h4>Empresas</h4>
 </div>
 	@if(Session::has('flash_message'))
-		<div class="alert alert-success" role="alert">
+		<div class="alert alert-success container" role="alert" style="text-align: center; width: 55%">
 			{{ Session::get('flash_message') }}
 		</div>
 	@elseif(Session::has('mensaje'))
-		<div class="alert alert-danger" role="alert">
+		<div class="alert alert-danger container" role="alert" style="text-align: center; width: 55%">
 			{{ Session::get('mensaje') }}
 		</div>
 	@endif

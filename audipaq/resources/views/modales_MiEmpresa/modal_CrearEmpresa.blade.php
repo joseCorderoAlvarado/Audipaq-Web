@@ -76,7 +76,7 @@
                             <label>Logotipo</label>
                             <div class="photo">
                                 <div class="input-group">
-                                <input name="logotipo[]" type="file" required style="padding: 5px 10px; background: #546E7A; color:#fff; border:0px solid #fff; ">
+                                <input name="logotipo[]" type="file"accept="image/*" required style="padding: 5px 10px; background: #546E7A; color:#fff; border:0px solid #fff; ">
                                 </div>
                              </div>
                         </div>
