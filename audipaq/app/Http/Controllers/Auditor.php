@@ -52,30 +52,47 @@ use Illuminate\Support\Str;
 			{
 				if(session('s_tipoUsuario')=='1')
 				{
-                    $listastatus = DB::table('status')
-					->select('id_status','tipo_status')
-					->orderBy('tipo_status','ASC')
-					->get(); 
+					try
+					{
+						$ConsultaidPersona = DB::table('persona')
+						->select('persona.id_persona')
+						->where('correo_electronico','=',session('s_identificador'))
+						->get();
 
-					$listaArea = DB::table('area')
-					->select('id_area','nombre_area')
-					->orderBy('nombre_area','ASC')
-					->get();
+						$idConversion = json_decode(json_encode($ConsultaidPersona),true);
+						$idPersona = implode($idConversion[0]);
 
-					$listaDepartamento = DB::table('departamento')
-					->select('id_departamento','nombre_departamento')
-					->orderBy('nombre_departamento','ASC')
-					->get();
+	                    $listastatus = DB::table('status')
+						->select('id_status','tipo_status')
+						->orderBy('tipo_status','ASC')
+						->get(); 
 
-					$listaActas = DB::table('acta')
-					->join('persona', 'persona.id_persona', '=', 'acta.fk_id_persona')
-					->join('status', 'status.id_status', '=', 'acta.fk_id_status')
-					->join('area', 'area.id_area', '=', 'acta.fk_id_area')
-					->join('departamento', 'departamento.id_departamento', '=', 'acta.fk_id_departamento')
-					->select('acta.id_acta','acta.fecha_inicio', 'acta.fecha_final','persona.nombre_persona','status.tipo_status','area.nombre_area','departamento.nombre_departamento','status.id_status','area.id_area','departamento.id_departamento')
-					->get();
-							
-					return view('ver_Auditorias',['listaActas'=>$listaActas,'listastatus'=>$listastatus, 'listaArea'=>$listaArea, 'listaDepartamento'=>$listaDepartamento]);
+						$listaArea = DB::table('area')
+						->select('id_area','nombre_area')
+						->orderBy('nombre_area','ASC')
+						->get();
+
+						$listaDepartamento = DB::table('departamento')
+						->select('id_departamento','nombre_departamento')
+						->orderBy('nombre_departamento','ASC')
+						->get();
+
+						$listaActas = DB::table('acta')
+						->join('persona', 'persona.id_persona', '=', 'acta.fk_id_persona')
+						->join('status', 'status.id_status', '=', 'acta.fk_id_status')
+						->join('area', 'area.id_area', '=', 'acta.fk_id_area')
+						->join('departamento', 'departamento.id_departamento', '=', 'acta.fk_id_departamento')
+						->select('acta.id_acta','acta.fecha_inicio', 'acta.fecha_final','persona.nombre_persona','status.tipo_status','area.nombre_area','departamento.nombre_departamento','status.id_status','area.id_area','departamento.id_departamento')
+						->where('persona.id_persona','=',$idPersona)
+						->get();
+								
+						return view('ver_Auditorias',['listaActas'=>$listaActas,'listastatus'=>$listastatus, 'listaArea'=>$listaArea, 'listaDepartamento'=>$listaDepartamento]);
+					}
+					catch (Exception $e) 
+			        {
+			        	\Session::flash('mensaje','Error al mostrar el listado de actas del auditor, intentelo más tarde');
+						return redirect('homePage_Auditor');
+			        }	
 				}
 				elseif(session('s_tipoUsuario')=='2')
 				{
@@ -102,28 +119,43 @@ use Illuminate\Support\Str;
 			{
 				if(session('s_tipoUsuario')=='1')
 				{
+					try
+					{
+						$ConsultaidPersona = DB::table('persona')
+						->select('persona.id_persona')
+						->where('correo_electronico','=',session('s_identificador'))
+						->get();
 
-					$listastatus = DB::table('status')
-					->select('id_status','tipo_status')
-					->orderBy('tipo_status','ASC')
-					->get(); 
+						$idConversion = json_decode(json_encode($ConsultaidPersona),true);
+						$idPersona = implode($idConversion[0]);
 
-					$listaArea = DB::table('area')
-					->select('id_area','nombre_area')
-					->orderBy('nombre_area','ASC')
-					->get();
+						$listastatus = DB::table('status')
+						->select('id_status','tipo_status')
+						->orderBy('tipo_status','ASC')
+						->get(); 
 
-					$listaDepartamento = DB::table('departamento')
-					->select('id_departamento','nombre_departamento')
-					->orderBy('nombre_departamento','ASC')
-					->get();
+						$listaArea = DB::table('area')
+						->select('id_area','nombre_area')
+						->orderBy('nombre_area','ASC')
+						->get();
 
-					$acta_variable = new acta;
-					$busqueda = $acta_variable->txtBuscar = $datos->input ('txtBuscar');
+						$listaDepartamento = DB::table('departamento')
+						->select('id_departamento','nombre_departamento')
+						->orderBy('nombre_departamento','ASC')
+						->get();
 
-					$listaActas = DB::select('select acta.id_acta,acta.fecha_inicio, acta.fecha_final,persona.nombre_persona,status.tipo_status,status.id_status,area.nombre_area,area.id_area,departamento.nombre_departamento,departamento.id_departamento FROM acta INNER JOIN persona ON persona.id_persona=acta.fk_id_persona INNER JOIN status ON status.id_status=acta.fk_id_status INNER JOIN area ON area.id_area=acta.fk_id_area INNER JOIN departamento ON departamento.id_departamento=acta.fk_id_departamento WHERE acta.fecha_inicio like "%'.$busqueda.'%" OR acta.fecha_final like "%'.$busqueda.'%" OR persona.nombre_persona like "%'.$busqueda.'%" OR status.tipo_status like "%'.$busqueda.'%" OR area.nombre_area like "%'.$busqueda.'%" OR departamento.nombre_departamento like "%'.$busqueda.'%"');
-							
-					return view('ver_Auditorias',['listaActas'=>$listaActas,'listastatus'=>$listastatus, 'listaArea'=>$listaArea, 'listaDepartamento'=>$listaDepartamento]);
+						$acta_variable = new acta;
+						$busqueda = $acta_variable->txtBuscar = $datos->input ('txtBuscar');
+
+						$listaActas = DB::select('select acta.id_acta,acta.fecha_inicio, acta.fecha_final,persona.nombre_persona,status.tipo_status,status.id_status,area.nombre_area,area.id_area,departamento.nombre_departamento,departamento.id_departamento FROM acta INNER JOIN persona ON persona.id_persona=acta.fk_id_persona INNER JOIN status ON status.id_status=acta.fk_id_status INNER JOIN area ON area.id_area=acta.fk_id_area INNER JOIN departamento ON departamento.id_departamento=acta.fk_id_departamento WHERE persona.id_persona ='.$idPersona.' AND (acta.fecha_inicio like "%'.$busqueda.'%" OR acta.fecha_final like "%'.$busqueda.'%" OR persona.nombre_persona like "%'.$busqueda.'%" OR status.tipo_status like "%'.$busqueda.'%" OR area.nombre_area like "%'.$busqueda.'%" OR departamento.nombre_departamento like "%'.$busqueda.'%")');
+								
+						return view('ver_Auditorias',['listaActas'=>$listaActas,'listastatus'=>$listastatus, 'listaArea'=>$listaArea, 'listaDepartamento'=>$listaDepartamento]);
+					}
+					catch (Exception $e) 
+			        {
+			        	\Session::flash('mensaje','Error al mostrar el listado de actas por búsqueda del auditor, intentelo más tarde');
+						return redirect('ver_Auditorias');
+			        }	
 				}
 				elseif(session('s_tipoUsuario')=='2')
 				{
@@ -150,29 +182,37 @@ use Illuminate\Support\Str;
 			{
 				if(session('s_tipoUsuario')=='1')
 				{
-					$acta_variable = new acta;
-					$id_acta = $acta_variable->txtIdActa = $datos->input ('txtIdActa');
+					try
+					{
+						$acta_variable = new acta;
+						$id_acta = $acta_variable->txtIdActa = $datos->input ('txtIdActa');
 
-					$listaObservaciones = DB::table('observaciones')
-					->join('status', 'observaciones.fk_id_status', '=', 'status.id_status')
-					->join('persona', 'observaciones.fk_id_auditor', '=', 'persona.id_persona')
-					->join('acta', 'observaciones.fk_id_acta', '=', 'acta.id_acta')
-					->join('prioridad', 'observaciones.fk_id_prioridad', '=', 'prioridad.id_prioridad')
-					->join('area', 'area.id_area', '=', 'acta.fk_id_area')
-					->select('observaciones.id_observaciones','observaciones.comentarios', 'status.tipo_status','status.id_status','persona.nombre_persona','acta.id_acta','acta.fecha_inicio','prioridad.tipo_prioridad','prioridad.id_prioridad','area.nombre_area','area.id_area','area.encargado_area')
-					->where('fk_id_acta','=',$id_acta)
-					->orderBy('observaciones.fk_id_prioridad','Asc')
-					->get();	
+						$listaObservaciones = DB::table('observaciones')
+						->join('status', 'observaciones.fk_id_status', '=', 'status.id_status')
+						->join('persona', 'observaciones.fk_id_auditor', '=', 'persona.id_persona')
+						->join('acta', 'observaciones.fk_id_acta', '=', 'acta.id_acta')
+						->join('prioridad', 'observaciones.fk_id_prioridad', '=', 'prioridad.id_prioridad')
+						->join('area', 'area.id_area', '=', 'acta.fk_id_area')
+						->select('observaciones.id_observaciones','observaciones.comentarios', 'status.tipo_status','status.id_status','persona.nombre_persona','acta.id_acta','acta.fecha_inicio','prioridad.tipo_prioridad','prioridad.id_prioridad','area.nombre_area','area.id_area','area.encargado_area')
+						->where('fk_id_acta','=',$id_acta)
+						->orderBy('observaciones.fk_id_prioridad','Asc')
+						->get();	
+							
+						$listaPrioridad = DB::table('prioridad')
+						->select('id_prioridad','tipo_prioridad')
+						->get();	
 						
-					$listaPrioridad = DB::table('prioridad')
-					->select('id_prioridad','tipo_prioridad')
-					->get();	
-					
-					$listaStatus= DB::table('status')
-					->select('id_status','tipo_status')
-					->get();
-					
-					return view('verListadoObservaciones_Auditor',['listaObservaciones'=>$listaObservaciones,'id_acta'=>$id_acta,'listaPrioridad'=>$listaPrioridad, 'listaStatus'=>$listaStatus]);
+						$listaStatus= DB::table('status')
+						->select('id_status','tipo_status')
+						->get();
+						
+						return view('verListadoObservaciones_Auditor',['listaObservaciones'=>$listaObservaciones,'id_acta'=>$id_acta,'listaPrioridad'=>$listaPrioridad, 'listaStatus'=>$listaStatus]);
+					}
+					catch (Exception $e) 
+			        {
+			        	\Session::flash('mensaje','Error al mostrar el listado de observaciones del acta, intentelo más tarde');
+						return redirect('ver_Auditorias');
+			        }	
 				}
 				elseif(session('s_tipoUsuario')=='2')
 				{
@@ -200,31 +240,39 @@ use Illuminate\Support\Str;
 			{
 				if(session('s_tipoUsuario')=='1')
 				{
-					$ConsultaidPersona = DB::table('persona')
-					->select('persona.id_persona')
-					->where('correo_electronico','=',session('s_identificador'))
-					->get();
+					try
+					{
+						$ConsultaidPersona = DB::table('persona')
+						->select('persona.id_persona')
+						->where('correo_electronico','=',session('s_identificador'))
+						->get();
 
-					$idConversion = json_decode(json_encode($ConsultaidPersona),true);
-					$idPersona = implode($idConversion[0]);
+						$idConversion = json_decode(json_encode($ConsultaidPersona),true);
+						$idPersona = implode($idConversion[0]);
 
-					$acta = new acta;
-				 	$acta->fecha_inicio=$datos->input('txtFechaInicio');
-				 	$acta->fecha_final=$datos->input('txtFechaFinal');
-				 	$acta->fk_id_persona=$idPersona;
-				 	$acta->fk_id_auditor=$idPersona;
-				 	$acta->fk_id_status=$datos->input('txtEstatus');
-				 	$acta->fk_id_area=$datos->input('txtArea');
-				 	$acta->fk_id_departamento=$datos->input('txtDepartamento');	
-					if($acta->save()){
-					
-						\Session::flash('flash_message', '¡Nueva acta añadida con éxito');
-						return redirect('ver_Auditorias');			
+						$acta = new acta;
+					 	$acta->fecha_inicio=$datos->input('txtFechaInicio');
+					 	$acta->fecha_final=$datos->input('txtFechaFinal');
+					 	$acta->fk_id_persona=$idPersona;
+					 	$acta->fk_id_auditor=$idPersona;
+					 	$acta->fk_id_status=$datos->input('txtEstatus');
+					 	$acta->fk_id_area=$datos->input('txtArea');
+					 	$acta->fk_id_departamento=$datos->input('txtDepartamento');	
+						if($acta->save()){
+						
+							\Session::flash('flash_message', '¡Nueva acta añadida con éxito');
+							return redirect('ver_Auditorias');			
+						}
+						else {
+							\Session::flash('mensaje','Error al añadir el acta');
+							 return redirect('ver_Auditorias');
+						}
 					}
-					else {
-						\Session::flash('mensaje','Error al añadir el acta');
-						 return redirect('ver_Auditorias');
-					}
+					catch (Exception $e) 
+			        {
+			        	\Session::flash('mensaje','Error al crear un acta, intentelo más tarde');
+						return redirect('ver_Auditorias');
+			        }
 				}
 				elseif(session('s_tipoUsuario')=='2')
 				{
@@ -252,32 +300,40 @@ use Illuminate\Support\Str;
 			{
 				if(session('s_tipoUsuario')=='1')
 				{
-					$ConsultaidPersona = DB::table('persona')
-					->select('persona.id_persona')
-					->where('correo_electronico','=',session('s_identificador'))
-					->get();
-
-					$idConversion = json_decode(json_encode($ConsultaidPersona),true);
-					$idPersona = implode($idConversion[0]);
-
-                    $idActa=$datos->input('txtIdActa');
-       			    $Acta=acta::find($idActa);
-				 	$Acta->fecha_final=$datos->input('txtFechaFinal');
-				 	$Acta->fk_id_persona=$idPersona;
-				 	$Acta->fk_id_auditor=$idPersona;
-				 	$Acta->fk_id_status=$datos->input('txtEstatus');
-				 	$Acta->fk_id_area=$datos->input('txtArea');
-				 	$Acta->fk_id_departamento=$datos->input('txtDepartamento');
-					if($Acta->save()){
-						\Session::flash('flash_message', '¡Acta Modificada con exito');
-						return redirect('ver_Auditorias');
-						
-					}
-					else 
+					try
 					{
-						\Session::flash('mensaje','Error al modificar el acta');
-						 return redirect('ver_Auditorias');
-					}	
+						$ConsultaidPersona = DB::table('persona')
+						->select('persona.id_persona')
+						->where('correo_electronico','=',session('s_identificador'))
+						->get();
+
+						$idConversion = json_decode(json_encode($ConsultaidPersona),true);
+						$idPersona = implode($idConversion[0]);
+
+	                    $idActa=$datos->input('txtIdActa');
+	       			    $Acta=acta::find($idActa);
+					 	$Acta->fecha_final=$datos->input('txtFechaFinal');
+					 	$Acta->fk_id_persona=$idPersona;
+					 	$Acta->fk_id_auditor=$idPersona;
+					 	$Acta->fk_id_status=$datos->input('txtEstatus');
+					 	$Acta->fk_id_area=$datos->input('txtArea');
+					 	$Acta->fk_id_departamento=$datos->input('txtDepartamento');
+						if($Acta->save()){
+							\Session::flash('flash_message', '¡Acta Modificada con exito');
+							return redirect('ver_Auditorias');
+							
+						}
+						else 
+						{
+							\Session::flash('mensaje','Error al modificar el acta');
+							 return redirect('ver_Auditorias');
+						}	
+					}
+					catch (Exception $e) 
+			        {
+			        	\Session::flash('mensaje','Error al modificar el acta, intentelo más tarde');
+						return redirect('ver_Auditorias');
+			        }
 				}
 				elseif(session('s_tipoUsuario')=='2')
 				{
