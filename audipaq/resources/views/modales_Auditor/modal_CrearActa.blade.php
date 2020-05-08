@@ -15,7 +15,7 @@
                                 <b><label>Fecha Inicio</label></b>
                             </div>
                             <div class="col-5">
-                                <input type="date" class="form-control" style="width: auto;" min="2020-01-01" max="2023-12-31" name="txtFechaInicio">
+                                <input type="date" class="form-control" style="width: auto;" min="2020-01-01" max="2023-12-31" name="txtFechaInicio" title="Tienes que definir una fecha de inicio" required>
                             </div>
                     </div>
                     <br>
@@ -24,7 +24,7 @@
                                 <b><label>Fecha Final</label></b>
                             </div>
                             <div class="col-5">
-                                  <input type="date" class="form-control" style="width: auto;" min="2020-01-01" max="2023-12-31" name="txtFechaFinal">
+                                  <input type="date" class="form-control" style="width: auto;" min="2020-01-01" max="2023-12-31" name="txtFechaFinal" title="Tienes que definir una fecha final" required>
                             </div>
                     </div>
                     <br>
@@ -33,8 +33,8 @@
                                  <b><label>Estatus</label></b>
                             </div>
                             <div class="col-5">
-                                   <select name="txtEstatus" class="form-control" style="width: auto;">
-                                    <option selected>Selecciona el estatus
+                                   <select name="txtEstatus" class="form-control" style="width: auto;"  >
+                                    <option selected >Selecciona el estatus
                                     @foreach ($listastatus as $status)
                                     <option value={{$status->id_status }}>
                                         {{ $status->tipo_status}} 
@@ -49,7 +49,7 @@
                                 <b><label>Área</label></b>
                              </div>
                              <div class="col-5">
-                                <select name="txtArea" class="form-control" style="width: auto;">
+                                <select name="txtArea" class="form-control" style="width: auto;" title="Tienes que seleccionar un area" required>
                                     <option selected>Selecciona el área
                                     @foreach ($listaArea as $area)
                                     <option value={{$area->id_area }}>
@@ -65,7 +65,7 @@
                                 <b><label>Departamento</label></b>
                             </div>
                            <div class="col-5">
-                               <select name="txtDepartamento" class="form-control" style="width: auto;">
+                               <select name="txtDepartamento" class="form-control" style="width: auto;" title="Tienes que seleccionar un departamento" required>
                                     <option selected>Selecciona el departamento
                                     </option>
                                     @foreach ($listaDepartamento as $departamento)

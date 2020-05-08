@@ -54,12 +54,14 @@ Route::Get('ver_Auditor','Administrador@mostrar');
 Route::post('ver_Auditor','Administrador@mostrarBusqueda');
 Route::post('btnCrear_Auditor','Administrador@crear');
 Route::post('btnModificar_Auditor','Administrador@modificar');
+Route::post('btnModificarContra_Auditor','Administrador@modificarContra');
 Route::post('btnEliminar_Auditor','Administrador@eliminar');
 
 Route::Get('ver_Coauditor','Administrador@mostrarCoauditor');
 Route::post('ver_Coauditor','Administrador@mostrarCoauditorBusqueda');
 Route::post('btnCrear_Coauditor','Administrador@crearCoauditor');
 Route::post('btnModificar_Coauditor','Administrador@modificarCoauditor');
+Route::post('btnModificarContra_Coauditor','Administrador@modificarContraCoa');
 Route::post('btnEliminar_Coauditor','Administrador@eliminarCoauditor');
 
 //Controladores de Auditor para mostrar la pagina
@@ -75,13 +77,13 @@ Route::post('btnEditar_Observacion', 'Auditor@Editar_Observacion');
 
 //Controladores de Coauditor para mostrar la pagina
 Route::Get('homePage_Coauditor','Coauditor@index');
-Route::Get('ver_Auditorias','Coauditor@mostrar');
-Route::post('ver_Aditorias','Coauditor@mostrarBusqueda');
-Route::post('verListadoObservaciones_Auditor','Coauditor@observaciones');
-Route::post('btnCrear_Acta','Coauditor@crear_Acta');
-Route::post('btnEditar_Acta','Coauditor@editar_Acta');
-Route::post('btnCrear_Observacion', 'Coauditor@crearObservacion');
-Route::post('btnEditar_Observacion', 'Coauditor@Editar_Observacion');
+Route::Get('ver_Coauditorias','Coauditor@mostrar');
+Route::post('ver_Coaditorias','Coauditor@mostrarBusqueda');
+Route::post('verListadoObservaciones_Coauditor','Coauditor@observaciones');
+Route::post('btnCrear_Acta_Coa','Coauditor@crear_Acta');
+Route::post('btnEditar_Acta_Coa','Coauditor@editar_Acta');
+Route::post('btnCrear_Observacion_Coa', 'Coauditor@crearObservacion');
+Route::post('btnEditar_Observacion_Coa', 'Coauditor@Editar_Observacion');
 
 
 

@@ -11,7 +11,7 @@
 <form action="ver_Auditorias" method="post" enctype="multipart/form-data">
 	{{ csrf_field() }}
 	<div class="input-group" style="margin-left: 70%; width: 300px">
-	 	<input class="form-control" type="search" placeholder="Buscar" name="txtBuscar">
+	 	<input class="form-control" type="search" placeholder="Buscar" name="txtBuscar" required>
 	 	<button class="btn" type="submit" style="background: #00ACC1; border-top-left-radius: 0px; border-bottom-left-radius: 0px;">
 	  	<img src="images/buscador.png" width="20" height="20" class="d-inline-block align-top">
 	  	</button>

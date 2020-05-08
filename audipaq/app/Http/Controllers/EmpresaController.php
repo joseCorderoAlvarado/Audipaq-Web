@@ -56,12 +56,20 @@ use DB;
 				}
 				elseif(session('s_tipoUsuario')=='4')
 				{
-					$listaEmpresas = DB::table('empresa')
-					->select('id_empresa','nombre_empresa','logotipo','giro','mision','vision','valores','direccion','telefono','correo_electronico')
-					->orderBy('nombre_empresa','ASC')
-					->get(); 
-							
-					return view('ver_MiEmpresa',['listaEmpresas'=>$listaEmpresas]);
+					try
+					{
+						$listaEmpresas = DB::table('empresa')
+						->select('id_empresa','nombre_empresa','logotipo','giro','mision','vision','valores','direccion','telefono','correo_electronico')
+						->orderBy('nombre_empresa','ASC')
+						->get(); 
+								
+						return view('ver_MiEmpresa',['listaEmpresas'=>$listaEmpresas]);
+					}
+					catch (Exception $e) 
+			        {
+			        	\Session::flash('mensaje','Error al mostrar el listado de empresas, intentelo más tarde');
+						return redirect('homePage_Administrador');
+			        }	
 				}
 			}
 			else
@@ -88,48 +96,62 @@ use DB;
 				}
 				elseif(session('s_tipoUsuario')=='4')
 				{
-					$empresa = new empresa;
-					$empresa->nombre_empresa=$datos->input('nombreEmpresa');
-
-					foreach($datos->logotipo as $logotipo)
+					try
 					{
-						$nombreOriginal=$logotipo->getClientOriginalName();
-						$fecha=new DateTime(); 
-						$carpeta="/logotiposEmpresa/";
-						$nombreCambiado=$carpeta.$fecha->format('Y-m-d_H-i-s')."_".$nombreOriginal; 
-						Storage::disk('public')->put($nombreCambiado,File::get($logotipo)); 
+						$empresa = new empresa;
+						$empresa->nombre_empresa=$datos->input('nombreEmpresa');
+
+						foreach($datos->logotipo as $logotipo)
+						{
+							$nombreOriginal=$logotipo->getClientOriginalName();
+							$fecha=new DateTime(); 
+							$carpeta="/logotiposEmpresa/";
+							$nombreCambiado=$carpeta.$fecha->format('Y-m-d_H-i-s')."_".$nombreOriginal; 
+							Storage::disk('public')->put($nombreCambiado,File::get($logotipo)); 
+						}
+
+						$empresa->logotipo=$nombreCambiado;
+						$empresa->giro=$datos->input('giroEmpresa');
+						$empresa->mision=$datos->input('misionEmpresa');
+						$empresa->vision=$datos->input('visionEmpresa'); 
+						$empresa->valores=$datos->input('valoresEmpresa');
+						$empresa->direccion=$datos->input('direccionEmpresa');
+						$empresa->telefono=$datos->input('telefonoEmpresa');
+						$empresa->correo_electronico=$datos->input('correoEmpresa');
+
+						if($empresa->save())
+						{
+							\Session::flash('flash_message', '¡Empresa creada con éxito');
+
+							$listaEmpresas = DB::table('empresa')
+							->select('id_empresa','nombre_empresa','logotipo','giro','mision','vision','valores','direccion','telefono','correo_electronico')
+							->orderBy('nombre_empresa','ASC')
+							->get(); 
+								
+							return view('ver_MiEmpresa',['listaEmpresas'=>$listaEmpresas]);
+						}
+						else 
+						{
+							\Session::flash('mensaje','Error al modificar el usuario');
+							$listaEmpresas = DB::table('empresa')
+							->select('id_empresa','nombre_empresa','logotipo','giro','mision','vision','valores','direccion','telefono','correo_electronico')
+							->orderBy('nombre_empresa','ASC')
+							->get(); 
+								
+							return view('ver_MiEmpresa',['listaEmpresas'=>$listaEmpresas]);
+						}
 					}
+					catch (Exception $e) 
+			        {
+			        	\Session::flash('mensaje','Error al intentar crear una empresa, intentelo más tarde');
 
-					$empresa->logotipo=$nombreCambiado;
-					$empresa->giro=$datos->input('giroEmpresa');
-					$empresa->mision=$datos->input('misionEmpresa');
-					$empresa->vision=$datos->input('visionEmpresa'); 
-					$empresa->valores=$datos->input('valoresEmpresa');
-					$empresa->direccion=$datos->input('direccionEmpresa');
-					$empresa->telefono=$datos->input('telefonoEmpresa');
-					$empresa->correo_electronico=$datos->input('correoEmpresa');
-
-					if($empresa->save())
-					{
-						\Session::flash('flash_message', '¡Empresa creada con éxito');
-
-						$listaEmpresas = DB::table('empresa')
-						->select('id_empresa','nombre_empresa','logotipo','giro','mision','vision','valores','direccion','telefono','correo_electronico')
-						->orderBy('nombre_empresa','ASC')
-						->get(); 
-							
+			        	$listaEmpresas = DB::table('empresa')
+							->select('id_empresa','nombre_empresa','logotipo','giro','mision','vision','valores','direccion','telefono','correo_electronico')
+							->orderBy('nombre_empresa','ASC')
+							->get(); 
+								
 						return view('ver_MiEmpresa',['listaEmpresas'=>$listaEmpresas]);
-					}
-					else 
-					{
-						\Session::flash('mensaje','Error al modificar el usuario');
-						$listaEmpresas = DB::table('empresa')
-						->select('id_empresa','nombre_empresa','logotipo','giro','mision','vision','valores','direccion','telefono','correo_electronico')
-						->orderBy('nombre_empresa','ASC')
-						->get(); 
-							
-						return view('ver_MiEmpresa',['listaEmpresas'=>$listaEmpresas]);
-					}
+			        }	
 				}
 			}
 		}
@@ -229,28 +251,41 @@ use DB;
 				}
 				elseif(session('s_tipoUsuario')=='4')
 				{
-					$variablEmpresa = new empresa; 
-					$idEmpresa=$variablEmpresa->txtIdEmpresa=$datos->input('txtIdEmpresa'); 
-					if(DB::delete('DELETE FROM empresa where id_empresa=?',[$idEmpresa]))
+					try
 					{
-						\Session::flash('flash_message', '¡Empresa eliminada con éxito');
-						$listaEmpresas = DB::table('empresa')
-						->select('id_empresa','nombre_empresa','logotipo','giro','mision','vision','valores','direccion','telefono','correo_electronico')
-						->orderBy('nombre_empresa','ASC')
-						->get(); 
-							
-						return view('ver_MiEmpresa',['listaEmpresas'=>$listaEmpresas]);
+						$variablEmpresa = new empresa; 
+						$idEmpresa=$variablEmpresa->txtIdEmpresa=$datos->input('txtIdEmpresa'); 
+						if(DB::delete('DELETE FROM empresa where id_empresa=?',[$idEmpresa]))
+						{
+							\Session::flash('flash_message', '¡Empresa eliminada con éxito');
+							$listaEmpresas = DB::table('empresa')
+							->select('id_empresa','nombre_empresa','logotipo','giro','mision','vision','valores','direccion','telefono','correo_electronico')
+							->orderBy('nombre_empresa','ASC')
+							->get(); 
+								
+							return view('ver_MiEmpresa',['listaEmpresas'=>$listaEmpresas]);
+						}
+						else 
+						{
+							\Session::flash('mensaje','Error al eliminar la empresa');
+							$listaEmpresas = DB::table('empresa')
+							->select('id_empresa','nombre_empresa','logotipo','giro','mision','vision','valores','direccion','telefono','correo_electronico')
+							->orderBy('nombre_empresa','ASC')
+							->get(); 
+								
+							return view('ver_MiEmpresa',['listaEmpresas'=>$listaEmpresas]);
+						}
 					}
-					else 
-					{
-						\Session::flash('mensaje','Error al eliminar la empresa');
+					catch (Exception $e) 
+			        {
+			        	\Session::flash('mensaje','Error al borrar la empresa, intentelo más tarde');
 						$listaEmpresas = DB::table('empresa')
-						->select('id_empresa','nombre_empresa','logotipo','giro','mision','vision','valores','direccion','telefono','correo_electronico')
-						->orderBy('nombre_empresa','ASC')
-						->get(); 
-							
-						return view('ver_MiEmpresa',['listaEmpresas'=>$listaEmpresas]);
-					}
+							->select('id_empresa','nombre_empresa','logotipo','giro','mision','vision','valores','direccion','telefono','correo_electronico')
+							->orderBy('nombre_empresa','ASC')
+							->get(); 
+								
+							return view('ver_MiEmpresa',['listaEmpresas'=>$listaEmpresas]);
+			        }
 				}
 			}
 		}

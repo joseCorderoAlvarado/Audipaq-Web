@@ -54,15 +54,6 @@
                                   <input type="email" class="form-control" name="correoCoauditor" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="El correo debe contener entre caracteres el símbolo de '@' en seguida el símbolo de '.' y finalmente el dominio" required style="width: auto;" value={{$coauditor->correo_electronico}}>
                             </div>
                     </div>
-                    <!--<br>
-                    <div class="row">
-                             <div class="col-3">
-                                <b><label>Contrase&ntilde;a</label></b>
-                             </div>
-                             <div class="col-5">
-                                <input type="text" class="form-control"  name="contraAuditor" style="width: auto;" value=>
-                             </div>
-                    </div>-->
                     <br>
                     <div class="row">
                             <div class="col-3">
@@ -83,10 +74,10 @@
                 </div>
                 <div class="modal-footer" style="background:#546E7A; margin: auto;">
                     <button id="button" class="btn btn-primary" style="background: #00ACC1; border: none; align-items: center;">Guardar</button> 
-
                 </div>
-
             </form>
+            <button style="text-align:center; background: #00ACC1" data-toggle="modal" class="btn btn-primary" class="btn btn-sm btn-default" data-target="#modificarContraCoauditor{{$coauditor->id_persona}}" >Modificar la contraseña</button>
+            @include('modales_Administrador.modal_ModificarContraCoauditor')
         </div>
     </div>
 </div>

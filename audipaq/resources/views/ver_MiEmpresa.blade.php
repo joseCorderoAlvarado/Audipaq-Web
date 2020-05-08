@@ -23,7 +23,7 @@
 
 	
 	<div class="col-12" style="font-size:35px; font-weight: bold;  font-style:italic;">
-	<center>Mi empresa </center>
+	<center>{{$empresas->nombre_empresa}} </center>
     </div>
 
 <form class="needs-validation" novalidate>
