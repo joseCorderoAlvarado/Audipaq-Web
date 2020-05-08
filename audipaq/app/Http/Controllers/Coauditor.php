@@ -45,7 +45,55 @@ use Illuminate\Support\Str;
 			}
 		}
 
+		public function mostrar()
+		{
+			if (session()->has('s_tipoUsuario') ) 
+			{
+				if(session('s_tipoUsuario')=='1')
+				{
+					return redirect('homePage_Auditor');
+				}
+				elseif(session('s_tipoUsuario')=='2')
+				{
+					return redirect('homePage_Auditado');
+				}
+				elseif(session('s_tipoUsuario')=='3')
+				{
+					 $listastatus = DB::table('status')
+					->select('id_status','tipo_status')
+					->orderBy('tipo_status','ASC')
+					->get(); 
 
+					$listaArea = DB::table('area')
+					->select('id_area','nombre_area')
+					->orderBy('nombre_area','ASC')
+					->get();
+
+					$listaDepartamento = DB::table('departamento')
+					->select('id_departamento','nombre_departamento')
+					->orderBy('nombre_departamento','ASC')
+					->get();
+
+					$listaActas = DB::table('acta')
+					->join('persona', 'persona.id_persona', '=', 'acta.fk_id_persona')
+					->join('status', 'status.id_status', '=', 'acta.fk_id_status')
+					->join('area', 'area.id_area', '=', 'acta.fk_id_area')
+					->join('departamento', 'departamento.id_departamento', '=', 'acta.fk_id_departamento')
+					->select('acta.id_acta','acta.fecha_inicio', 'acta.fecha_final','persona.nombre_persona','status.tipo_status','area.nombre_area','departamento.nombre_departamento','status.id_status','area.id_area','departamento.id_departamento')
+					->get();
+							
+					return view('ver_Auditorias',['listaActas'=>$listaActas,'listastatus'=>$listastatus, 'listaArea'=>$listaArea, 'listaDepartamento'=>$listaDepartamento]);
+				}
+				elseif(session('s_tipoUsuario')=='4')
+				{
+					return redirect ('homePage_Administrador');
+				}
+			}
+			else
+			{
+				return redirect('/');
+			}	
+		}
 		
 
 		public function mostrarBusqueda(Request $datos)
@@ -619,55 +667,6 @@ use Illuminate\Support\Str;
 			}
 		}
 
-		public function mostrar()
-		{
-			if (session()->has('s_tipoUsuario') ) 
-			{
-				if(session('s_tipoUsuario')=='1')
-				{
-					return redirect('homePage_Auditor');
-				}
-				elseif(session('s_tipoUsuario')=='2')
-				{
-					return redirect('homePage_Auditado');
-				}
-				elseif(session('s_tipoUsuario')=='3')
-				{
-					 $listastatus = DB::table('status')
-					->select('id_status','tipo_status')
-					->orderBy('tipo_status','ASC')
-					->get(); 
-
-					$listaArea = DB::table('area')
-					->select('id_area','nombre_area')
-					->orderBy('nombre_area','ASC')
-					->get();
-
-					$listaDepartamento = DB::table('departamento')
-					->select('id_departamento','nombre_departamento')
-					->orderBy('nombre_departamento','ASC')
-					->get();
-
-					$listaActas = DB::table('acta')
-					->join('persona', 'persona.id_persona', '=', 'acta.fk_id_persona')
-					->join('status', 'status.id_status', '=', 'acta.fk_id_status')
-					->join('area', 'area.id_area', '=', 'acta.fk_id_area')
-					->join('departamento', 'departamento.id_departamento', '=', 'acta.fk_id_departamento')
-					->select('acta.id_acta','acta.fecha_inicio', 'acta.fecha_final','persona.nombre_persona','status.tipo_status','area.nombre_area','departamento.nombre_departamento','status.id_status','area.id_area','departamento.id_departamento')
-					->get();
-							
-					return view('ver_Auditorias',['listaActas'=>$listaActas,'listastatus'=>$listastatus, 'listaArea'=>$listaArea, 'listaDepartamento'=>$listaDepartamento]);
-				}
-				elseif(session('s_tipoUsuario')=='4')
-				{
-					return redirect ('homePage_Administrador');
-				}
-			}
-			else
-			{
-				return redirect('/');
-			}	
-		}
 
 		public function modificar(Request $datos)
 		{
