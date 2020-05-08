@@ -3,7 +3,7 @@
 @include('modales_Coauditor.modal_AgregarActa')
 <br>
 <div class="row" style="margin-left: 80%;">
-	<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none;"data-toggle="modal" data-target="#agregarActa">Nueva Acta</button>
+	<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none;"data-toggle="modal" data-target="#agregarActa">Agregar Acta</button>
 
 </div>
 <br>
