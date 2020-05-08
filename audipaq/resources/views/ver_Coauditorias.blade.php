@@ -3,12 +3,12 @@
 @include('modales_Coauditor.modal_AgregarActa')
 <br>
 <div class="row" style="margin-left: 80%;">
-	<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none;"data-toggle="modal" data-target="#agregarActa">Agregar Acta</button>
+	<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none;"data-toggle="modal" data-target="#agregarActa">Agregar Actas</button>
 
 </div>
 <br>
 <br>
-<form action="ver_Auditorias" method="post" enctype="multipart/form-data">
+<form action="ver_Coauditorias" method="post" enctype="multipart/form-data">
 	{{ csrf_field() }}
 	<div class="input-group" style="margin-left: 70%; width: 300px">
 	 	<input class="form-control" type="search" placeholder="Buscar" name="txtBuscar">

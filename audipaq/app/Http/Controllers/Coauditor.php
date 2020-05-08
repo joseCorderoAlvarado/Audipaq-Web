@@ -59,30 +59,56 @@ use Illuminate\Support\Str;
 				}
 				elseif(session('s_tipoUsuario')=='3')
 				{
-					 $listastatus = DB::table('status')
-					->select('id_status','tipo_status')
-					->orderBy('tipo_status','ASC')
-					->get(); 
+					try
+					{
+						$ConsultaidPersona = DB::table('persona')
+						->select('persona.id_persona')
+						->where('correo_electronico','=',session('s_identificador'))
+						->get();
 
-					$listaArea = DB::table('area')
-					->select('id_area','nombre_area')
-					->orderBy('nombre_area','ASC')
-					->get();
+						$idConversion = json_decode(json_encode($ConsultaidPersona),true);
+						$idPersona = implode($idConversion[0]);
 
-					$listaDepartamento = DB::table('departamento')
-					->select('id_departamento','nombre_departamento')
-					->orderBy('nombre_departamento','ASC')
-					->get();
+						$listastatus = DB::table('status')
+						->select('id_status','tipo_status')
+						->orderBy('tipo_status','ASC')
+						->get(); 
 
-					$listaActas = DB::table('acta')
-					->join('persona', 'persona.id_persona', '=', 'acta.fk_id_persona')
-					->join('status', 'status.id_status', '=', 'acta.fk_id_status')
-					->join('area', 'area.id_area', '=', 'acta.fk_id_area')
-					->join('departamento', 'departamento.id_departamento', '=', 'acta.fk_id_departamento')
-					->select('acta.id_acta','acta.fecha_inicio', 'acta.fecha_final','persona.nombre_persona','status.tipo_status','area.nombre_area','departamento.nombre_departamento','status.id_status','area.id_area','departamento.id_departamento')
-					->get();
-							
-					return view('ver_Auditorias',['listaActas'=>$listaActas,'listastatus'=>$listastatus, 'listaArea'=>$listaArea, 'listaDepartamento'=>$listaDepartamento]);
+						$listaArea = DB::table('area')
+						->select('id_area','nombre_area')
+						->orderBy('nombre_area','ASC')
+						->get();
+
+						$listaDepartamento = DB::table('departamento')
+						->select('id_departamento','nombre_departamento')
+						->orderBy('nombre_departamento','ASC')
+						->get();
+
+						$listaActas = DB::table('acta')
+						->join('persona', 'persona.id_persona', '=', 'acta.fk_id_persona')
+						->join('status', 'status.id_status', '=', 'acta.fk_id_status')
+						->join('area', 'area.id_area', '=', 'acta.fk_id_area')
+						->join('departamento', 'departamento.id_departamento', '=', 'acta.fk_id_departamento')
+						->select('acta.id_acta','acta.fecha_inicio', 'acta.fecha_final','persona.nombre_persona','status.tipo_status','area.nombre_area','departamento.nombre_departamento','status.id_status','area.id_area','departamento.id_departamento')
+						->where('persona.id_persona','=',$idPersona)
+						->get();
+
+						$listaTodasActas = DB::table('acta')
+						->join('persona', 'persona.id_persona', '=', 'acta.fk_id_persona')
+						->join('status', 'status.id_status', '=', 'acta.fk_id_status')
+						->join('area', 'area.id_area', '=', 'acta.fk_id_area')
+						->join('departamento', 'departamento.id_departamento', '=', 'acta.fk_id_departamento')
+						->select('acta.id_acta','acta.fecha_inicio', 'acta.fecha_final','persona.nombre_persona','persona.apellido_paterno','persona.apellido_materno','status.tipo_status','area.nombre_area','departamento.nombre_departamento','status.id_status','area.id_area','departamento.id_departamento')
+						->orderBy('id_acta','asc')
+						->get();
+								
+						return view('ver_Coauditorias',['listaActas'=>$listaActas,'listastatus'=>$listastatus, 'listaArea'=>$listaArea, 'listaDepartamento'=>$listaDepartamento,'listaTodasActas'=>$listaTodasActas]);
+					}
+					catch (Exception $e) 
+			        {
+			        	\Session::flash('mensaje','Error al mostrar el listado de actas del coauditor, intentelo más tarde');
+						return redirect('homePage_Coauditor');
+			        }
 				}
 				elseif(session('s_tipoUsuario')=='4')
 				{
@@ -93,8 +119,7 @@ use Illuminate\Support\Str;
 			{
 				return redirect('/');
 			}	
-		}
-		
+		}		
 
 		public function mostrarBusqueda(Request $datos)
 		{
@@ -110,27 +135,52 @@ use Illuminate\Support\Str;
 				}
 				elseif(session('s_tipoUsuario')=='3')
 				{
-					$listastatus = DB::table('status')
-					->select('id_status','tipo_status')
-					->orderBy('tipo_status','ASC')
-					->get(); 
+					try
+					{
+						$ConsultaidPersona = DB::table('persona')
+						->select('persona.id_persona')
+						->where('correo_electronico','=',session('s_identificador'))
+						->get();
 
-					$listaArea = DB::table('area')
-					->select('id_area','nombre_area')
-					->orderBy('nombre_area','ASC')
-					->get();
+						$idConversion = json_decode(json_encode($ConsultaidPersona),true);
+						$idPersona = implode($idConversion[0]);
 
-					$listaDepartamento = DB::table('departamento')
-					->select('id_departamento','nombre_departamento')
-					->orderBy('nombre_departamento','ASC')
-					->get();
+						$listastatus = DB::table('status')
+						->select('id_status','tipo_status')
+						->orderBy('tipo_status','ASC')
+						->get(); 
 
-					$acta_variable = new acta;
-					$busqueda = $acta_variable->txtBuscar = $datos->input ('txtBuscar');
+						$listaArea = DB::table('area')
+						->select('id_area','nombre_area')
+						->orderBy('nombre_area','ASC')
+						->get();
 
-					$listaActas = DB::select('select acta.id_acta,acta.fecha_inicio, acta.fecha_final,persona.nombre_persona,status.tipo_status,status.id_status,area.nombre_area,area.id_area,departamento.nombre_departamento,departamento.id_departamento FROM acta INNER JOIN persona ON persona.id_persona=acta.fk_id_persona INNER JOIN status ON status.id_status=acta.fk_id_status INNER JOIN area ON area.id_area=acta.fk_id_area INNER JOIN departamento ON departamento.id_departamento=acta.fk_id_departamento WHERE acta.fecha_inicio like "%'.$busqueda.'%" OR acta.fecha_final like "%'.$busqueda.'%" OR persona.nombre_persona like "%'.$busqueda.'%" OR status.tipo_status like "%'.$busqueda.'%" OR area.nombre_area like "%'.$busqueda.'%" OR departamento.nombre_departamento like "%'.$busqueda.'%"');
-							
-					return view('ver_Auditorias',['listaActas'=>$listaActas,'listastatus'=>$listastatus, 'listaArea'=>$listaArea, 'listaDepartamento'=>$listaDepartamento]);
+						$listaDepartamento = DB::table('departamento')
+						->select('id_departamento','nombre_departamento')
+						->orderBy('nombre_departamento','ASC')
+						->get();
+
+						$acta_variable = new acta;
+						$busqueda = $acta_variable->txtBuscar = $datos->input ('txtBuscar');
+
+						$listaActas = DB::select('select acta.id_acta,acta.fecha_inicio, acta.fecha_final,persona.nombre_persona,status.tipo_status,status.id_status,area.nombre_area,area.id_area,departamento.nombre_departamento,departamento.id_departamento FROM acta INNER JOIN persona ON persona.id_persona=acta.fk_id_persona INNER JOIN status ON status.id_status=acta.fk_id_status INNER JOIN area ON area.id_area=acta.fk_id_area INNER JOIN departamento ON departamento.id_departamento=acta.fk_id_departamento WHERE acta.fecha_inicio like "%'.$busqueda.'%" OR acta.fecha_final like "%'.$busqueda.'%" OR persona.nombre_persona like "%'.$busqueda.'%" OR status.tipo_status like "%'.$busqueda.'%" OR area.nombre_area like "%'.$busqueda.'%" OR departamento.nombre_departamento like "%'.$busqueda.'%"');
+
+						$listaTodasActas = DB::table('acta')
+							->join('persona', 'persona.id_persona', '=', 'acta.fk_id_persona')
+							->join('status', 'status.id_status', '=', 'acta.fk_id_status')
+							->join('area', 'area.id_area', '=', 'acta.fk_id_area')
+							->join('departamento', 'departamento.id_departamento', '=', 'acta.fk_id_departamento')
+							->select('acta.id_acta','acta.fecha_inicio', 'acta.fecha_final','persona.nombre_persona','persona.apellido_paterno','persona.apellido_materno','status.tipo_status','area.nombre_area','departamento.nombre_departamento','status.id_status','area.id_area','departamento.id_departamento')
+							->orderBy('id_acta','asc')
+							->get();
+								
+						return view('ver_Auditorias',['listaActas'=>$listaActas,'listastatus'=>$listastatus, 'listaArea'=>$listaArea, 'listaDepartamento'=>$listaDepartamento,'listaTodasActas'=>$listaTodasActas]);
+					}
+					catch (Exception $e) 
+			        {
+			        	\Session::flash('mensaje','Error al mostrar la búsqueda del listado de actas del coauditor, intentelo más tarde');
+						return redirect('homePage_Coauditor');
+			        }
 				}
 				elseif(session('s_tipoUsuario')=='4')
 				{
