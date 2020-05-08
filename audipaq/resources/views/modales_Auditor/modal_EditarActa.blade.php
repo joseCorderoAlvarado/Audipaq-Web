@@ -34,7 +34,7 @@
                                 <b><label>Fecha Final</label></b>
                             </div>
                             <div class="col-5">
-                                  <input type="date" class="form-control" style="width: auto;" min="2020-01-01" max="2023-12-31" name="txtFechaFinal">
+                                  <input type="date" class="form-control" style="width: auto;" min="2020-01-01" max="2023-12-31" name="txtFechaFinal" title="Tienes que definir una fecha final" required>
                             </div>
                     </div>
                     
