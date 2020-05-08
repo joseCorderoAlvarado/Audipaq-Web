@@ -39,7 +39,7 @@ use DB;
 		{
 			$persona_variable = new persona;
 			$correo_Electronico = $persona_variable->txtCorreoElectronico = $datos->input ('txtCorreoElectronico');
-			$contrasena = $persona_variable->txtContrasena = $datos->input ('txtContrasena');
+			$contrasena = $persona_variable->txtContrasena = md5($datos->input ('txtContrasena'));
 
 			//Creamos una varible usuario que se iguala a la tabla persona
 			//se hace una consulta donde se consultan los campos correo electrónico de la tabla persona y la contraseña
