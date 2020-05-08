@@ -1,7 +1,8 @@
 @extends('layouts.head')
 @include('layouts.menu_NavegacionLogin')
-<br>
-<br>
+@include('modal_Login.modal_recuperarContrasena')
+<br />
+<br />
 <div class="modal-dialog" >
 	@if(Session::has('flash_message'))
         <div class="alert alert-success" role="alert">
@@ -27,11 +28,12 @@
 				<br>
 				<center><button type="submit" class="btn btn-primary" style="background: #00ACC1; border: none;">Iniciar Sesi&oacute;n</button></center>
 				<br>
-				<center><a style="color: #00ACC1"><b>¿Olvidaste la contraseña?</b></a></center>
+				<center><a style="color: #00ACC1" data-toggel="modal" href="#recuperarContrasena" data-idmodal="#recuperarContrasena"><b>¿Olvidaste la contraseña?</b></a></center>
 			</form>
 		</div>	
 	</div>
 </div>
-<br>
-<br>
+<br />
+<br />
+<br />
 @extends('layouts.footer')
