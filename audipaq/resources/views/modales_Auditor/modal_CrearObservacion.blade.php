@@ -68,11 +68,11 @@
                     <br>
                     <div class="row">
                         <div class="col-12">
-                            <p>Evidencia</p>
+                            <p>Evidencia (tamaño máximo de 128 Mb)</p>
                             
                             <div class="photo">
                                 <div class="input-group">
-                                <input multiple="multiple" required  name="documentos[]" type="file" style="padding: 5px 10px; background: #546E7A; color:#fff; border:0px solid #fff; ">
+                                <input required  name="documentos[]" type="file" style="padding: 5px 10px; background: #546E7A; color:#fff; border:0px solid #fff; ">
                                 </div>
                              </div>
                         </div>
