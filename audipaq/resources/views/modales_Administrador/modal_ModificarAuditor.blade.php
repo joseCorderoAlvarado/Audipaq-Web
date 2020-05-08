@@ -33,7 +33,7 @@
                                 <b><label>Apellido Paterno</label></b>
                             </div>
                             <div class="col-5">
-                                <input type="text" class="form-control"  name="txtapellidoPatAuditor" title="El apellido paterno debe llevar solo letras y espacios" pattern="[A-Za-z\s]+" required style="width: auto;" value={{$auditor->apellido_materno}}>
+                                <input type="text" class="form-control"  name="txtapellidoPatAuditor" title="El apellido paterno debe llevar solo letras y espacios" pattern="[A-Za-z\s]+" required style="width: auto;" value={{$auditor->apellido_paterno}}>
                             </div>
                     </div>
                     <br>
@@ -42,7 +42,7 @@
                                 <b><label>Apellido Materno</label></b>
                             </div>
                             <div class="col-5">    
-                                <input type="text" class="form-control"  name="txtapellidoMatAuditor" title="El apellido materno debe llevar solo letras y espacios" pattern="[A-Za-z\s]+" required style="width: auto;" value={{$auditor->apellido_paterno}}>
+                                <input type="text" class="form-control"  name="txtapellidoMatAuditor" title="El apellido materno debe llevar solo letras y espacios" pattern="[A-Za-z\s]+" required style="width: auto;" value={{$auditor->apellido_materno}}>
                             </div>
                     </div>
                     <br>
