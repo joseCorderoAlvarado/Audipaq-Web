@@ -61,6 +61,7 @@ Route::Get('ver_Coauditor','Administrador@mostrarCoauditor');
 Route::post('ver_Coauditor','Administrador@mostrarCoauditorBusqueda');
 Route::post('btnCrear_Coauditor','Administrador@crearCoauditor');
 Route::post('btnModificar_Coauditor','Administrador@modificarCoauditor');
+Route::post('btnModificarContra_Coauditor','Administrador@modificarContraCoa');
 Route::post('btnEliminar_Coauditor','Administrador@eliminarCoauditor');
 
 //Controladores de Auditor para mostrar la pagina

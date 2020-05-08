@@ -463,25 +463,32 @@ use DB;
 				}
 				elseif(session('s_tipoUsuario')=='4')
 				{
-		            $idPersona=$datos->input('txtidpersona');
-       			    $persona=persona::find($idPersona);
-				 	$persona->nombre_persona=$datos->input('txtnombreCoauditor');
-				 	$persona->apellido_paterno=$datos->input('txtapellidoPatCoauditor');
-				 	$persona->apellido_materno=$datos->input('txtapellidoMatCoauditor');
-				 	$persona->correo_electronico=$datos->input ('correoCoauditor');
-				 	/*$persona->contrasena=md5($datos->input('contraAuditor'));*/
-				 	$persona->fk_id_empresa=$datos->input('fkEmpresa');
-				 	$persona->fk_id_tipo='3';
-					if($persona->save()){
-						\Session::flash('flash_message', '¡Usuario Modificado con exito');
-						return redirect('ver_Coauditor');
-						
-					}
-					else 
+					try
 					{
-						\Session::flash('mensaje','Error al modificar el usuario');
-						 return redirect('ver_Coauditor');
-					}	
+						 $idPersona=$datos->input('txtidpersona');
+	       			    $persona=persona::find($idPersona);
+					 	$persona->nombre_persona=$datos->input('txtnombreCoauditor');
+					 	$persona->apellido_paterno=$datos->input('txtapellidoPatCoauditor');
+					 	$persona->apellido_materno=$datos->input('txtapellidoMatCoauditor');
+					 	$persona->correo_electronico=$datos->input ('correoCoauditor');
+					 	$persona->fk_id_empresa=$datos->input('fkEmpresa');
+					 	$persona->fk_id_tipo='3';
+						if($persona->save()){
+							\Session::flash('flash_message', '¡Usuario Modificado con exito');
+							return redirect('ver_Coauditor');
+							
+						}
+						else 
+						{
+							\Session::flash('mensaje','Error al modificar el usuario');
+							 return redirect('ver_Coauditor');
+						}	
+					}
+					catch (Exception $e) 
+			        {
+			        	\Session::flash('mensaje','Error al intentar modificar los datos del coauditor, intentelo más tarde');
+						return redirect('ver_Coauditor');
+			        }	
 				}
 			}
 			else
@@ -490,6 +497,70 @@ use DB;
 			}
 		}
 		
+		public function modificarContraCoa(Request $datos)
+		{
+			if (session()->has('s_tipoUsuario') ) 
+			{
+				if(session('s_tipoUsuario')=='1')
+				{
+					return redirect('homePage_Auditor');
+				}
+				elseif(session('s_tipoUsuario')=='2')
+				{
+					return redirect('homePage_Auditado');
+				}
+				elseif(session('s_tipoUsuario')=='3')
+				{
+					return redirect('homePage_Coauditor');
+				}
+				elseif(session('s_tipoUsuario')=='4')
+				{
+					try {
+						if($datos->input('contraCoauditor1')!="" && $datos->input('contraCoauditor1')!="")
+						{
+							if($datos->input('contraCoauditor1')==$datos->input('contraCoauditor2'))
+							{
+								$idPersona=$datos->input('txtidpersona');
+       			    			$persona=persona::find($idPersona);
+
+								$persona->contrasena=md5($datos->input('contraCoauditor1'));
+								if($persona->save())
+								{
+									\Session::flash('flash_message', 'Contraseña modificada con éxito');
+									return redirect('ver_Coauditor');
+									
+								}
+								else 
+								{
+									\Session::flash('mensaje','Error al modificar la contraseña, intentelo más tarde');
+									 return redirect('ver_Coauditor');
+								}	
+							}
+							else
+							{
+								\Session::flash('mensaje','Las contraseñas no coinciden');
+							 	return redirect('ver_Coauditor');	
+							}
+						}
+						else
+						{
+							\Session::flash('flash_message', 'Campos no llenados correctamente');
+							return redirect('ver_Coauditor');
+						}
+					}
+					catch (Exception $e) 
+			        {
+			        	\Session::flash('mensaje','Error al modificar la contraseña, intentelo más tarde');
+									 return redirect('ver_Coauditor');
+			        }
+				}
+			}
+			else
+			{
+				return redirect('/');
+			}
+		}
+
 		public function eliminar(Request $datos)
 		{
 			if (session()->has('s_tipoUsuario') ) 
