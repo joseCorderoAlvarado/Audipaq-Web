@@ -75,8 +75,8 @@ Route::post('btnEditar_Observacion', 'Auditor@Editar_Observacion');
 
 //Controladores de Coauditor para mostrar la pagina
 Route::Get('homePage_Coauditor','Coauditor@index');
-Route::Get('ver_Auditorias','Coauditor@mostrar');
-Route::post('ver_Aditorias','Coauditor@mostrarBusqueda');
+Route::Get('ver_Coauditorias','Coauditor@mostrar');
+Route::post('ver_Coaditorias','Coauditor@mostrarBusqueda');
 Route::post('verListadoObservaciones_Auditor','Coauditor@observaciones');
 Route::post('btnCrear_Acta','Coauditor@crear_Acta');
 Route::post('btnEditar_Acta','Coauditor@editar_Acta');
