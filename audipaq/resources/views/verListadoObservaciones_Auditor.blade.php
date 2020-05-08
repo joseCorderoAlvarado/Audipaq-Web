@@ -11,6 +11,15 @@
 <div class="container">
 	<div class="row">
 		<div class="col-12">
+			@if(Session::has('flash_message'))
+				<div class="alert alert-success container" role="alert" style="text-align: center; width: 55%">
+					{{ Session::get('flash_message') }}
+				</div>
+			@elseif(Session::has('mensaje'))
+				<div class="alert alert-danger container" role="alert" style="text-align: center; width: 55%">
+					{{ Session::get('mensaje') }}
+				</div>
+			@endif
 			<div style="width:auto; height: auto; background-color: white; border: 1px groove; border-color: #707070; border-radius: 3px;">
 				<p style=" margin: 20px 45px; font-size: 20px">Observaci&oacute;n no. {{$observacion->id_observaciones}}</p>
 				<div class="container" style="margin: 20px 30px;">

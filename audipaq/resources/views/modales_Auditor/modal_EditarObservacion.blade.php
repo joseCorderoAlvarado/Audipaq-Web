@@ -73,17 +73,17 @@
                     </div>
                    
                     <br>
-                    <div class="row" style="border-style: solid;">
+                    <div class="row" >
                         <div class="col-12">
-                            <b><p>Evidencia(s)</p></b>
+                            <b><p>Reemplazar Evidencia(s) (tamaño máximo de 128 Mb)</p></b>
 
                             @foreach($listaDocumento as $doc)
                                 <?php
                                 echo "<label style='font-size:14px;'>Reemplazar el documento: ".$doc->nombre_doc."</label>";
                                 ?>
-                                <input name='documentosModificar[]' id='documentosModificar' type='file' style='padding: 5px 10px; background: gray; color:#fff; border:0px solid #fff; '>
+                                <input multiple="multiple"  name="documentosModificar[]" type="file" style="padding: 5px 10px; background: #546E7A; color:#fff; border:0px solid #fff; ">
                                 <?php
-                                echo "<input type='text' class='form-control' name='id_documentos[".$doc->nombre_doc."]'  value='$doc->id_doc'>";
+                                echo "<input type='hidden' class='form-control' name='id_documentos[]'  value='$doc->id_doc'>";
                                 echo "<br>";
                                 ?>
                                 
@@ -93,17 +93,7 @@
                              
                     </div>  
                     <br>
-                    <div class="row" >
-                        <div class="col-12">
-                            <b><p>Añadir nueva(s) evidencia(s)</p></b>
-
-                            <div class="input-group">
-                                <input multiple="multiple"  name="documentos[]" type="file" style="padding: 5px 10px; background: #546E7A; color:#fff; border:0px solid #fff; ">
-                            </div>
-                            
-                        </div>
-                             
-                    </div>       
+    
                 </div>
                 <div class="modal-footer" style="background:#546E7A; margin: auto;">
                     <button id="button" class="btn btn-primary" style="background: #00ACC1; border: none; align-items: center;">Guardar</button> 
