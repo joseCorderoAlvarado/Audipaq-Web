@@ -15,7 +15,7 @@
                                  <b><label>ID del Acta</label></b>
                             </div>
                             <div class="col-4">
-                                  <input type="text" class="form-control" name="txtIdACta" readonly="true" style="border-radius: 5px" value="{{$observacion->id_acta}}">
+                                  <input type="text" class="form-control" name="txtIdACta" readonly="true" border-radius: 5px" value="{{$observacion->id_acta}}">
                             </div>
                     </div>
                     <br>
@@ -24,7 +24,7 @@
                                  <b><label>No. de Observación</label></b>
                             </div>
                             <div class="col-4">
-                                  <input type="text" class="form-control" name="txtIdObservacion" readonly="true" style="border-radius: 5px" value="{{$observacion->id_observaciones}}">
+                                  <input type="text" class="form-control" name="txtIdObservacion" readonly="true" border-radius: "5px" value="{{$observacion->id_observaciones}}">
                             </div>
                     </div>
                     <br>
@@ -68,7 +68,7 @@
                                  <b><label>Observación</label></b>
                             </div>
                             <div class="col-5">
-                                  <textarea  type="text" id="idcomentarioObservacion" name="txtObservacion" title="La observación debe llevar solo letras, números y espacios" pattern="[A-Za-z0-9\s]+" required style="width: 250px; height: 80px; border: 0.7px solid; border-color: transparent; border-radius: 5px; color:gray;"  >{{$observacion->comentarios}}</textarea>
+                                  <textarea  type="text" id="idcomentarioObservacion" name="txtObservacion" style="width: 250px; height: 80px; border: 0.7px solid; border-color: transparent; border-radius: 5px; color:gray;"  >{{$observacion->comentarios}}</textarea>
                             </div>
                     </div>
                    
@@ -93,6 +93,8 @@
                              
                     </div>  
                     <br>
+    
+                </div>
                 <div class="modal-footer" style="background:#546E7A; margin: auto;">
                     <button id="button" class="btn btn-primary" style="background: #00ACC1; border: none; align-items: center;">Guardar</button> 
                 </div>

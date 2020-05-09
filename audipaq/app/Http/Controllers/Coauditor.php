@@ -219,7 +219,7 @@ use Illuminate\Support\Str;
 						->join('prioridad', 'observaciones.fk_id_prioridad', '=', 'prioridad.id_prioridad')
 						->join('area', 'area.id_area', '=', 'acta.fk_id_area')
 						->select('observaciones.id_observaciones','observaciones.comentarios', 'status.tipo_status','status.id_status','persona.nombre_persona','acta.id_acta','acta.fecha_inicio','prioridad.tipo_prioridad','prioridad.id_prioridad','area.nombre_area','area.id_area','area.encargado_area')
-						->where('fk_id_acta','=',$id_acta)
+						->where('observaciones.fk_id_acta','=',$id_acta)
 						->orderBy('observaciones.fk_id_prioridad','Asc')
 						->get();	
 							
@@ -533,7 +533,7 @@ use Illuminate\Support\Str;
 	       			    $observaciones=observaciones::find($idObservacion);
 						$observaciones->comentarios=$datos->input('txtObservacion'); 
 						$observaciones->fk_id_status=$datos->input('fkStatus'); 
-						$observaciones->fk_id_persona=$idPersona; 
+						$observaciones->fk_id_auditor=$idPersona; 
 						$observaciones->fk_id_acta=$datos->input('txtIdACta'); 
 						$observaciones->fk_id_prioridad=$datos->input('fkPrioridad'); 
 						$observaciones->save();
