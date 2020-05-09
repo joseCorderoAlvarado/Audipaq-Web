@@ -13,7 +13,7 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label>Nombre</label>
-                            <input type="text" id="idnombreEmpresa" name="nombreEmpresa" class="form-control" title="El nombre debe llevar solo letras, numeros y espacios" pattern="[A-Za-z0-9\sáéíóúñüàèÁÉÍÓÚÑÜÀÈ]+" required>
+                            <input type="text" id="idnombreEmpresa" name="nombreEmpresa" class="form-control" title="El nombre debe llevar solo letras, números y espacios" pattern="[A-Za-z0-9\sáéíóúñüàèÁÉÍÓÚÑÜÀÈ]+" required>
                         </div>
                        
                     </div>
