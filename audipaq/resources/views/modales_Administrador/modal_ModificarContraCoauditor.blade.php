@@ -15,7 +15,7 @@
                              </div>
                              <div class="col-5">
                                 <input type="hidden" readonly="true" class="form-control" name="txtidpersona"  style="width: auto;" value={{$coauditor->id_persona}}>
-                                <input type="password" class="form-control"  name="contraCoauditor1" style="width: auto;" value=>
+                                <input type="password" class="form-control"  name="contraCoauditor1" style="width: auto;" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="La contraseña debe contener al menos 8 caracteres invluyendo como mínimo un número, una minúscula y una mayúscula">
                              </div>
                     </div>
                     <div class="row">
@@ -23,7 +23,7 @@
                                 <b><label>Confirmar Contrase&ntilde;a</label></b>
                              </div>
                              <div class="col-5">
-                                <input type="password" class="form-control"  name="contraCoauditor2" style="width: auto;" value=>
+                                <input type="password" class="form-control"  name="contraCoauditor2" style="width: auto;" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="La contraseña debe contener al menos 8 caracteres invluyendo como mínimo un número, una minúscula y una mayúscula">
                              </div>
                     </div>       
                 </div>

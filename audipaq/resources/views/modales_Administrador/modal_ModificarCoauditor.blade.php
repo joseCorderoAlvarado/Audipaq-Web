@@ -23,7 +23,7 @@
                                 <b><label>Nombre</label></b>
                             </div>
                             <div class="col-5">
-                                <input type="text" class="form-control" name="txtnombreCoauditor" title="El nombre debe llevar solo letras y espacios" pattern="[A-Za-z\s]+" required style="width: auto;" value={{$coauditor->nombre_persona}}>
+                                <input type="text" class="form-control" name="txtnombreCoauditor" title="El nombre debe llevar solo letras y espacios" pattern="[A-Za-záéíóúñü\s]+" required style="width: auto;" value={{$coauditor->nombre_persona}}>
 
                             </div>
                     </div>
@@ -33,7 +33,7 @@
                                 <b><label>Apellido Paterno</label></b>
                             </div>
                             <div class="col-5">
-                                <input type="text" class="form-control"  name="txtapellidoPatCoauditor" title="El apellido paterno debe llevar solo letras y espacios" pattern="[A-Za-z\s]+" required style="width: auto;" value={{$coauditor->apellido_materno}}>
+                                <input type="text" class="form-control"  name="txtapellidoPatCoauditor" title="El apellido paterno debe llevar solo letras y espacios" pattern="[A-Za-záéíóúñü\s]+" required style="width: auto;" value={{$coauditor->apellido_materno}}>
                             </div>
                     </div>
                     <br>
@@ -42,7 +42,7 @@
                                 <b><label>Apellido Materno</label></b>
                             </div>
                             <div class="col-5">    
-                                <input type="text" class="form-control"  name="txtapellidoMatCoauditor" title="El apellido materno debe llevar solo letras y espacios" pattern="[A-Za-z\s]+" required style="width: auto;" value={{$coauditor->apellido_paterno}}>
+                                <input type="text" class="form-control"  name="txtapellidoMatCoauditor" title="El apellido materno debe llevar solo letras y espacios" pattern="[A-Za-záéíóúñü\s]+" required style="width: auto;" value={{$coauditor->apellido_paterno}}>
                             </div>
                     </div>
                     <br>

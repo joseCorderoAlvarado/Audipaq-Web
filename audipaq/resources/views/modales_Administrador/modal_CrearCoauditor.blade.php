@@ -3,6 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background:#546E7A;">
+                <meta charset="utf-8">
                 <h4 class="modal-title" style="color: white" >Crear Coauditor</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
@@ -15,7 +16,7 @@
                                 <b><label>Nombre</label></b>
                             </div>
                             <div class="col-5">
-                                <input type="text" class="form-control" name="txtnombreCoauditor" title="El nombre debe llevar solo letras y espacios" pattern="[A-Za-z\s]+" required style="width: auto;">
+                                <input type="text" class="form-control" name="txtnombreCoauditor" title="El nombre debe llevar solo letras y espacios" pattern="[A-Za-záéíóúñü\s]+" required style="width: auto;">
                             </div>
                     </div>
                     <br>
@@ -24,7 +25,7 @@
                                 <b><label>Apellido Paterno</label></b>
                             </div>
                             <div class="col-5">
-                                <input type="text" class="form-control"  name="txtapellidoPatCoauditor" title="El apellido paterno debe llevar solo letras y espacios" pattern="[A-Za-z\s]+" required style="width: auto;">
+                                <input type="text" class="form-control"  name="txtapellidoPatCoauditor" title="El apellido paterno debe llevar solo letras y espacios" pattern="[A-Za-záéíóúñü\s]+" required style="width: auto;">
                             </div>
                     </div>
                     <br>
@@ -33,7 +34,7 @@
                                 <b><label>Apellido Materno</label></b>
                             </div>
                             <div class="col-5">    
-                                <input type="text" class="form-control"  name="txtapellidoMatCoauditor" title="El apellido materno debe llevar solo letras y espacios" pattern="[A-Za-z\s]+" required style="width: auto;">
+                                <input type="text" class="form-control"  name="txtapellidoMatCoauditor" title="El apellido materno debe llevar solo letras y espacios" pattern="[A-Za-záéíóúñü\s]+" required style="width: auto;">
                             </div>
                     </div>
                     <br>
