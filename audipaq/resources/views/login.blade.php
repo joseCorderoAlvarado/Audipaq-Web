@@ -28,7 +28,7 @@
 				<br>
 				<center><button type="submit" class="btn btn-primary" style="background: #00ACC1; border: none;">Iniciar Sesi&oacute;n</button></center>
 				<br>
-				<center><a style="color: #00ACC1" data-toggel="modal" href="#recuperarContrasena" data-idmodal="#recuperarContrasena"><b>¿Olvidaste la contraseña?</b></a></center>
+				<center><button type="button" class="btn btn-primary" style="color: #00ACC1; background-color: white; border: none;" data-toggle="modal" data-target="#recuperarContrasena"><b>¿Olvidaste la contraseña?</b></button></center>
 			</form>
 		</div>	
 	</div>

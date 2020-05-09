@@ -1,5 +1,5 @@
 {{-----------------------Modal Recuperar Contraseña---------------------------}}
-<div id="recuperarContrasena" class="modal fade">
+<div id="recuperarContrasena" class="modal fade recuperarContrasena">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background:#546E7A;">
@@ -12,7 +12,9 @@
                     <div class="row">
                              <div class="col-12">
                                <label>Indica el correo al que quieras que se envíe la nueva contraseña</label>
-                               <input id="idcorreoRecuperarContrasena" class="from-control" type="text" name="correoRecuperarContrasena" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="El correo debe contener entre caracteres el símbolo de '@' en seguida el símbolo de '.' y finalmente el dominio">
+                               <center>
+                               		<input id="idcorreoRecuperarContrasena" class="from-control" type="text" name="correoRecuperarContrasena" style="width: 90%; border-radius: 3px;" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="El correo debe contener entre caracteres el símbolo de '@' en seguida el símbolo de '.' y finalmente el dominio">
+                               </center>
                              </div>
                     </div>       
                 </div>
