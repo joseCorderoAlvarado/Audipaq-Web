@@ -78,7 +78,7 @@ use Illuminate\Support\Str;
 						->get();
 
 						$listaActas = DB::table('acta')
-						->join('persona', 'persona.id_persona', '=', 'acta.fk_id_persona')
+						->join('persona', 'persona.id_persona', '=', 'acta.fk_id_auditor')
 						->join('status', 'status.id_status', '=', 'acta.fk_id_status')
 						->join('area', 'area.id_area', '=', 'acta.fk_id_area')
 						->join('departamento', 'departamento.id_departamento', '=', 'acta.fk_id_departamento')
@@ -147,7 +147,7 @@ use Illuminate\Support\Str;
 						$acta_variable = new acta;
 						$busqueda = $acta_variable->txtBuscar = $datos->input ('txtBuscar');
 
-						$listaActas = DB::select('select acta.id_acta,acta.fecha_inicio, acta.fecha_final,persona.nombre_persona,status.tipo_status,status.id_status,area.nombre_area,area.id_area,departamento.nombre_departamento,departamento.id_departamento FROM acta INNER JOIN persona ON persona.id_persona=acta.fk_id_persona INNER JOIN status ON status.id_status=acta.fk_id_status INNER JOIN area ON area.id_area=acta.fk_id_area INNER JOIN departamento ON departamento.id_departamento=acta.fk_id_departamento WHERE persona.id_persona ='.$idPersona.' AND (acta.fecha_inicio like "%'.$busqueda.'%" OR acta.fecha_final like "%'.$busqueda.'%" OR persona.nombre_persona like "%'.$busqueda.'%" OR status.tipo_status like "%'.$busqueda.'%" OR area.nombre_area like "%'.$busqueda.'%" OR departamento.nombre_departamento like "%'.$busqueda.'%")');
+						$listaActas = DB::select('select acta.id_acta,acta.fecha_inicio, acta.fecha_final,persona.nombre_persona,status.tipo_status,status.id_status,area.nombre_area,area.id_area,departamento.nombre_departamento,departamento.id_departamento FROM acta INNER JOIN persona ON persona.id_persona=acta.fk_id_auditor INNER JOIN status ON status.id_status=acta.fk_id_status INNER JOIN area ON area.id_area=acta.fk_id_area INNER JOIN departamento ON departamento.id_departamento=acta.fk_id_departamento WHERE persona.id_persona ='.$idPersona.' AND (acta.fecha_inicio like "%'.$busqueda.'%" OR acta.fecha_final like "%'.$busqueda.'%" OR persona.nombre_persona like "%'.$busqueda.'%" OR status.tipo_status like "%'.$busqueda.'%" OR area.nombre_area like "%'.$busqueda.'%" OR departamento.nombre_departamento like "%'.$busqueda.'%")');
 								
 						return view('ver_Auditorias',['listaActas'=>$listaActas,'listastatus'=>$listastatus, 'listaArea'=>$listaArea, 'listaDepartamento'=>$listaDepartamento]);
 					}
@@ -313,7 +313,6 @@ use Illuminate\Support\Str;
 	                    $idActa=$datos->input('txtIdActa');
 	       			    $Acta=acta::find($idActa);
 					 	$Acta->fecha_final=$datos->input('txtFechaFinal');
-					 	$Acta->fk_id_persona=$idPersona;
 					 	$Acta->fk_id_auditor=$idPersona;
 					 	$Acta->fk_id_status=$datos->input('txtEstatus');
 					 	$Acta->fk_id_area=$datos->input('txtArea');

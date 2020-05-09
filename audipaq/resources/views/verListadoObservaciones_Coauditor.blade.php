@@ -1,8 +1,8 @@
 @extends('layouts.head')
-@include('layouts.menu_Navegacion_Auditor')
+@include('layouts.menu_Navegacion_Coauditor')
 @include('modales_Coauditor.modal_CrearObservacion')
 <br>
-<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none; margin-left: 80%"data-toggle="modal" data-target="#crearObservacion{{$id_acta}}">Nueva Observaci&oacute;n</button>
+<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none; margin-left: 80%"data-toggle="modal" data-target="#crearObservacion{{$id_acta}}">Nueva Observaci&oacute;n Coa</button>
 <br><br><br>
 
 <p style=" margin: 20px 45px; font-size: 30px">Observaciones del acta no. {{$id_acta}}</p>
