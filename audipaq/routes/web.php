@@ -98,6 +98,9 @@ Route::post('btnEliminarEmpresa', 'EmpresaController@eliminarEmpresa');
 Route::Get('homePage_Auditado','Auditado@index');
 Route::Get('homePage_Auditado','Auditado@mostrar'); 
 
+//Controladores reestablecer contrasena
+Route::post('btnRecuperarContra','PhpmailerController@sendRecover');
+
 #Auth::routes();
 
 #Route::get('/home', 'HomeController@index')->name('home');
