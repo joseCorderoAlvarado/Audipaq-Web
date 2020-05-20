@@ -20,9 +20,10 @@
             <b style="color: #000000"> Conócenos </b>
            </p>
              <p align="center" style="color: #000000">
-               <br>Lorem impsum dolor
-               <br>is amet de misem an
-               <br>sompon dis an al site
+               <br>Somos una empresa dedicada a 
+               <br>dar soluciones en el proceso de
+               <br>auditorias y agilizar los procesos
+               <br> de las mismas
              </p>
         </div>
 
@@ -31,9 +32,10 @@
             <b style="color: #000000"> Términos </b>
            </p>
              <p align="center" style="color: #000000">
-               <br>Lorem impsum dolor
-               <br>is amet de misem an
-               <br>sompon dis an al site
+               <br>Generar una zona segura en la
+               <br>cual los auditores pueden generar
+               <br>un acta de auditoria para las
+               <br>empresas
              </p>
         </div>
 
@@ -42,9 +44,10 @@
             <b style="color: #000000"> Condiciones </b>
            </p>
              <p align="center" style="color: #000000">
-               <br>Lorem impsum dolor
-               <br>is amet de misem an
-               <br>sompon dis an al site
+               <br>Ser una empresa responsable en
+               <br>el manejo manejo de información,
+               <br>siempre manejando don deber cada
+               <br>una de ellas
              </p>
         </div>  
 

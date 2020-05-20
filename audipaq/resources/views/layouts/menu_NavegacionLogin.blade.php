@@ -13,15 +13,6 @@
 						<li class="nav-item dropdown">
 							<a	class="navbar-brand" href="{{ url('login')}}" style="color: #fff"><b>Iniciar sesión</b></a>
 	           			</li>
-			            <li class="nav-item dropdown">
-							<a	class="navbar-brand" href="#" style="color: #fff"><b>Conócenos</b></a>
-			            </li>
-			            <li class="nav-item dropdown">
-							<a	class="navbar-brand" href="#" style="color: #fff"><b>Términos</b></a>
-			            </li>
-	            		<li class="nav-item dropdown">
-							<a	class="navbar-brand" href="#" style="color: #fff"><b>Condiciones</b></a>
-						</li>
 					</ul>
 				</div>
 			</nav>
