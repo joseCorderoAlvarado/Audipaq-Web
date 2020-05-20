@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
             $this-> call (prioridad::class);
         	$this-> call (tipousuario::class);
         	$this-> call (estatus::class);
+            $this-> call (empresa::class);
+            $this-> call (persona::class);
         	
     
     }
