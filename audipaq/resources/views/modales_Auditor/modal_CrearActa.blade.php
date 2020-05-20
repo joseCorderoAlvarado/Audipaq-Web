@@ -1,6 +1,6 @@
 {{-----------------------Modal Crear Acta---------------------------}}
 <div id="crearActa" class="modal fade">
-    <div class="modal-dialog">
+    <div class="modal-dialog" >
         <div class="modal-content">
             <div class="modal-header" style="background:#546E7A;">
                 <h4 class="modal-title" style="color: white" >Crear Acta</h4>
@@ -75,6 +75,71 @@
                                     @endforeach     
                                 </select> 
                              </div>
+                    </div>
+                    <br /> 
+                    <div style="background-color: white; width: 100%; margin-right: auto; margin-left: auto; padding-top: 5px; padding-right: 20px; padding-left: 20px;">
+                        <center><p style="text-align: left;">Si el área y el departamento no aparecen escribirlos a continuación</p></center>
+                        <center><section>Área</section></center>
+                        <br />
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="text" name="nombreArea" placeholder=" Nombre">
+                            </div>
+                            <div class="col-6">
+                                <input type="text" name="encargadoArea" placeholder=" Encargado">
+                            </div>
+                        </div>
+                        <br / >
+                        <center><section>Departamento</section></center>
+                        <br />
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="text" name="nombreDepartamento" placeholder=" Nombre">
+                            </div>
+                            <div class="col-6">
+                                <input type="text" name="encargadoDepartamento" placeholder=" Encargado">
+                            </div>
+                        </div>
+                        <br />
+
+                    </div>
+                     <br />
+                     <div style="background-color: white; width: 100%; margin-right: auto; margin-left: auto; padding-top: 5px; padding-right: 20px; padding-left: 20px;">
+                        <center><p style="text-align: left;">Escribe los datos del auditado a continuación</p></center>
+                        <br />
+                        <center><section>Datos del auditado</section></center>
+                        <br />
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="text" name="nombreAuditado" placeholder=" Nombre">
+                            </div>
+                            <div class="col-6">
+                                <input type="text" name="apellidoPaternoAuditado" placeholder=" Apelido paterno">
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="text" name="apellidoMaternoAuditado" placeholder=" Apelido materno">
+                            </div>
+                            <div class="col-6">
+                                <input type="email" name="correoAuditado" placeholder=" Correo electrónico">
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-6" style="padding-left: 35%">
+                                <label>Empresa</label>
+                            </div>
+                            <div class="col-6">
+                                <select>
+                              <option>
+                                  ...
+                              </option>  
+                            </select>
+                            </div>
+                        </div>
+                        <br />
                     </div>       
                 </div>
                 <div class="modal-footer" style="background:#546E7A; margin: auto;">
