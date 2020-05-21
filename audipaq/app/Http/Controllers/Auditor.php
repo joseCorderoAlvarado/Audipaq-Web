@@ -55,6 +55,11 @@ use Illuminate\Support\Str;
 				{
 					try
 					{
+						$listaEmpresas = DB::table('empresa')
+						->select('id_empresa','nombre_empresa')
+						->orderBy('nombre_empresa','ASC')
+						->get(); 
+
 						$ConsultaidPersona = DB::table('persona')
 						->select('persona.id_persona')
 						->where('correo_electronico','=',session('s_identificador'))
@@ -87,7 +92,7 @@ use Illuminate\Support\Str;
 						->where('persona.id_persona','=',$idPersona)
 						->get();
 								
-						return view('ver_Auditorias',['listaActas'=>$listaActas,'listastatus'=>$listastatus, 'listaArea'=>$listaArea, 'listaDepartamento'=>$listaDepartamento]);
+						return view('ver_Auditorias',['listaActas'=>$listaActas,'listastatus'=>$listastatus, 'listaArea'=>$listaArea, 'listaDepartamento'=>$listaDepartamento,'listaEmpresas'=>$listaEmpresas]);
 					}
 					catch (Exception $e) 
 			        {
@@ -122,6 +127,11 @@ use Illuminate\Support\Str;
 				{
 					try
 					{
+						$listaEmpresas = DB::table('empresa')
+						->select('id_empresa','nombre_empresa')
+						->orderBy('nombre_empresa','ASC')
+						->get(); 
+
 						$ConsultaidPersona = DB::table('persona')
 						->select('persona.id_persona')
 						->where('correo_electronico','=',session('s_identificador'))
@@ -150,7 +160,7 @@ use Illuminate\Support\Str;
 
 						$listaActas = DB::select('select acta.id_acta,acta.fecha_inicio, acta.fecha_final,persona.nombre_persona,status.tipo_status,status.id_status,area.nombre_area,area.id_area,departamento.nombre_departamento,departamento.id_departamento FROM acta INNER JOIN persona ON persona.id_persona=acta.fk_id_auditor INNER JOIN status ON status.id_status=acta.fk_id_status INNER JOIN area ON area.id_area=acta.fk_id_area INNER JOIN departamento ON departamento.id_departamento=acta.fk_id_departamento WHERE persona.id_persona ='.$idPersona.' AND (acta.fecha_inicio like "%'.$busqueda.'%" OR acta.fecha_final like "%'.$busqueda.'%" OR persona.nombre_persona like "%'.$busqueda.'%" OR status.tipo_status like "%'.$busqueda.'%" OR area.nombre_area like "%'.$busqueda.'%" OR departamento.nombre_departamento like "%'.$busqueda.'%")');
 								
-						return view('ver_Auditorias',['listaActas'=>$listaActas,'listastatus'=>$listastatus, 'listaArea'=>$listaArea, 'listaDepartamento'=>$listaDepartamento]);
+						return view('ver_Auditorias',['listaActas'=>$listaActas,'listastatus'=>$listastatus, 'listaArea'=>$listaArea, 'listaDepartamento'=>$listaDepartamento,'listaEmpresas'=>$listaEmpresas]);
 					}
 					catch (Exception $e) 
 			        {
@@ -258,11 +268,30 @@ use Illuminate\Support\Str;
 					 	$acta->fk_id_auditor=$idPersona;
 					 	$acta->fk_id_status=$datos->input('txtEstatus');
 
+					 	$persona = new persona;
+					 	$persona->nombre_persona=$datos->input('nombreAuditado');
+					 	$persona->apellido_paterno=$datos->input('apellidoPaternoAuditado');
+					 	$persona->apellido_materno=$datos->input('apellidoMaternoAuditado');
+					 	$persona->correo_electronico=$datos->input ('correoAuditado');
+
+					   //Carácteres para la contraseña
+					   $str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!#%&.";
+					   $password = "";
+					   //Reconstruimos la contraseña segun la longitud que se quiera
+					   for($i=0;$i<15;$i++) {
+					      //obtenemos un caracter aleatorio escogido de la cadena de caracteres
+					      $password .= substr($str,rand(0,62),1);
+						}
+
+					 	$persona->contrasena=md5($password);
+					 	$persona->fk_id_empresa=$datos->input('fkEmpresa');
+					 	$persona->fk_id_tipo='2';
+
 					 	if($datos->input('nombreArea')=="" || $datos->input('nombreDepartamento')=="")
 					 	{
 					 		$acta->fk_id_area=$datos->input('txtArea');
 					 		$acta->fk_id_departamento=$datos->input('txtDepartamento');	
-					 		if($acta->save()){
+					 		if($acta->save() && $persona->save()){
 								\Session::flash('flash_message', '¡Nueva acta añadida con éxito');
 								return redirect('ver_Auditorias');			
 							}
@@ -288,7 +317,7 @@ use Illuminate\Support\Str;
 					 			$acta->fk_id_area=$areaAgregada;
 					 			$acta->fk_id_departamento=$departamentoAgregado;
 
-					 			if($acta->save()){
+					 			if($acta->save()  && $persona->save()){
 									\Session::flash('flash_message', '¡Nueva acta añadida con éxito');
 									return redirect('ver_Auditorias');			
 								}

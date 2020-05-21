@@ -128,15 +128,18 @@
                         </div>
                         <br />
                         <div class="row">
-                            <div class="col-6" style="padding-left: 35%">
-                                <label>Empresa</label>
-                            </div>
-                            <div class="col-6">
-                                <select>
-                              <option>
-                                  ...
-                              </option>  
-                            </select>
+                            <div class="col-6" >
+                                <label>Empresa: </label>
+
+                                <select name="fkEmpresa" class="form-control" style="width: auto;">
+                                    <option selected>Selecciona una empresa
+                                    </option>
+                                    @foreach ($listaEmpresas as $empresa)
+                                    <option value={{$empresa->id_empresa }}>
+                                        {{ $empresa->nombre_empresa}} 
+                                    </option>
+                                    @endforeach     
+                                </select> 
                             </div>
                         </div>
                         <br />
