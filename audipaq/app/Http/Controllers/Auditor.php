@@ -275,10 +275,35 @@ use Illuminate\Support\Str;
 					 	$persona->correo_electronico=$datos->input ('correoAuditado');
 
 					   //Carácteres para la contraseña
-					   $str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!#%&.";
+					   $strMay = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+					   $strMin = "abcdefghijklmnopqrstuvwxyz";
+					   $strCar = "1234567890";
+					   $strNum = "@!#%&.";
+					   $passwordMay = "";
+					   $passwordMin = "";
+					   $passwordCar = "";
+					   $passwordNum = "";
 					   $password = "";
+					   $str = $passwordMay.$passwordMin.$passwordCar.$passwordNum;
 					   //Reconstruimos la contraseña segun la longitud que se quiera
-					   for($i=0;$i<15;$i++) {
+					   for($i=0;$i<2;$i++) {
+					      //obtenemos un caracter aleatorio escogido de la cadena de caracteres
+					      $passwordCar .= substr($strCar,rand(0,62),1);
+						}
+						for($i=0;$i<3;$i++) {
+					      //obtenemos un caracter aleatorio escogido de la cadena de caracteres
+					      $passwordMay .= substr($strMay,rand(0,62),1);
+						}
+						for($i=0;$i<6;$i++) {
+					      //obtenemos un caracter aleatorio escogido de la cadena de caracteres
+					      $passwordMin .= substr($strMin,rand(0,62),1);
+						}
+						for($i=0;$i<4;$i++) {
+					      //obtenemos un caracter aleatorio escogido de la cadena de caracteres
+					      $passwordNum .= substr($strNum,rand(0,62),1);
+						}
+
+						for($i=0;$i<15;$i++) {
 					      //obtenemos un caracter aleatorio escogido de la cadena de caracteres
 					      $password .= substr($str,rand(0,62),1);
 						}
@@ -292,6 +317,19 @@ use Illuminate\Support\Str;
 					 		$acta->fk_id_area=$datos->input('txtArea');
 					 		$acta->fk_id_departamento=$datos->input('txtDepartamento');	
 					 		if($acta->save() && $persona->save()){
+
+								$to = $datos->input ('correoAuditado');
+								$subject = "Audipaq - Contraseña de para iniciar sesión como auditado";
+								$headers = "MIME-Version: 1.0" . "\r\n";
+								$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+								$headers .= "De: atencioncliente@fullboxregalos.com" . "\r\n";
+								 
+								$message = "
+								Tu contraseña generada es: ".$password;
+								 
+								mail($to, $subject, $message, $headers);
+
+
 								\Session::flash('flash_message', '¡Nueva acta añadida con éxito');
 								return redirect('ver_Auditorias');			
 							}
@@ -318,6 +356,18 @@ use Illuminate\Support\Str;
 					 			$acta->fk_id_departamento=$departamentoAgregado;
 
 					 			if($acta->save()  && $persona->save()){
+					 				$to = $datos->input ('correoAuditado');
+									$subject = "Audipaq - Contraseña de para iniciar sesión como auditado";
+									$headers = "MIME-Version: 1.0" . "\r\n";
+									$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+									$headers .= "De: atencioncliente@fullboxregalos.com" . "\r\n";
+									 
+									$message = "
+									Tu contraseña generada es: ".$password;
+									 
+									mail($to, $subject, $message, $headers);
+
+
 									\Session::flash('flash_message', '¡Nueva acta añadida con éxito');
 									return redirect('ver_Auditorias');			
 								}
