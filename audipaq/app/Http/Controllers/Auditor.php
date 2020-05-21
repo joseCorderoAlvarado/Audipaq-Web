@@ -6,6 +6,7 @@ use App\acta;
 use App\doc;
 use App\area;
 use App\detalle;
+use App\departamento;
 use App\observaciones;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -256,17 +257,47 @@ use Illuminate\Support\Str;
 					 	$acta->fk_id_persona=$idPersona;
 					 	$acta->fk_id_auditor=$idPersona;
 					 	$acta->fk_id_status=$datos->input('txtEstatus');
-					 	$acta->fk_id_area=$datos->input('txtArea');
-					 	$acta->fk_id_departamento=$datos->input('txtDepartamento');	
-						if($acta->save()){
-						
-							\Session::flash('flash_message', '¡Nueva acta añadida con éxito');
-							return redirect('ver_Auditorias');			
-						}
-						else {
-							\Session::flash('mensaje','Error al añadir el acta');
-							 return redirect('ver_Auditorias');
-						}
+
+					 	if($datos->input('nombreArea')=="" || $datos->input('nombreDepartamento')=="")
+					 	{
+					 		$acta->fk_id_area=$datos->input('txtArea');
+					 		$acta->fk_id_departamento=$datos->input('txtDepartamento');	
+					 		if($acta->save()){
+								\Session::flash('flash_message', '¡Nueva acta añadida con éxito');
+								return redirect('ver_Auditorias');			
+							}
+							else {
+								\Session::flash('mensaje','Error al añadir el acta');
+								 return redirect('ver_Auditorias');
+							}
+					 	}
+					 	else
+					 	{
+					 		$departamento = new departamento;
+					 		$departamento->nombre_departamento= $datos->input('nombreDepartamento');
+					 		$departamento->encargado_departamento= $datos->input('encargadoDepartamento');
+
+					 		$area = new area;
+					 		$area->nombre_area= $datos->input('nombreArea');
+					 		$area->encargado_area= $datos->input('encargadoArea');
+
+					 		if($departamento->save() && $area->save()){
+					 			$departamentoAgregado=$departamento->id_departamento;
+					 			$areaAgregada=$area->id_area;
+
+					 			$acta->fk_id_area=$areaAgregada;
+					 			$acta->fk_id_departamento=$departamentoAgregado;
+
+					 			if($acta->save()){
+									\Session::flash('flash_message', '¡Nueva acta añadida con éxito');
+									return redirect('ver_Auditorias');			
+								}
+								else {
+									\Session::flash('mensaje','Error al añadir el acta');
+									 return redirect('ver_Auditorias');
+								}
+					 		}		
+					 	}		
 					}
 					catch (Exception $e) 
 			        {

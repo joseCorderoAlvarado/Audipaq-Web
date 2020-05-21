@@ -111,19 +111,19 @@
                         <br />
                         <div class="row">
                             <div class="col-6">
-                                <input type="text" name="nombreAuditado" placeholder=" Nombre">
+                                <input type="text" name="nombreAuditado" placeholder=" Nombre" required="true">
                             </div>
                             <div class="col-6">
-                                <input type="text" name="apellidoPaternoAuditado" placeholder=" Apelido paterno">
+                                <input type="text" name="apellidoPaternoAuditado" placeholder=" Apelido paterno" required="true">
                             </div>
                         </div>
                         <br />
                         <div class="row">
                             <div class="col-6">
-                                <input type="text" name="apellidoMaternoAuditado" placeholder=" Apelido materno">
+                                <input type="text" name="apellidoMaternoAuditado" placeholder=" Apelido materno" required="true">
                             </div>
                             <div class="col-6">
-                                <input type="email" name="correoAuditado" placeholder=" Correo electrónico">
+                                <input type="email" name="correoAuditado" placeholder=" Correo electrónico" required="true">
                             </div>
                         </div>
                         <br />
