@@ -6,6 +6,7 @@ use App\acta;
 use App\doc;
 use App\area;
 use App\detalle;
+use App\departamento;
 use App\observaciones;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -54,6 +55,11 @@ use Illuminate\Support\Str;
 				{
 					try
 					{
+						$listaEmpresas = DB::table('empresa')
+						->select('id_empresa','nombre_empresa')
+						->orderBy('nombre_empresa','ASC')
+						->get(); 
+
 						$ConsultaidPersona = DB::table('persona')
 						->select('persona.id_persona')
 						->where('correo_electronico','=',session('s_identificador'))
@@ -86,7 +92,7 @@ use Illuminate\Support\Str;
 						->where('persona.id_persona','=',$idPersona)
 						->get();
 								
-						return view('ver_Auditorias',['listaActas'=>$listaActas,'listastatus'=>$listastatus, 'listaArea'=>$listaArea, 'listaDepartamento'=>$listaDepartamento]);
+						return view('ver_Auditorias',['listaActas'=>$listaActas,'listastatus'=>$listastatus, 'listaArea'=>$listaArea, 'listaDepartamento'=>$listaDepartamento,'listaEmpresas'=>$listaEmpresas]);
 					}
 					catch (Exception $e) 
 			        {
@@ -121,6 +127,11 @@ use Illuminate\Support\Str;
 				{
 					try
 					{
+						$listaEmpresas = DB::table('empresa')
+						->select('id_empresa','nombre_empresa')
+						->orderBy('nombre_empresa','ASC')
+						->get(); 
+
 						$ConsultaidPersona = DB::table('persona')
 						->select('persona.id_persona')
 						->where('correo_electronico','=',session('s_identificador'))
@@ -149,7 +160,7 @@ use Illuminate\Support\Str;
 
 						$listaActas = DB::select('select acta.id_acta,acta.fecha_inicio, acta.fecha_final,persona.nombre_persona,status.tipo_status,status.id_status,area.nombre_area,area.id_area,departamento.nombre_departamento,departamento.id_departamento FROM acta INNER JOIN persona ON persona.id_persona=acta.fk_id_auditor INNER JOIN status ON status.id_status=acta.fk_id_status INNER JOIN area ON area.id_area=acta.fk_id_area INNER JOIN departamento ON departamento.id_departamento=acta.fk_id_departamento WHERE persona.id_persona ='.$idPersona.' AND (acta.fecha_inicio like "%'.$busqueda.'%" OR acta.fecha_final like "%'.$busqueda.'%" OR persona.nombre_persona like "%'.$busqueda.'%" OR status.tipo_status like "%'.$busqueda.'%" OR area.nombre_area like "%'.$busqueda.'%" OR departamento.nombre_departamento like "%'.$busqueda.'%")');
 								
-						return view('ver_Auditorias',['listaActas'=>$listaActas,'listastatus'=>$listastatus, 'listaArea'=>$listaArea, 'listaDepartamento'=>$listaDepartamento]);
+						return view('ver_Auditorias',['listaActas'=>$listaActas,'listastatus'=>$listastatus, 'listaArea'=>$listaArea, 'listaDepartamento'=>$listaDepartamento,'listaEmpresas'=>$listaEmpresas]);
 					}
 					catch (Exception $e) 
 			        {
@@ -256,17 +267,116 @@ use Illuminate\Support\Str;
 					 	$acta->fk_id_persona=$idPersona;
 					 	$acta->fk_id_auditor=$idPersona;
 					 	$acta->fk_id_status=$datos->input('txtEstatus');
-					 	$acta->fk_id_area=$datos->input('txtArea');
-					 	$acta->fk_id_departamento=$datos->input('txtDepartamento');	
-						if($acta->save()){
-						
-							\Session::flash('flash_message', '¡Nueva acta añadida con éxito');
-							return redirect('ver_Auditorias');			
+
+					 	$persona = new persona;
+					 	$persona->nombre_persona=$datos->input('nombreAuditado');
+					 	$persona->apellido_paterno=$datos->input('apellidoPaternoAuditado');
+					 	$persona->apellido_materno=$datos->input('apellidoMaternoAuditado');
+					 	$persona->correo_electronico=$datos->input ('correoAuditado');
+
+					   //Carácteres para la contraseña
+					   $strMay = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+					   $strMin = "abcdefghijklmnopqrstuvwxyz";
+					   $strCar = "1234567890";
+					   $strNum = "@!#%&.";
+					   $passwordMay = "";
+					   $passwordMin = "";
+					   $passwordCar = "";
+					   $passwordNum = "";
+					   $password = "";
+					   $str = $passwordMay.$passwordMin.$passwordCar.$passwordNum;
+					   //Reconstruimos la contraseña segun la longitud que se quiera
+					   for($i=0;$i<2;$i++) {
+					      //obtenemos un caracter aleatorio escogido de la cadena de caracteres
+					      $passwordCar .= substr($strCar,rand(0,62),1);
 						}
-						else {
-							\Session::flash('mensaje','Error al añadir el acta');
-							 return redirect('ver_Auditorias');
+						for($i=0;$i<3;$i++) {
+					      //obtenemos un caracter aleatorio escogido de la cadena de caracteres
+					      $passwordMay .= substr($strMay,rand(0,62),1);
 						}
+						for($i=0;$i<6;$i++) {
+					      //obtenemos un caracter aleatorio escogido de la cadena de caracteres
+					      $passwordMin .= substr($strMin,rand(0,62),1);
+						}
+						for($i=0;$i<4;$i++) {
+					      //obtenemos un caracter aleatorio escogido de la cadena de caracteres
+					      $passwordNum .= substr($strNum,rand(0,62),1);
+						}
+
+						for($i=0;$i<15;$i++) {
+					      //obtenemos un caracter aleatorio escogido de la cadena de caracteres
+					      $password .= substr($str,rand(0,62),1);
+						}
+
+					 	$persona->contrasena=md5($password);
+					 	$persona->fk_id_empresa=$datos->input('fkEmpresa');
+					 	$persona->fk_id_tipo='2';
+
+					 	if($datos->input('nombreArea')=="" || $datos->input('nombreDepartamento')=="")
+					 	{
+					 		$acta->fk_id_area=$datos->input('txtArea');
+					 		$acta->fk_id_departamento=$datos->input('txtDepartamento');	
+					 		if($acta->save() && $persona->save()){
+
+								$to = $datos->input ('correoAuditado');
+								$subject = "Audipaq - Contraseña de para iniciar sesión como auditado";
+								$headers = "MIME-Version: 1.0" . "\r\n";
+								$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+								$headers .= "De: atencioncliente@fullboxregalos.com" . "\r\n";
+								 
+								$message = "
+								Tu contraseña generada es: ".$password;
+								 
+								mail($to, $subject, $message, $headers);
+
+
+								\Session::flash('flash_message', '¡Nueva acta añadida con éxito');
+								return redirect('ver_Auditorias');			
+							}
+							else {
+								\Session::flash('mensaje','Error al añadir el acta');
+								 return redirect('ver_Auditorias');
+							}
+					 	}
+					 	else
+					 	{
+					 		$departamento = new departamento;
+					 		$departamento->nombre_departamento= $datos->input('nombreDepartamento');
+					 		$departamento->encargado_departamento= $datos->input('encargadoDepartamento');
+
+					 		$area = new area;
+					 		$area->nombre_area= $datos->input('nombreArea');
+					 		$area->encargado_area= $datos->input('encargadoArea');
+
+					 		if($departamento->save() && $area->save()){
+					 			$departamentoAgregado=$departamento->id_departamento;
+					 			$areaAgregada=$area->id_area;
+
+					 			$acta->fk_id_area=$areaAgregada;
+					 			$acta->fk_id_departamento=$departamentoAgregado;
+
+					 			if($acta->save()  && $persona->save()){
+					 				$to = $datos->input ('correoAuditado');
+									$subject = "Audipaq - Contraseña de para iniciar sesión como auditado";
+									$headers = "MIME-Version: 1.0" . "\r\n";
+									$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+									$headers .= "De: atencioncliente@fullboxregalos.com" . "\r\n";
+									 
+									$message = "
+									Tu contraseña generada es: ".$password;
+									 
+									mail($to, $subject, $message, $headers);
+
+
+									\Session::flash('flash_message', '¡Nueva acta añadida con éxito');
+									return redirect('ver_Auditorias');			
+								}
+								else {
+									\Session::flash('mensaje','Error al añadir el acta');
+									 return redirect('ver_Auditorias');
+								}
+					 		}		
+					 	}		
 					}
 					catch (Exception $e) 
 			        {
