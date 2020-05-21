@@ -32,4 +32,56 @@ class PhpmailerController extends Controller
 		
 		
 	}
+	
+	public function resContrasena (Request $datos)
+	{
+		$correoElectronico= $datos ->input('txtCorreoElectronico'); 
+		$ConsultaIdPersona = DB::table('persona')
+				->select('persona.id_persona')
+				->where('correo_electronico', '=', $correoElectronico); 
+				>get(); 
+			
+			$idConversion = json_decode(json_encode($ConsultaIdPersona),true);
+			$IdPersona = implode($idConversion[0]);
+			
+			
+		try {
+						if($datos->input('txtContrasenaNueva')!="" && $datos->input('txtContrasenaNueva')!="")
+						{
+							if($datos->input('txtContrasenaNueva')==$datos->input('txtContrasenaConfirmada'))
+							{
+								//$idPersona=$datos->input('txtidpersona');
+       			    			$persona=persona::find($idPersona);
+
+								$persona->contrasena=md5($datos->input('txtContrasenaNueva'));
+								if($persona->save())
+								{
+									\Session::flash('flash_message', 'Contraseña modificada con éxito');
+									return view('home');
+									
+								}
+								else 
+								{
+									\Session::flash('mensaje','Error al modificar la contraseña, intentelo más tarde');
+									 return redirect('home');
+								}	
+							}
+							else
+							{
+								\Session::flash('mensaje','Las contraseñas no coinciden');
+							 	return redirect('home');	
+							}
+						}
+						else
+						{
+							\Session::flash('flash_message', 'Campos no llenados correctamente');
+							return redirect('home');
+						}
+					}
+					catch (Exception $e) 
+			        {
+			        	\Session::flash('mensaje','Error al modificar la contraseña, intentelo más tarde');
+									 return redirect('home');
+			        }
+	}
 }
