@@ -99,7 +99,7 @@ Route::Get('homePage_Auditado','Auditado@index');
 Route::Get('homePage_Auditado','Auditado@mostrar'); 
 
 //Controladores reestablecer contrasena
-Route::post('btnRecuperarContra','PhpmailerController@sendRecover');
+Route::post('btnRecuperarContra','PhpmailerController@sendEmail');
 
 #Auth::routes();
 
