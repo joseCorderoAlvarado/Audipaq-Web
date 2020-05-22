@@ -60,8 +60,8 @@
                                 <b><label>Empresa</label></b>
                             </div>
                             <div class="col-5"> 
-    							<select name="fkEmpresa" class="form-control" style="width: auto;">
-    							    <option selected>Selecciona una empresa
+    							<select name="fkEmpresa" required class="form-control" style="width: auto;">
+    							    <option value="">Selecciona una empresa
                                     </option>
                                     @foreach ($listaEmpresas as $empresa)
                                     <option value={{$empresa->id_empresa }}>
