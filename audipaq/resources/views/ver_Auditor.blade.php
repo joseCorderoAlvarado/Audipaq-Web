@@ -1,11 +1,23 @@
 @extends('layouts.head')
-@include('layouts.menu_Navegacion_Administrador_VerAuditor')
+@include('layouts.menu_Navegacion_Administrador')
 @include('modales_Administrador.modal_CrearAuditor')
 
 <br>
 <div class="row" style="margin-left: 80%;">
+	
 	<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none;"data-toggle="modal" data-target="#crearAuditor">Crear Auditor</button>
+	<form action="ver_Auditor" method="post" enctype="multipart/form-data">
+		<br>
+                					{{ csrf_field() }}
+								    <div class="input-group" style="margin-left:-3%;">
+								     	<input class="form-control" type="search" placeholder="Buscar" name="txtBuscar">
+								     	<button class="btn" type="submit" style="background: #00ACC1">
+								      	<img src="images/buscador.png" width="20" height="20"	class="d-inline-block align-top">
+								      	</button>
+								    </div>
+								 </form>
 </div>
+
 <br>
 <div class="container-fluid center-block" style="margin: center; text-align: center; justify-content: center;">
 	<div class="container-fluid" style="border-radius: 3px; padding: 10px; ">

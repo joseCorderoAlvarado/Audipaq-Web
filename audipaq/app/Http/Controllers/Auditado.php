@@ -69,8 +69,9 @@ use Illuminate\Support\Str;
 					->join('detalle', 'observaciones.id_observaciones', '=', 'detalle.fk_id_observaciones')
 					->join('prioridad', 'observaciones.fk_id_prioridad', '=', 'prioridad.id_prioridad')
 					->join('doc', 'detalle.fk_id_doc', '=', 'doc.id_doc')
+					->join('acta','detalle.fk_id_persona','=',"acta.fk_id_persona")
 					->select('observaciones.id_observaciones','observaciones.comentarios', 'status.tipo_status','status.id_status','persona.nombre_persona','prioridad.tipo_prioridad','prioridad.id_prioridad','detalle.fecha', 'doc.nombre_doc')
-					->where('detalle.fk_id_persona','=',$idPersona)
+					->where('acta.fk_id_persona','=',$idPersona)
 					->orderBy('observaciones.fk_id_prioridad','Asc')
 					->get();	
 						
