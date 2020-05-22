@@ -11,10 +11,10 @@
             {{ csrf_field() }}
                 <div class="modal-body mx-auto" style="width: auto; background-color: #ECEFF1">
                      <div class="row">
-                            <div class="col-4">
+                            <div class="col-3">
                                  <b><label>ID del Acta</label></b>
                             </div>
-                            <div class="col-4">
+                            <div class="col-5">
                                   <input type="text" class="form-control" name="txtIdACta" readonly="true" style="border-radius: 5px" value="{{$id_acta}}">
                             </div>
                     </div>
@@ -59,7 +59,7 @@
                                  <b><label>Observación</label></b>
                             </div>
                             <div class="col-5">
-                                  <textarea type="text" class="form-control" name="txtObservacion" title="La observación debe llevar solo letras, números y espacios" pattern="[A-Za-z0-9\s]+" required style="width: 200px; height: 80px;  border-radius: 5px" >
+                                  <textarea type="text" class="form-control" name="txtObservacion" title="La observación debe llevar solo letras, números y espacios" pattern="[A-Za-z0-9\s]+" required style="width: 200px; height: 80px; max-height: 80px; min-height: 80px; border-radius: 5px" >
 								   </textarea>
 								
                             </div>

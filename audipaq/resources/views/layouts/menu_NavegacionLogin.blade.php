@@ -9,9 +9,9 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul	class="navbar-nav ml-auto">
-						<a	class="navbar-brand" href="{{ url('/')}}" style="color: #fff"><b>Inicio</b></a>
+						<a	class="navbar-brand" href="{{ url('/')}}" style="color: #fff; size: 15px; font-weight: 300"><b>Inicio</b></a>
 						<li class="nav-item dropdown">
-							<a	class="navbar-brand" href="{{ url('login')}}" style="color: #fff"><b>Iniciar sesión</b></a>
+							<a	class="navbar-brand" href="{{ url('login')}}" style="color: #fff; size: 15px; font-weight: 300"><b>Iniciar sesión</b></a>
 	           			</li>
 					</ul>
 				</div>

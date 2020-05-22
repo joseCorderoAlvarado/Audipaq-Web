@@ -11,7 +11,7 @@
             {{ csrf_field() }}
                 <div class="modal-body mx-auto" style="width: auto; background-color: #ECEFF1">
                     <div class="row">
-                            <div class="col-3">
+                            <div class="col-4">
                                 <b><label>Fecha Inicio</label></b>
                             </div>
                             <div class="col-5">
@@ -20,7 +20,7 @@
                     </div>
                     <br>
                      <div class="row">
-                            <div class="col-3">
+                            <div class="col-4">
                                 <b><label>Fecha Final</label></b>
                             </div>
                             <div class="col-5">
@@ -29,7 +29,7 @@
                     </div>
                     <br>
                     <div class="row">
-                            <div class="col-3">
+                            <div class="col-4">
                                  <b><label>Estatus</label></b>
                             </div>
                             <div class="col-5">
@@ -45,7 +45,7 @@
                     </div>
                     <br>
                     <div class="row">
-                             <div class="col-3">
+                             <div class="col-4">
                                 <b><label>Área</label></b>
                              </div>
                              <div class="col-5">
@@ -61,7 +61,7 @@
                     </div>
                     <br>
                     <div class="row">
-                            <div class="col-3">
+                            <div class="col-4">
                                 <b><label>Departamento</label></b>
                             </div>
                            <div class="col-5">
@@ -83,10 +83,10 @@
                         <br />
                         <div class="row">
                             <div class="col-6">
-                                <input type="text" name="nombreArea" placeholder=" Nombre">
+                                <input type="text" class="form-control"  name="nombreArea" placeholder=" Nombre">
                             </div>
                             <div class="col-6">
-                                <input type="text" name="encargadoArea" placeholder=" Encargado">
+                                <input type="text" class="form-control"  name="encargadoArea" placeholder=" Encargado">
                             </div>
                         </div>
                         <br / >
@@ -94,10 +94,10 @@
                         <br />
                         <div class="row">
                             <div class="col-6">
-                                <input type="text" name="nombreDepartamento" placeholder=" Nombre">
+                                <input type="text" class="form-control"  name="nombreDepartamento" placeholder=" Nombre">
                             </div>
                             <div class="col-6">
-                                <input type="text" name="encargadoDepartamento" placeholder=" Encargado">
+                                <input type="text" class="form-control"  name="encargadoDepartamento" placeholder=" Encargado">
                             </div>
                         </div>
                         <br />
@@ -111,35 +111,32 @@
                         <br />
                         <div class="row">
                             <div class="col-6">
-                                <input type="text" name="nombreAuditado" placeholder=" Nombre" required="true">
+                                <input type="text" class="form-control"  name="nombreAuditado" placeholder=" Nombre">
                             </div>
                             <div class="col-6">
-                                <input type="text" name="apellidoPaternoAuditado" placeholder=" Apelido paterno" required="true">
+                                <input type="text" class="form-control"  name="apellidoPaternoAuditado" placeholder=" Apelido paterno">
                             </div>
                         </div>
                         <br />
                         <div class="row">
                             <div class="col-6">
-                                <input type="text" name="apellidoMaternoAuditado" placeholder=" Apelido materno" required="true">
+                                <input type="text" class="form-control"  name="apellidoMaternoAuditado" placeholder=" Apelido materno">
                             </div>
                             <div class="col-6">
-                                <input type="email" name="correoAuditado" placeholder=" Correo electrónico" required="true">
+                                <input type="email" class="form-control"  name="correoAuditado" placeholder=" Correo electrónico">
                             </div>
                         </div>
                         <br />
                         <div class="row">
-                            <div class="col-6" >
-                                <label>Empresa: </label>
-
-                                <select name="fkEmpresa" class="form-control" style="width: auto;">
-                                    <option selected>Selecciona una empresa
-                                    </option>
-                                    @foreach ($listaEmpresas as $empresa)
-                                    <option value={{$empresa->id_empresa }}>
-                                        {{ $empresa->nombre_empresa}} 
-                                    </option>
-                                    @endforeach     
-                                </select> 
+                            <div class="col-3" style="padding-left: 10%">
+                                <label>Empresa</label>
+                            </div>
+                            <div class="col-9">
+                                <select class="form-control">
+                              <option style="color: gray">
+                                  Selecciona una empresa
+                              </option>  
+                            </select>
                             </div>
                         </div>
                         <br />

@@ -11,19 +11,19 @@
             {{ csrf_field() }}
                 <div class="modal-body mx-auto" style="width: auto; background-color: #ECEFF1">
                      <div class="row">
-                            <div class="col-4">
+                            <div class="col-3">
                                  <b><label>ID del Acta</label></b>
                             </div>
-                            <div class="col-4">
+                            <div class="col-5">
                                   <input type="text" class="form-control" name="txtIdACta" readonly="true" border-radius: 5px" value="{{$observacion->id_acta}}">
                             </div>
                     </div>
                     <br>
                      <div class="row">
-                            <div class="col-4">
+                            <div class="col-3">
                                  <b><label>No. de Observación</label></b>
                             </div>
-                            <div class="col-4">
+                            <div class="col-5">
                                   <input type="text" class="form-control" name="txtIdObservacion" readonly="true" border-radius: "5px" value="{{$observacion->id_observaciones}}">
                             </div>
                     </div>
@@ -68,7 +68,7 @@
                                  <b><label>Observación</label></b>
                             </div>
                             <div class="col-5">
-                                  <textarea  type="text" id="idcomentarioObservacion" name="txtObservacion" style="width: 250px; height: 80px; border: 0.7px solid; border-color: transparent; border-radius: 5px; color:gray;"  >{{$observacion->comentarios}}</textarea>
+                                  <textarea  type="text" id="idcomentarioObservacion" name="txtObservacion" style="width: 250px; height: 80px; max-height: 80px; min-height: 80px; border: 0.7px solid; border-color: transparent; border-radius: 5px; color:gray;"  >{{$observacion->comentarios}}</textarea>
                             </div>
                     </div>
                    
