@@ -84,7 +84,6 @@
 	<br>
 	
 	<button type="submit" class="btn btn-primary" style="background: #00ACC1; border: none;" data-toggle="modal" data-target="#modificarEmpresa{{$empresas->id_empresa}}">Modificar</button>
-    <button type="submit" class="btn btn-primary" style="background: #00ACC1; border: none; margin-left: 5%" data-toggle="modal" data-target="#eliminarEmpresa{{$empresas->id_empresa}}">Eliminar</button>
 
 </div>
 @include('modales_MiEmpresa.modal_ModificarEmpresa')
