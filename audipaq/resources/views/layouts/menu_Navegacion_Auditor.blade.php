@@ -12,7 +12,7 @@
 					<div	class="navbar-nav ml-auto">
 						<a	class="navbar-brand" href="{{url('homePage_Administrador')}}" style="color: #fff"><b>Inicio</b></a>
 
-                     		<div class="dropdown">
+                     		<!--<div class="dropdown">
 					            <div class="nav-item dropdown" >
 									<a  class="navbar-brand" aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="{{ url('')}}" style="color: #fff"> <span class="caret"></span><b>Mi empresa</b>
 										<div class="dropdown-menu" aria-labelledby="dropdownmenu" style="background-color: #546E7A!important">
@@ -21,9 +21,8 @@
 		  								</div>
 									</a>
 					            </div>
-			          		</div>
-
-
+			          		</div>-->
+							<a	class="navbar-brand" href="{{ url('ver_Auditorias')}}" style="color: #fff"><b>Ver auditorias</b></a>	         
 						<div class="nav-item dropdown">
 							<a	type="button" class="btn btn-primary" style="background: #00ACC1; border: none;" href="{{ url('btnLogout')}}" style="color: #fff"><b>Cerrar sesión</b></a>
 			            </div>
