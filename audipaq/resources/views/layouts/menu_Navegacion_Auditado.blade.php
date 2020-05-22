@@ -10,9 +10,9 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<div	class="navbar-nav ml-auto">
-						<a	class="navbar-brand" href="{{url('homePage_Auditado')}}" style="color: #fff"><b>Inicio</b></a>
+						<a	class="navbar-brand" href="{{url('homePage_Auditado')}}" style="color: #fff; size: 15px; font-weight: 300"><b>Inicio</b></a>
 						<div class="nav-item dropdown">
-							<a	type="button" class="btn btn-primary" style="background: #00ACC1; border: none;" href="{{ url('btnLogout')}}" style="color: #fff"><b>Cerrar sesión</b></a>
+							<a	type="button" class="btn btn-primary" style="background: #00ACC1; border: none;" href="{{ url('btnLogout')}}" style="color: #fff; size: 15px; font-weight: 300"><b>Cerrar sesión</b></a>
 			            </div>
 					</div>
 				</div>

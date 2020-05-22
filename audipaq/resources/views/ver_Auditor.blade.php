@@ -1,7 +1,16 @@
 @extends('layouts.head')
 @include('layouts.menu_Navegacion_Administrador_VerAuditor')
 @include('modales_Administrador.modal_CrearAuditor')
-
+<br>
+<form action="ver_Auditor" method="post" enctype="multipart/form-data">
+	{{ csrf_field() }}
+		<div class="input-group" style="margin-left:70%; width: 300px">
+		 	<input class="form-control" type="search" placeholder="Buscar" name="txtBuscar">
+		 	<button class="btn" type="submit" style="background: #00ACC1; border-bottom-left-radius: 0px; border-top-left-radius: 0px;">
+		  	<img src="images/buscador.png" width="20" height="20" class="d-inline-block align-top">
+		  	</button>
+		</div>
+</form>
 <br>
 <div class="row" style="margin-left: 80%;">
 	<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none;"data-toggle="modal" data-target="#crearAuditor">Crear Auditor</button>
@@ -51,9 +60,9 @@
 				  <div class="col-md-9" style="padding: 3px;">
 				    <button style="text-align:center; background: #00ACC1" data-toggle="modal" data-target="#modificarAuditor{{$auditor->id_persona}}"><img src="images/editar.png" width="20" height="20"></button>
 				  </div>
-				  <!-- <div class="col-md-9" style="padding: 3px;">
+				  <div class="col-md-9" style="padding: 3px;">
 				    <button style="text-align:center; background: #00ACC1" data-toggle="modal" data-target="#eliminarAuditor{{$auditor->id_persona}}" class="btn-floating btn-small waves-effect waves-light blue"><img src="images/borrar.png" width="20" height="20"></button>
-				  </div>-->
+				  </div>
 				</div>
            	</div>
            	<div class="col-1" style="background-color: white;">
