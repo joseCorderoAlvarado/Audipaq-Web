@@ -26,7 +26,16 @@
 					<div class="row">
 						<div class="col-1">
 							<p>Auditor</p>
-							<b><h8 style="text-align:center; background-color: #ECEFF1;">{{$observacion->nombre_persona}}</h8></b>
+
+							<?php 
+							$auditor = DB::table('persona')
+							->join('acta', 'persona.id_persona', '=', 'acta.fk_id_auditor')
+							->select('persona.nombre_persona')
+							->where('acta.id_acta','=',$id_acta)
+							->get();	
+							?>
+
+							<b><h8 style="text-align:center; background-color: #ECEFF1;">{{$auditor[0]->nombre_persona}}</h8></b>
 						</div>
 						<div class="col-1">
 							<p>Prioridad</p>
@@ -72,18 +81,28 @@
 							
 					<br>
 					<div class="row" >
-						<div class="col-4">
-							Auditado: 
+						<div class="col-10">
+							Encargado y Area auditada: 
 							<b><h8 style="text-align:center; background-color: #ECEFF1;">{{$observacion->encargado_area}} de {{$observacion->nombre_area}}</h8></b>
 						</div>
+						<div class="col-10">
+							Encargado y departamento auditado: 
+							<b><h8 style="text-align:center; background-color: #ECEFF1;">{{$observacion->encargado_departamento}} de {{$observacion->nombre_departamento}}</h8></b>
+						</div  >
+							
 						<div class="col-1">
 							
 						</div>
-						<div class="col-1">
-							
-						</div>
-						<div class="col-1">
-							
+						<div class="col-10">
+							Auditado:
+							<?php 
+							$auditado = DB::table('persona')
+							->join('acta', 'persona.id_persona', '=', 'acta.fk_id_persona')
+							->select('persona.nombre_persona','persona.apellido_paterno','persona.apellido_materno','persona.correo_electronico')
+							->where('acta.id_acta','=',$id_acta)
+							->get();	
+							?>
+							<b><h8 style="text-align:center; background-color: #ECEFF1;">{{$auditado[0]->nombre_persona}} {{$auditado[0]->apellido_paterno}} {{$auditado[0]->apellido_materno}} con correo electrónico: {{$auditado[0]->correo_electronico}}</h8></b>
 						</div>
 					</div>
 				</div>
@@ -93,7 +112,7 @@
 				<div class="container" style="margin: 20px 45px;">
 					<div class="row">
 						<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none;" data-toggle="modal" data-target="#editarObservacion{{$observacion->id_observaciones}}">Editar</button>
-						<button type="button" class="btn btn-primary" style="background: #00ACC1; border: none; margin-left:7px;" data-toggle="modal" data-target="#editarObservacion">Eliminar</button>
+						
 					</div>
 				</div>			
 			</div>

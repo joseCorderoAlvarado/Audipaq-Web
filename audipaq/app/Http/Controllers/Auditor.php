@@ -204,7 +204,8 @@ use Illuminate\Support\Str;
 						->join('acta', 'observaciones.fk_id_acta', '=', 'acta.id_acta')
 						->join('prioridad', 'observaciones.fk_id_prioridad', '=', 'prioridad.id_prioridad')
 						->join('area', 'area.id_area', '=', 'acta.fk_id_area')
-						->select('observaciones.id_observaciones','observaciones.comentarios', 'status.tipo_status','status.id_status','persona.nombre_persona','acta.id_acta','acta.fecha_inicio','prioridad.tipo_prioridad','prioridad.id_prioridad','area.nombre_area','area.id_area','area.encargado_area')
+						->join('departamento', 'departamento.id_departamento', '=', 'acta.fk_id_departamento')
+						->select('observaciones.id_observaciones','observaciones.comentarios', 'status.tipo_status','status.id_status','acta.fk_id_persona','acta.fk_id_auditor','acta.id_acta','acta.fecha_inicio','prioridad.tipo_prioridad','prioridad.id_prioridad','area.nombre_area','area.id_area','area.encargado_area','departamento.nombre_departamento','departamento.id_departamento','departamento.encargado_departamento')
 						->where('fk_id_acta','=',$id_acta)
 						->orderBy('observaciones.fk_id_prioridad','Asc')
 						->get();	
@@ -264,7 +265,6 @@ use Illuminate\Support\Str;
 						$acta = new acta;
 					 	$acta->fecha_inicio=$datos->input('txtFechaInicio');
 					 	$acta->fecha_final=$datos->input('txtFechaFinal');
-					 	$acta->fk_id_persona=$idPersona;
 					 	$acta->fk_id_auditor=$idPersona;
 					 	$acta->fk_id_status=$datos->input('txtEstatus');
 
@@ -274,19 +274,19 @@ use Illuminate\Support\Str;
 					 	$persona->apellido_materno=$datos->input('apellidoMaternoAuditado');
 					 	$persona->correo_electronico=$datos->input ('correoAuditado');
 
-					   //Carácteres para la contraseña
-					   $strMay = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-					   $strMin = "abcdefghijklmnopqrstuvwxyz";
-					   $strCar = "1234567890";
-					   $strNum = "@!#%&.";
-					   $passwordMay = "";
-					   $passwordMin = "";
-					   $passwordCar = "";
-					   $passwordNum = "";
-					   $password = "";
-					   $str = $passwordMay.$passwordMin.$passwordCar.$passwordNum;
-					   //Reconstruimos la contraseña segun la longitud que se quiera
-					   for($i=0;$i<2;$i++) {
+					    //Carácteres para la contraseña
+					    $strMay = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+					    $strMin = "abcdefghijklmnopqrstuvwxyz";
+					    $strCar = "1234567890";
+					    $strNum = "@!#%&.";
+					    $passwordMay = "";
+					    $passwordMin = "";
+					    $passwordCar = "";
+					    $passwordNum = "";
+					    $password = "";
+					    $str = $passwordMay.$passwordMin.$passwordCar.$passwordNum;
+					    //Reconstruimos la contraseña segun la longitud que se quiera
+					    for($i=0;$i<2;$i++) {
 					      //obtenemos un caracter aleatorio escogido de la cadena de caracteres
 					      $passwordCar .= substr($strCar,rand(0,62),1);
 						}
@@ -311,6 +311,9 @@ use Illuminate\Support\Str;
 					 	$persona->contrasena=md5($password);
 					 	$persona->fk_id_empresa=$datos->input('fkEmpresa');
 					 	$persona->fk_id_tipo='2';
+
+					 	$AuditadoAgregado=$persona->id_persona;
+					 	$acta->fk_id_persona=$AuditadoAgregado;
 
 					 	if($datos->input('nombreArea')=="" || $datos->input('nombreDepartamento')=="")
 					 	{
