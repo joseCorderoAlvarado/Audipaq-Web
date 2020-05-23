@@ -17,9 +17,6 @@
 			            <li class="nav-item dropdown">
 							<a	class="navbar-brand" href="{{ url('ver_Auditor')}}" style="color: #fff; size: 15px; font-weight: 300"><b>Ver auditores</b></a>
 			            </li>
-			            <li class="nav-item dropdown">
-							<a	class="navbar-brand" href="{{ url('ver_Coauditor')}}" style="color: #fff; size: 15px; font-weight: 300"><b>Ver Coauditores</b></a>
-			            </li>
 						<li class="nav-item dropdown">
 							<a	type="button" class="btn btn-primary" style="background: #00ACC1; border: none;" href="{{ url('btnLogout')}}" style="color: #fff; size: 15px; font-weight: 300"><b>Cerrar sesión</b></a>
 			            </li>
