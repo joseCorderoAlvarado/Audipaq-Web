@@ -265,8 +265,6 @@ use Illuminate\Support\Str;
 						$acta = new acta;
 					 	$acta->fecha_inicio=$datos->input('txtFechaInicio');
 					 	$acta->fecha_final=$datos->input('txtFechaFinal');
-					 	$acta->fk_id_auditor=$idPersona;
-					 	$acta->fk_id_status=$datos->input('txtEstatus');
 
 					 	$persona = new persona;
 					 	$persona->nombre_persona=$datos->input('nombreAuditado');
@@ -308,15 +306,20 @@ use Illuminate\Support\Str;
 					 	$persona->contrasena=md5($password);
 					 	$persona->fk_id_empresa=$datos->input('fkEmpresa');
 					 	$persona->fk_id_tipo='2';
-
+					 	$persona->save();
 					 	$AuditadoAgregado=$persona->id_persona;
+
 					 	$acta->fk_id_persona=$AuditadoAgregado;
+					 	$acta->fk_id_auditor=$idPersona;
+					 	$acta->fk_id_status=$datos->input('txtEstatus');
+
+					 	
 
 					 	if($datos->input('nombreArea')=="" || $datos->input('nombreDepartamento')=="")
 					 	{
 					 		$acta->fk_id_area=$datos->input('txtArea');
 					 		$acta->fk_id_departamento=$datos->input('txtDepartamento');	
-					 		if($acta->save() && $persona->save()){
+					 		if($acta->save()){
 
 								$to = $datos->input ('correoAuditado');
 								$subject = "Audipaq - Contraseña de para iniciar sesión como auditado";
@@ -355,7 +358,7 @@ use Illuminate\Support\Str;
 					 			$acta->fk_id_area=$areaAgregada;
 					 			$acta->fk_id_departamento=$departamentoAgregado;
 
-					 			if($acta->save()  && $persona->save()){
+					 			if($acta->save()){
 					 				$to = $datos->input ('correoAuditado');
 									$subject = "Audipaq - Contraseña de para iniciar sesión como auditado";
 									$headers = "MIME-Version: 1.0" . "\r\n";

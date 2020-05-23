@@ -132,10 +132,15 @@
                                 <label>Empresa</label>
                             </div>
                             <div class="col-9">
-                                <select class="form-control">
-                              <option style="color: gray">
-                                  Selecciona una empresa
-                              </option>  
+                               <select name="fkEmpresa" required class="form-control" style="width: auto;">
+                                    <option value="">Selecciona una empresa
+                                    </option>
+                                    @foreach ($listaEmpresas as $empresa)
+                                    <option value={{$empresa->id_empresa }}>
+                                        {{ $empresa->nombre_empresa}} 
+                                    </option>
+                                    @endforeach     
+                                </select> 
                             </select>
                             </div>
                         </div>
