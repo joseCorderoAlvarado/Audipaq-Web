@@ -81,7 +81,7 @@
            		<h8 style="text-align:center;">{{$auditor->id_persona}}</h8>
             </div>
 	     	<div class="col-2" style="background-color: white; margin-left:20px; ">
-           		<h8 style="text-align:center;">{{$auditor->nombre_persona}}</h8>
+           		<h8 style="text-align:center;">{{$auditor->nombre_persona}} {{$auditor->apellido_paterno}} {{$auditor->apellido_materno}}</h8>
             </div>
     	   	<div class="col-2" style="background-color: white; margin-left:20px;">
            		<h8 style="text-align:center;">{{$auditor->nombre_empresa}}</h8>

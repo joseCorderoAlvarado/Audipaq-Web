@@ -303,10 +303,7 @@ use Illuminate\Support\Str;
 					      $passwordNum .= substr($strNum,rand(0,62),1);
 						}
 
-						for($i=0;$i<15;$i++) {
-					      //obtenemos un caracter aleatorio escogido de la cadena de caracteres
-					      $password .= substr($str,rand(0,62),1);
-						}
+						$password = str_shuffle($str);
 
 					 	$persona->contrasena=md5($password);
 					 	$persona->fk_id_empresa=$datos->input('fkEmpresa');
