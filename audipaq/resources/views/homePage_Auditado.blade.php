@@ -8,6 +8,7 @@
   Observaciones
     </div>
 @foreach ($listaObservaciones as $observacion)
+<div>
 <form class="needs-validation" novalidate>
       <div class="form-row">
 	  {{ csrf_field() }}
@@ -16,7 +17,7 @@
           <input type="text" class="form-control" readonly="readonly"  value="{{$observacion->id_observaciones}}">
         </div>
         <div class="col-md-2 mb-6">
-          <label> <b>Aud o Coud</b></label>
+          <label> <b>Auditor</b></label>
           <input type="text" class="form-control" readonly="readonly"  value="{{$observacion->nombre_persona}}">
         </div>
         <div class="col-md-1 mb-6">
@@ -43,14 +44,10 @@
 		   {{$observacion->comentarios}}
            </textarea>
         </div>
-
-  
-          <label ><b>Auditado  </b></label> &nbsp;&nbsp; <label ><b>XXX</b></label> &nbsp;&nbsp;
-          <label ><b>Fecha</b></label> <label > &nbsp;&nbsp;<b>XXXX</b></label>    &nbsp;&nbsp; 
-          <label ><b>Evidencia</b></label><label > &nbsp;&nbsp;<b>XXXX</b></label>
         
       </div>
     </form>
+  </div>
 	@endforeach
   <input type="hidden" value="" id="idEmpresa">
   <br>

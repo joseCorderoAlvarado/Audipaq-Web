@@ -538,7 +538,8 @@ use Illuminate\Support\Str;
 						->join('acta', 'observaciones.fk_id_acta', '=', 'acta.id_acta')
 						->join('prioridad', 'observaciones.fk_id_prioridad', '=', 'prioridad.id_prioridad')
 						->join('area', 'area.id_area', '=', 'acta.fk_id_area')
-						->select('observaciones.id_observaciones','observaciones.comentarios', 'status.tipo_status','status.id_status','persona.nombre_persona','acta.id_acta','acta.fecha_inicio','prioridad.tipo_prioridad','prioridad.id_prioridad','area.nombre_area','area.id_area','area.encargado_area')
+						->join('departamento', 'departamento.id_departamento', '=', 'acta.fk_id_departamento')
+						->select('observaciones.id_observaciones','observaciones.comentarios', 'status.tipo_status','status.id_status','acta.fk_id_persona','acta.fk_id_auditor','acta.id_acta','acta.fecha_inicio','prioridad.tipo_prioridad','prioridad.id_prioridad','area.nombre_area','area.id_area','area.encargado_area','departamento.nombre_departamento','departamento.id_departamento','departamento.encargado_departamento')
 						->where('fk_id_acta','=',$id_acta)
 						->orderBy('observaciones.fk_id_prioridad','Asc')
 						->get();	
@@ -569,13 +570,10 @@ use Illuminate\Support\Str;
 						->join('acta', 'observaciones.fk_id_acta', '=', 'acta.id_acta')
 						->join('prioridad', 'observaciones.fk_id_prioridad', '=', 'prioridad.id_prioridad')
 						->join('area', 'area.id_area', '=', 'acta.fk_id_area')
-						->select('observaciones.id_observaciones','observaciones.comentarios', 'status.tipo_status','status.id_status','persona.nombre_persona','acta.id_acta','acta.fecha_inicio','prioridad.tipo_prioridad','prioridad.id_prioridad','area.nombre_area','area.id_area','area.encargado_area')
+						->join('departamento', 'departamento.id_departamento', '=', 'acta.fk_id_departamento')
+						->select('observaciones.id_observaciones','observaciones.comentarios', 'status.tipo_status','status.id_status','acta.fk_id_persona','acta.fk_id_auditor','acta.id_acta','acta.fecha_inicio','prioridad.tipo_prioridad','prioridad.id_prioridad','area.nombre_area','area.id_area','area.encargado_area','departamento.nombre_departamento','departamento.id_departamento','departamento.encargado_departamento')
 						->where('fk_id_acta','=',$id_acta)
 						->orderBy('observaciones.fk_id_prioridad','Asc')
-						->get();	
-							
-						$listaPrioridad = DB::table('prioridad')
-						->select('id_prioridad','tipo_prioridad')
 						->get();	
 						
 						$listaStatus= DB::table('status')
@@ -688,10 +686,11 @@ use Illuminate\Support\Str;
 						->join('acta', 'observaciones.fk_id_acta', '=', 'acta.id_acta')
 						->join('prioridad', 'observaciones.fk_id_prioridad', '=', 'prioridad.id_prioridad')
 						->join('area', 'area.id_area', '=', 'acta.fk_id_area')
-						->select('observaciones.id_observaciones','observaciones.comentarios', 'status.tipo_status','status.id_status','persona.nombre_persona','acta.id_acta','acta.fecha_inicio','prioridad.tipo_prioridad','prioridad.id_prioridad','area.nombre_area','area.id_area','area.encargado_area')
+						->join('departamento', 'departamento.id_departamento', '=', 'acta.fk_id_departamento')
+						->select('observaciones.id_observaciones','observaciones.comentarios', 'status.tipo_status','status.id_status','acta.fk_id_persona','acta.fk_id_auditor','acta.id_acta','acta.fecha_inicio','prioridad.tipo_prioridad','prioridad.id_prioridad','area.nombre_area','area.id_area','area.encargado_area','departamento.nombre_departamento','departamento.id_departamento','departamento.encargado_departamento')
 						->where('fk_id_acta','=',$id_acta)
 						->orderBy('observaciones.fk_id_prioridad','Asc')
-						->get();	
+						->get();
 							
 						$listaPrioridad = DB::table('prioridad')
 						->select('id_prioridad','tipo_prioridad')
@@ -719,7 +718,8 @@ use Illuminate\Support\Str;
 						->join('acta', 'observaciones.fk_id_acta', '=', 'acta.id_acta')
 						->join('prioridad', 'observaciones.fk_id_prioridad', '=', 'prioridad.id_prioridad')
 						->join('area', 'area.id_area', '=', 'acta.fk_id_area')
-						->select('observaciones.id_observaciones','observaciones.comentarios', 'status.tipo_status','status.id_status','persona.nombre_persona','acta.id_acta','acta.fecha_inicio','prioridad.tipo_prioridad','prioridad.id_prioridad','area.nombre_area','area.id_area','area.encargado_area')
+						->join('departamento', 'departamento.id_departamento', '=', 'acta.fk_id_departamento')
+						->select('observaciones.id_observaciones','observaciones.comentarios', 'status.tipo_status','status.id_status','acta.fk_id_persona','acta.fk_id_auditor','acta.id_acta','acta.fecha_inicio','prioridad.tipo_prioridad','prioridad.id_prioridad','area.nombre_area','area.id_area','area.encargado_area','departamento.nombre_departamento','departamento.id_departamento','departamento.encargado_departamento')
 						->where('fk_id_acta','=',$id_acta)
 						->orderBy('observaciones.fk_id_prioridad','Asc')
 						->get();	
